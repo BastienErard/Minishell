@@ -1,26 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Test.c                                             :+:      :+:    :+:   */
+/*   ft_printf.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fgrasset <fgrasset@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/03 13:37:06 by berard            #+#    #+#             */
-/*   Updated: 2023/03/08 11:39:47 by fgrasset         ###   ########.fr       */
+/*   Created: 2022/11/10 15:12:03 by fgrasset          #+#    #+#             */
+/*   Updated: 2023/02/10 14:00:17 by fgrasset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include <readline/readline.h>
-# include <readline/history.h>
-# include <stdio.h>
-# include <stdlib.h>
+#ifndef FT_PRINTF_H
+# define FT_PRINTF_H
 
-int main() {
-	char	*input;
-	printf("Enter a line of text:\n");
-	input = readline("Minishell > ");
-	printf("you entered: %s\n", input);
-	free(input);
-	return(0);
-}
+# include <stdarg.h>
+# include "../libft.h"
 
+int	ft_printf(const char *string, ...);
+int	printf_c(char c);
+int	printf_s(char *s);
+int	printf_d(int n);
+int	printf_u(unsigned int n);
+int	printf_x(unsigned int n);
+int	printf_xx(unsigned int n);
+int	printf_p(unsigned long cpy);
+
+#endif

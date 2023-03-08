@@ -1,26 +1,14 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Test.c                                             :+:      :+:    :+:   */
+/*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fgrasset <fgrasset@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/03 13:37:06 by berard            #+#    #+#             */
-/*   Updated: 2023/03/08 11:39:47 by fgrasset         ###   ########.fr       */
+/*   Created: 2023/03/08 13:37:04 by fgrasset          #+#    #+#             */
+/*   Updated: 2023/03/08 14:24:04 by fgrasset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include <readline/readline.h>
-# include <readline/history.h>
-# include <stdio.h>
-# include <stdlib.h>
-
-int main() {
-	char	*input;
-	printf("Enter a line of text:\n");
-	input = readline("Minishell > ");
-	printf("you entered: %s\n", input);
-	free(input);
-	return(0);
-}
-
+# include "libft/libft.h"
+# include "grammar.h"

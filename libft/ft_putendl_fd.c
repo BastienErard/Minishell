@@ -1,26 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Test.c                                             :+:      :+:    :+:   */
+/*   ft_putendl_fd.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fgrasset <fgrasset@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/03 13:37:06 by berard            #+#    #+#             */
-/*   Updated: 2023/03/08 11:39:47 by fgrasset         ###   ########.fr       */
+/*   Created: 2022/10/31 14:48:05 by fgrasset          #+#    #+#             */
+/*   Updated: 2022/11/07 13:01:51 by fgrasset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include <readline/readline.h>
-# include <readline/history.h>
-# include <stdio.h>
-# include <stdlib.h>
+#include "libft.h"
 
-int main() {
-	char	*input;
-	printf("Enter a line of text:\n");
-	input = readline("Minishell > ");
-	printf("you entered: %s\n", input);
-	free(input);
-	return(0);
+void	ft_putendl_fd(char *s, int fd)
+{
+	int	i;
+
+	i = -1;
+	while (s[++i])
+		ft_putchar_fd(s[i], fd);
+	ft_putchar_fd('\n', fd);
 }
-

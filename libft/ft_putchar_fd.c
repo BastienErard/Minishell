@@ -1,26 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Test.c                                             :+:      :+:    :+:   */
+/*   ft_putchar_fd.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fgrasset <fgrasset@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/03 13:37:06 by berard            #+#    #+#             */
-/*   Updated: 2023/03/08 11:39:47 by fgrasset         ###   ########.fr       */
+/*   Created: 2022/10/31 14:28:32 by fgrasset          #+#    #+#             */
+/*   Updated: 2022/11/07 13:01:47 by fgrasset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include <readline/readline.h>
-# include <readline/history.h>
-# include <stdio.h>
-# include <stdlib.h>
+#include "libft.h"
 
-int main() {
-	char	*input;
-	printf("Enter a line of text:\n");
-	input = readline("Minishell > ");
-	printf("you entered: %s\n", input);
-	free(input);
-	return(0);
+void	ft_putchar_fd(char c, int fd)
+{
+	write(fd, &c, 1);
 }
-

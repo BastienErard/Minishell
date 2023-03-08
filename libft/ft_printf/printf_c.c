@@ -1,26 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Test.c                                             :+:      :+:    :+:   */
+/*   printf_c.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fgrasset <fgrasset@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/03 13:37:06 by berard            #+#    #+#             */
-/*   Updated: 2023/03/08 11:39:47 by fgrasset         ###   ########.fr       */
+/*   Created: 2022/11/11 13:48:18 by fgrasset          #+#    #+#             */
+/*   Updated: 2022/11/14 11:27:37 by fgrasset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include <readline/readline.h>
-# include <readline/history.h>
-# include <stdio.h>
-# include <stdlib.h>
+#include "ft_printf.h"
 
-int main() {
-	char	*input;
-	printf("Enter a line of text:\n");
-	input = readline("Minishell > ");
-	printf("you entered: %s\n", input);
-	free(input);
-	return(0);
+int	printf_c(char c)
+{
+	write(1, &c, 1);
+	return (1);
 }
-

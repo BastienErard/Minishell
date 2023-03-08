@@ -1,26 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Test.c                                             :+:      :+:    :+:   */
+/*   ft_substr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fgrasset <fgrasset@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/03 13:37:06 by berard            #+#    #+#             */
-/*   Updated: 2023/03/08 11:39:47 by fgrasset         ###   ########.fr       */
+/*   Created: 2022/10/31 15:56:55 by fgrasset          #+#    #+#             */
+/*   Updated: 2022/11/07 13:03:02 by fgrasset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include <readline/readline.h>
-# include <readline/history.h>
-# include <stdio.h>
-# include <stdlib.h>
+#include "libft.h"
 
-int main() {
-	char	*input;
-	printf("Enter a line of text:\n");
-	input = readline("Minishell > ");
-	printf("you entered: %s\n", input);
-	free(input);
-	return(0);
+char	*ft_substr(char const *s, unsigned int start, size_t len)
+{
+	char	*ptr;
+	int		i;
+
+	i = 0;
+	if (start >= ft_strlen(s))
+		len = 0;
+	if ((ft_strlen(s) - start) < len)
+		len = ft_strlen(s) - start;
+	ptr = (char *)malloc((len + 1) * sizeof(char));
+	if (ptr == (NULL))
+		return (NULL);
+	while (len > 0)
+	{
+		ptr[i] = s[start + i];
+		i++;
+		len --;
+	}
+	ptr[i] = '\0';
+	return (ptr);
 }
-
