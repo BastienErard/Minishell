@@ -6,7 +6,7 @@
 /*   By: fgrasset <fgrasset@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/10 13:32:55 by fabien            #+#    #+#             */
-/*   Updated: 2022/11/14 12:52:18 by fgrasset         ###   ########.fr       */
+/*   Updated: 2023/03/10 14:36:12 by fgrasset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,30 @@ int	check_flag(va_list args, char flag)
 		return (0);
 }
 
+/**
+This function takes a format string with
+optional format specifiers and
+arguments, formats them, and writes the
+result to the standard output.
+@param string Format string to be printed.
+@param ... Additional arguments corresponding
+to the format specifiers in the
+format string.
+@return The number of characters printed
+on success, -1 on failure.
+This function iterates over the format string
+and replaces any format specifier
+with its corresponding argument value formatted
+according to the specifier. The
+formatted string is then written to the standard
+output. If any errors occur during
+the processing of the format string or its
+arguments, -1 is returned. Note that the
+function can only write to the standard output,
+so it is not suitable for use in
+certain environments (e.g., embedded systems)
+where such output may not be available.
+*/
 int	ft_printf(const char *string, ...)
 {
 	int		i;

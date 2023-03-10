@@ -6,12 +6,26 @@
 /*   By: fgrasset <fgrasset@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 14:10:40 by fgrasset          #+#    #+#             */
-/*   Updated: 2023/02/10 14:08:20 by fgrasset         ###   ########.fr       */
+/*   Updated: 2023/03/10 14:35:34 by fgrasset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
+/*
+Reads a line from a file descriptor.
+@param fd The file descriptor to read from.
+@return On success, the function returns a
+pointer to the line read. On
+error, the function returns NULL.
+The function reads the file descriptor and
+returns a line of text, delimited by
+'\n'. It uses a static linked list to store
+the data read from the file descriptor
+between successive calls. The function returns
+NULL if an error occurs or if the
+end of file is reached.
+*/
 char	*get_next_line(int fd)
 {
 	static t_Node	*head;

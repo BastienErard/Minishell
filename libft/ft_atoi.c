@@ -6,7 +6,7 @@
 /*   By: fgrasset <fgrasset@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/29 14:57:05 by fgrasset          #+#    #+#             */
-/*   Updated: 2022/11/07 13:01:15 by fgrasset         ###   ########.fr       */
+/*   Updated: 2023/03/10 14:40:24 by fgrasset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,19 @@ static int	ft_isspace(int c)
 	return (0);
 }
 
+/**
+Converts a string of digits to its integer representation.
+The function ignores leading whitespace characters,
+followed by an optional sign character ('+' or '-'),
+and converts subsequent digits to an integer value. The
+function returns the converted integer value.
+@param str The string to be converted to an integer.
+@return The integer value corresponding to the input string.
+The function has no side effects.
+Example usage:
+const char *str = " -1234 ";
+int result = ft_atoi(str); // Returns -1234
+*/
 int	ft_atoi(const char *str)
 {
 	int	i;

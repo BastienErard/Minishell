@@ -6,7 +6,7 @@
 /*   By: fgrasset <fgrasset@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/04 11:32:17 by fgrasset          #+#    #+#             */
-/*   Updated: 2022/11/09 16:05:35 by fgrasset         ###   ########.fr       */
+/*   Updated: 2023/03/10 14:38:45 by fgrasset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,16 @@ static char	*wordcreate(int start, int end, char const *s)
 	return (word);
 }
 
+/**
+Splits a string into an array of strings using a delimiter character.
+@param s The string to split.
+@param c The delimiter character.
+@return A pointer to an array of strings resulting from the split operation.
+If the allocation fails or if the string is empty, returns NULL.
+Note: The returned array of strings should be freed using ft_free_tab.
+Note: If two consecutive delimiter characters are found,
+an empty string is added to the array.
+*/
 char	**ft_split(char const *s, char c)
 {
 	char	**tab;

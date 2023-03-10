@@ -6,7 +6,7 @@
 /*   By: fgrasset <fgrasset@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/10 22:33:52 by fabien            #+#    #+#             */
-/*   Updated: 2022/12/12 10:00:31 by fgrasset         ###   ########.fr       */
+/*   Updated: 2023/03/10 14:35:01 by fgrasset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ int	list_add(t_Node **head, int fd)
 	int		reading;
 
 	new_node = malloc(sizeof(t_Node));
-	write(1, "test", 4);
 	new_node->buffer[fd] = malloc(sizeof(char) * BUFFER_SIZE + 1);
 	if (!new_node || !new_node->buffer[fd])
 		return (-1);
