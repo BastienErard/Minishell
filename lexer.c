@@ -1,31 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Test.c                                             :+:      :+:    :+:   */
+/*   lexer.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fgrasset <fgrasset@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/03 13:37:06 by berard            #+#    #+#             */
-/*   Updated: 2023/03/10 11:27:06 by fgrasset         ###   ########.fr       */
+/*   Created: 2023/03/10 11:14:39 by fgrasset          #+#    #+#             */
+/*   Updated: 2023/03/10 13:50:01 by fgrasset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include <readline/readline.h>
-# include <readline/history.h>
-# include <stdio.h>
-# include <stdlib.h>
+# include "minishell.h"
 
-int main() {
-	char	*input;
-	// printf("Enter a line of text:\n");
-	// input = readline("Minishell > ");
-	// printf("you entered: %s\n", input);
-	while (1)
-	{
-		input = readline("Minishell > ");
-		printf("This is the input: %s\n", input);
-		add_history(input);
-	}
-	free(input);
-	return(0);
+/**
+ * Assign the tokens to the given input
+ *
+ * @param [input] input from the readline
+ *
+ * @return no return value, but the input is now
+ * tokenized and can be used with the linked list
+ */
+void	tokenize(char *input)
+{
+
 }
