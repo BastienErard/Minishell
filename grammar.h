@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   grammar.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fgrasset <fgrasset@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fabien <fabien@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 11:24:29 by fgrasset          #+#    #+#             */
-/*   Updated: 2023/03/13 14:06:12 by fgrasset         ###   ########.fr       */
+/*   Updated: 2023/03/13 19:56:21 by fabien           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 typedef struct s_token
 {
 	int					type;
-	char				*value;
+	char				**command;
 	struct s_minishell	*next;
 	struct s_minishell	*prev;
 }				t_token;
@@ -26,6 +26,7 @@ typedef struct s_token
 typedef struct s_cmd
 {
 	int				type;
+	char			**command;
 	char			**option;
 	struct s_cmd	*next;
 	struct s_cmd	*prev;

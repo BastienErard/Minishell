@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lexer.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fgrasset <fgrasset@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fabien <fabien@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/10 11:14:39 by fgrasset          #+#    #+#             */
-/*   Updated: 2023/03/13 16:12:18 by fgrasset         ###   ########.fr       */
+/*   Updated: 2023/03/13 20:18:47 by fabien           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,31 @@ t_token	tokenize(char *input)
 	return (head);
 }
 
-void	sequencer(char *input)
+/* returns a string containes between the good delimiters */
+char	*sequencer(char *input)
 {
+	int		i;
+	int		j;
+	char	*cmd;
 
+	i = 0;
+	j = 0;
+	while (ft_isaspace(input[i]))
+		i++;
+	while (!isaspace(input[i]))
+	{
+		cmd[j] = input[i];
+		i++;
+		j++;
+	}
+	cmd[i] = '\0';
+	return (cmd);
+}
+
+/* returns true if input is a space, false otherwise */
+int	ft_isaspace(char c)
+{
+	if (c == ' ' || c == '\t')
+		return (1);
+	return (0);
 }
