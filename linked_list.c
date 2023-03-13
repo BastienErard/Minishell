@@ -1,21 +1,14 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell.h                                        :+:      :+:    :+:   */
+/*   linked_list.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fgrasset <fgrasset@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/08 13:37:04 by fgrasset          #+#    #+#             */
-/*   Updated: 2023/03/13 13:20:10 by fgrasset         ###   ########.fr       */
+/*   Created: 2023/03/13 13:26:43 by fgrasset          #+#    #+#             */
+/*   Updated: 2023/03/13 13:26:56 by fgrasset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINISHELL_H
-# define MINISHELL_H
+#include "minishell.h"
 
-# include "libft/libft.h"
-# include "grammar.h"
-# include <readline/readline.h>
-# include <readline/history.h>
-
-#endif

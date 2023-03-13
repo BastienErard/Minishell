@@ -6,16 +6,13 @@
 /*   By: fgrasset <fgrasset@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 13:37:06 by berard            #+#    #+#             */
-/*   Updated: 2023/03/10 11:27:06 by fgrasset         ###   ########.fr       */
+/*   Updated: 2023/03/13 13:18:31 by fgrasset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include <readline/readline.h>
-# include <readline/history.h>
-# include <stdio.h>
-# include <stdlib.h>
+#include "minishell.h"
 
-int main() {
+int main(int ac, char **av, char **env) {
 	char	*input;
 	// printf("Enter a line of text:\n");
 	// input = readline("Minishell > ");

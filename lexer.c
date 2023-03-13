@@ -6,21 +6,30 @@
 /*   By: fgrasset <fgrasset@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/10 11:14:39 by fgrasset          #+#    #+#             */
-/*   Updated: 2023/03/10 13:50:01 by fgrasset         ###   ########.fr       */
+/*   Updated: 2023/03/13 16:12:18 by fgrasset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "minishell.h"
+#include "minishell.h"
 
 /**
  * Assign the tokens to the given input
  *
  * @param [input] input from the readline
  *
- * @return no return value, but the input is now
- * tokenized and can be used with the linked list
+ * @return returns the linked list containing
+ * the tokenized input
  */
-void	tokenize(char *input)
+t_token	tokenize(char *input)
+{
+	t_token	head;
+
+
+
+	return (head);
+}
+
+void	sequencer(char *input)
 {
 
 }
