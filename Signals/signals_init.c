@@ -1,34 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Test.c                                             :+:      :+:    :+:   */
+/*   signals_init.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tastybao <tastybao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/03 13:37:06 by berard            #+#    #+#             */
-/*   Updated: 2023/03/17 09:11:01 by tastybao         ###   ########.fr       */
+/*   Created: 2023/03/17 08:49:23 by tastybao          #+#    #+#             */
+/*   Updated: 2023/03/17 09:11:08 by tastybao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int main(int ac, char **av, char **env) {
-	char	*input;
-	t_token	*head;
-	(void)ac;
-	(void)av;
-	(void)env;
-	// printf("Enter a line of text:\n");
-	// input = readline("Minishell > ");
-	// printf("you entered: %s\n", input);
-	signals_init(); // TODO
-	while (1)
-	{
-		input = readline("Minishell > ");
-		head = tokenize(input);
-		print_list(head);
-		add_history(input);
-	}
-	free(input);
-	return(0);
+void    signals_init(void)
+{
+    struct sigaction    signal;
+
+    signal = (struct sigaction){0};
+    sigemptyset(&signal.sa_mask);
+    sigaddset(&signal.sa_mask, SIGINT);
+    signal.sa_handler = &signals_handle;
+    if (sigaction(SIGINT, &signal, NULL) != 0)
+        perror("Error with SIGINT");
 }
