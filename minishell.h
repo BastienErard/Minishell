@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tastybao <tastybao@student.42.fr>          +#+  +:+       +#+        */
+/*   By: berard <berard@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 13:37:04 by fgrasset          #+#    #+#             */
-/*   Updated: 2023/03/17 09:06:27 by tastybao         ###   ########.fr       */
+/*   Updated: 2023/03/20 16:43:28 by berard           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,17 @@
 # define MINISHELL_H
 
 # include "libft/libft.h"
-# include <signal.h>
 # include "grammar.h"
+# include <signal.h>
 # include <readline/readline.h>
 # include <readline/history.h>
+# include <termios.h>
 
 // lexer.c
 
 t_token	*tokenize(char *input);
 char	*sequencer(char *input);
-int	ft_isaspace(char c);
-
+int		ft_isaspace(char c);
 
 // linked_list.c
 
@@ -34,7 +34,10 @@ void	print_list(t_token *head);
 
 // Signals
 
-void    signals_init(void);
-void    signals_handle(int sig);
+void			signals_init(void);
+void			signals_handle(int sig);
 
+// Others
+
+extern void 	rl_replace_line (const char *, int);
 #endif
