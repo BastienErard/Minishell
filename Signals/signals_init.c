@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   signals_init.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tastybao <tastybao@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fgrasset <fgrasset@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 08:49:23 by tastybao          #+#    #+#             */
-/*   Updated: 2023/03/17 09:11:08 by tastybao         ###   ########.fr       */
+/*   Updated: 2023/03/20 10:46:29 by fgrasset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "../minishell.h"
 
 void    signals_init(void)
 {
