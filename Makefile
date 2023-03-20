@@ -7,13 +7,13 @@ RM		= rm -f
 
 NAME	= minishell
 
-all:	${NAME}
+all:	libft ${NAME}
 
 %.o:	%.c
 		${CC} ${CFLAGS} -c -o $@ $<
 
 ${NAME}:	${OBJECTS}
-		@${MAKE} -C libft all
+#		@${MAKE} -C libft all
 		${CC} ${CFLAGS} -lreadline -o $@ $^ -L./libft -lft
 
 libft:
