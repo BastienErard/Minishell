@@ -6,7 +6,7 @@
 /*   By: fgrasset <fgrasset@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/10 11:14:39 by fgrasset          #+#    #+#             */
-/*   Updated: 2023/03/15 13:18:17 by fgrasset         ###   ########.fr       */
+/*   Updated: 2023/03/20 14:56:06 by fgrasset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ t_token	*tokenize(char *input)
 	int			i;
 
 	i = 0;
+	cmd = malloc(sizeof(char*) * 10);
 	cmd[i] = sequencer(input);
 	while(cmd[i])
 	{
@@ -34,6 +35,7 @@ t_token	*tokenize(char *input)
 		cmd[i] = sequencer(input);
 	}
 	add_token(&head, cmd);
+	free(cmd);
 	return (head);
 }
 
@@ -45,6 +47,7 @@ char	*sequencer(char *input)
 	static char	*cmd;
 
 	j = 0;
+	cmd	= malloc(sizeof(char) * 100);
 	if (input[i] == '\0')
 		return  (NULL);
 	while (input[i] && ft_isaspace(input[i]))

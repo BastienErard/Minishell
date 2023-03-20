@@ -6,7 +6,7 @@
 /*   By: fgrasset <fgrasset@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 13:26:43 by fgrasset          #+#    #+#             */
-/*   Updated: 2023/03/15 14:34:45 by fgrasset         ###   ########.fr       */
+/*   Updated: 2023/03/20 15:10:20 by fgrasset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,11 @@ void	add_token(t_token **head, char **command)
 	int		i;
 
 	i = -1;
-	new = malloc(sizeof(t_token) * 1);
+	new = malloc(sizeof(t_token));
 	if (!new)
 		return (perror("issue malloc adding element to linked list"));
 	while (command[++i] != NULL)
-		ft_strlcpy(new->command[i], command[i], ft_strlen(command[i] + 1));
+		ft_strlcpy(new->command[i], command[i], ft_strlen(command[i]) + 1);
 	new->type = 0;
 	new->next = NULL;
 	if (*head == NULL)

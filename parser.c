@@ -1,31 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell.c                                        :+:      :+:    :+:   */
+/*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fgrasset <fgrasset@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/03 13:37:06 by berard            #+#    #+#             */
-/*   Updated: 2023/03/20 14:53:54 by fgrasset         ###   ########.fr       */
+/*   Created: 2023/03/20 14:55:26 by fgrasset          #+#    #+#             */
+/*   Updated: 2023/03/20 15:00:21 by fgrasset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int main(int ac, char **av, char **env) {
-	char	*input;
+/**
+ * Takes the input and parses it to then call the
+ * appropriate functions to execute the needed commands
+ *
+ * @param [*input] the input to parse.
+ *
+ * @return returns nothing but calls the needed function
+ * to execute the parsing
+ */
+void	parser(char	*input)
+{
+	t_token	*head;
 
-	(void)ac;
-	(void)av;
-	(void)env;
-
-	// signals_init(); // TODO
-	while (1)
-	{
-		input = readline("Minishell > ");
-		parser(input);
-		add_history(input);
-	}
-	free(input);
-	return(0);
+	head = tokenize(input);
+	write(1, "test", 4);
+	print_list(head);
 }
