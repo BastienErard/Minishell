@@ -6,7 +6,7 @@
 /*   By: fgrasset <fgrasset@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 11:24:29 by fgrasset          #+#    #+#             */
-/*   Updated: 2023/03/15 13:04:30 by fgrasset         ###   ########.fr       */
+/*   Updated: 2023/03/22 13:35:42 by fgrasset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,8 @@
 typedef struct s_token
 {
 	int					type;
-	char				**command;
+	int					len;
+	char				*str;
 	struct s_token		*next;
 	struct s_token		*prev;
 }				t_token;

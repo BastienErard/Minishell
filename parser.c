@@ -6,7 +6,7 @@
 /*   By: fgrasset <fgrasset@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 14:55:26 by fgrasset          #+#    #+#             */
-/*   Updated: 2023/03/20 15:00:21 by fgrasset         ###   ########.fr       */
+/*   Updated: 2023/03/22 14:37:18 by fgrasset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,8 @@ void	parser(char	*input)
 {
 	t_token	*head;
 
-	head = tokenize(input);
-	write(1, "test", 4);
+	head = NULL;
+	sequencer(&head, input);
 	print_list(head);
 }
+

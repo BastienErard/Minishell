@@ -6,7 +6,7 @@
 /*   By: fgrasset <fgrasset@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/10 11:14:39 by fgrasset          #+#    #+#             */
-/*   Updated: 2023/03/20 14:56:06 by fgrasset         ###   ########.fr       */
+/*   Updated: 2023/03/22 14:15:00 by fgrasset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,49 +17,56 @@
  *
  * @param [input] input from the readline
  *
- * @return returns the linked list containing
- * the tokenized input
+ * @return returns nothing but executes the needed commands
  */
-t_token	*tokenize(char *input)
+// void	tokenize(t_token **head, char *input)
+// {
+
+// }
+
+/* cut the input in words and add them to the linked list */
+void	sequencer(t_token **head, char *input)
 {
-	static t_token	*head;
-	static char		**cmd;
-	int			i;
+	int		i;
+	int		j;
+	t_token	*new;
 
 	i = 0;
-	cmd = malloc(sizeof(char*) * 10);
-	cmd[i] = sequencer(input);
-	while(cmd[i])
+	if (input[i] == '\0')
+		return ;
+	while (input[i])
 	{
-		i++;
-		cmd[i] = sequencer(input);
+		new = malloc(sizeof(t_token));
+		j = -1;
+		new->str = malloc(sizeof(char) * word_len(input, i));
+		new->len = word_len(input, i);
+		while (input[i] && ft_isaspace(input[i]))
+			i++;
+		while (input[i] && !ft_isaspace(input[i]))
+		{
+			new->str[++j] = input[i];
+			i++;
+		}
+		new->str[++j] = '\0';
+		new->next = NULL;
+		add_last(head, new);
 	}
-	add_token(&head, cmd);
-	free(cmd);
-	return (head);
 }
 
-/* returns a string that contains what's between the good delimiters */
-char	*sequencer(char *input)
+/* returns the length of the next word to be malloc*/
+int	word_len(char *input, int i)
 {
-	static int	i;
-	int			j;
-	static char	*cmd;
+	int	len;
 
-	j = 0;
-	cmd	= malloc(sizeof(char) * 100);
-	if (input[i] == '\0')
-		return  (NULL);
+	len = 0;
 	while (input[i] && ft_isaspace(input[i]))
 		i++;
 	while (input[i] && !ft_isaspace(input[i]))
 	{
-		cmd[j] = input[i];
+		len++;
 		i++;
-		j++;
 	}
-	cmd[i] = '\0';
-	return (cmd);
+	return (len + 1);
 }
 
 /* returns true if input is a space, false otherwise */
