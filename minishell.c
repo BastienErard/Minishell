@@ -6,7 +6,7 @@
 /*   By: berard <berard@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 13:37:06 by berard            #+#    #+#             */
-/*   Updated: 2023/03/22 17:48:53 by berard           ###   ########.fr       */
+/*   Updated: 2023/03/22 17:51:54 by berard           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,8 @@
 
 int	main(int ac, char **av, char **env)
 {
-	char	*input;
+	char			*input;
+	struct termios	termios;
 	// t_token	*head;
 
 	(void)ac;
@@ -26,11 +27,9 @@ int	main(int ac, char **av, char **env)
 	if ((tcsetattr(STDIN_FILENO, TCSANOW, &termios)) == -1)
 		exit(EXIT_FAILURE);
 	input = "lol";
-
-	signals_init(); // TODO
 	while (input != NULL)
 	{
-		signals_init(); // TODO
+		signals_init();
 		input = readline("Minishell > ");
 		parser(input);
 		add_history(input);
