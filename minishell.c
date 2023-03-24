@@ -6,7 +6,7 @@
 /*   By: berard <berard@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 13:37:06 by berard            #+#    #+#             */
-/*   Updated: 2023/03/22 17:51:54 by berard           ###   ########.fr       */
+/*   Updated: 2023/03/24 11:39:10 by berard           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@ int	main(int ac, char **av, char **env)
 {
 	char			*input;
 	struct termios	termios;
-	// t_token	*head;
 
 	(void)ac;
 	(void)av;

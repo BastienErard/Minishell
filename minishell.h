@@ -6,7 +6,7 @@
 /*   By: berard <berard@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 13:37:04 by fgrasset          #+#    #+#             */
-/*   Updated: 2023/03/22 17:51:55 by berard           ###   ########.fr       */
+/*   Updated: 2023/03/24 16:31:44 by berard           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,26 @@ void			parser(char	*input);
 
 void			signals_init(void);
 void			signals_handle(int sig);
+
+// Execution
+
+void			execution(t_token *token);
+void			exec_cmd(t_token *token); // TO DO
+void			exec_cmds(t_token *token); // TO DO
+void			exec_external(t_token *token); // TO CHECK
+
+// Builtins
+
+void			echo(t_token *token); // TO CHECK
+void			pwd(void); // TO CHECK
+
+// Utils
+
+int				strcmp(const char *s1, const char *s2);
+
+// Free
+
+void			free_split(char *path[]);
 
 // Others
 
