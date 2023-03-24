@@ -6,7 +6,7 @@
 /*   By: fgrasset <fgrasset@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 13:26:43 by fgrasset          #+#    #+#             */
-/*   Updated: 2023/03/23 16:22:35 by fgrasset         ###   ########.fr       */
+/*   Updated: 2023/03/24 16:20:58 by fgrasset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ void	print_list(t_token *head)
 	tmp = head;
 	while (tmp)
 	{
-		printf("%s, len: %d, index: %d\n", tmp->str, tmp->len, tmp->index);
+		printf("%s\n", tmp->cmd);
 		tmp = tmp->next;
 	}
 }
