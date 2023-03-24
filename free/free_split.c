@@ -6,11 +6,11 @@
 /*   By: berard <berard@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/24 11:27:07 by berard            #+#    #+#             */
-/*   Updated: 2023/03/24 13:36:48 by berard           ###   ########.fr       */
+/*   Updated: 2023/03/24 16:42:49 by berard           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "../minishell.h"
 
 void	free_split(char *path[])
 {
