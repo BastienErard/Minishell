@@ -6,7 +6,7 @@
 /*   By: fgrasset <fgrasset@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 13:26:43 by fgrasset          #+#    #+#             */
-/*   Updated: 2023/03/22 14:14:55 by fgrasset         ###   ########.fr       */
+/*   Updated: 2023/03/24 16:20:58 by fgrasset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,9 +38,10 @@
 // 	tmp->next = new;
 // }
 
+/* adds the element to the end of the linked list */
 void	add_last(t_token **head, t_token *new)
 {
-	t_token	*tmp;
+	t_token		*tmp;
 
 	if (*head == NULL)
 	{
@@ -70,11 +71,10 @@ t_token	*get_last(t_token *head)
 void	print_list(t_token *head)
 {
 	t_token	*tmp;
-
 	tmp = head;
 	while (tmp)
 	{
-		printf("%s\n", tmp->str);
+		printf("%s\n", tmp->cmd);
 		tmp = tmp->next;
 	}
 }

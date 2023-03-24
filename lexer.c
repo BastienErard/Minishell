@@ -6,50 +6,85 @@
 /*   By: fgrasset <fgrasset@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/10 11:14:39 by fgrasset          #+#    #+#             */
-/*   Updated: 2023/03/22 14:15:00 by fgrasset         ###   ########.fr       */
+/*   Updated: 2023/03/24 16:20:24 by fgrasset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-/**
- * Assign the tokens to the given input
- *
- * @param [input] input from the readline
- *
- * @return returns nothing but executes the needed commands
- */
-// void	tokenize(t_token **head, char *input)
-// {
-
-// }
-
 /* cut the input in words and add them to the linked list */
 void	sequencer(t_token **head, char *input)
 {
-	int		i;
-	int		j;
 	t_token	*new;
 
-	i = 0;
-	if (input[i] == '\0')
-		return ;
-	while (input[i])
+	new = malloc(sizeof(t_token));
+	new->i = 0;
+	if (input[new->i] == '\0')
+		perror("The input is empty");
+	while (input[new->i])
 	{
-		new = malloc(sizeof(t_token));
-		j = -1;
-		new->str = malloc(sizeof(char) * word_len(input, i));
-		new->len = word_len(input, i);
-		while (input[i] && ft_isaspace(input[i]))
-			i++;
-		while (input[i] && !ft_isaspace(input[i]))
+		space_index(new, input);
+		while (input[new->i] != '|')
 		{
-			new->str[++j] = input[i];
-			i++;
+			get_cmd(new, input);
+			if (isredi(input[new->i]))
+				get_redirection(new, input);
+			else
+				get_arg(new, input);
 		}
-		new->str[++j] = '\0';
-		new->next = NULL;
 		add_last(head, new);
+	}
+}
+
+/* adds the cmd (first word) to the linked list */
+void	get_cmd(t_token *new, char *input)
+{
+	int		j;
+
+	j = -1;
+	if ((input[new->i] == '\'' || input[new->i] == '"') && !checkquotes(input, input[new->i], new->i))
+		perror("Issue with the quotes not ending");
+	new->cmd = malloc(sizeof(char) * word_len(input, new->i));
+	while (input[new->i] && !ft_isaspace(input[new->i]))
+	{
+		new->cmd[++j] = input[new->i];
+		new->i++;
+	}
+	new->cmd[++j] = '\0';
+	new->type = COMMAND;
+	new->next = NULL;
+	space_index(new, input);
+}
+
+/* adds the fdwrite or fdread depending on the redirection needed to the token */
+void	get_redirection(t_token *new, char *input)
+{
+	if (input[new->i] == '<')
+	{
+
+	}
+	else if (input[new->i] == '>')
+	{
+
+	}
+}
+
+/* adds the arg going with the cmd to token */
+void	get_arg(t_token *new, char *input)
+{
+	int	pos;
+
+	pos = 0;
+	new->arg = malloc(sizeof(char) * 100);		//make a function later to count the number of words
+	if (!new->arg)
+		perror("issue malloc get_arg");
+	while (input[new->i] && !isredi(input[new->i]) && input[new->i] != '|')
+	{
+		space_index(new, input);
+		if ((input[new->i] == '\'' || input[new->i] == '"') && !checkquotes(input, input[new->i], new->i))
+			perror("Issue with the quotes not ending");
+		get_word(new, input, pos);
+		new->i++;
 	}
 }
 
@@ -59,20 +94,10 @@ int	word_len(char *input, int i)
 	int	len;
 
 	len = 0;
-	while (input[i] && ft_isaspace(input[i]))
-		i++;
-	while (input[i] && !ft_isaspace(input[i]))
+	while (input[i] && !isdeli(input[i], '!'))
 	{
 		len++;
 		i++;
 	}
 	return (len + 1);
-}
-
-/* returns true if input is a space, false otherwise */
-int	ft_isaspace(char c)
-{
-	if (c == ' ' || c == '\t')
-		return (1);
-	return (0);
 }
