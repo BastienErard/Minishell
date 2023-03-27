@@ -6,11 +6,11 @@
 /*   By: fgrasset <fgrasset@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/24 14:00:19 by fgrasset          #+#    #+#             */
-/*   Updated: 2023/03/24 15:22:46 by fgrasset         ###   ########.fr       */
+/*   Updated: 2023/03/27 17:58:18 by fgrasset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "minishell.h"
+# include "../minishell.h"
 
 /* returns true if char is a redirection */
 int	isredi(char c)

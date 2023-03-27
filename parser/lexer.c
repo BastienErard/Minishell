@@ -6,11 +6,11 @@
 /*   By: fgrasset <fgrasset@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/10 11:14:39 by fgrasset          #+#    #+#             */
-/*   Updated: 2023/03/27 16:18:33 by fgrasset         ###   ########.fr       */
+/*   Updated: 2023/03/27 17:58:22 by fgrasset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "../minishell.h"
 
 /* cut the input in words and add them to the linked list */
 void	sequencer(t_token **head, char *input)

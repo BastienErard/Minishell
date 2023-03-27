@@ -6,11 +6,11 @@
 /*   By: fgrasset <fgrasset@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 13:26:43 by fgrasset          #+#    #+#             */
-/*   Updated: 2023/03/27 15:21:51 by fgrasset         ###   ########.fr       */
+/*   Updated: 2023/03/27 17:58:24 by fgrasset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "../minishell.h"
 
 /* takes the head of the list and the command to add
 	as input, then adds them to the end of the linked

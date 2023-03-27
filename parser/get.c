@@ -6,11 +6,11 @@
 /*   By: fgrasset <fgrasset@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/24 13:23:24 by fgrasset          #+#    #+#             */
-/*   Updated: 2023/03/27 16:10:52 by fgrasset         ###   ########.fr       */
+/*   Updated: 2023/03/27 17:58:10 by fgrasset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "minishell.h"
+# include "../minishell.h"
 
 /* adds the characters until space or delimiters
 and adds it in the token->arg at arg[pos], with a malloc */
