@@ -6,7 +6,7 @@
 /*   By: fgrasset <fgrasset@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 14:55:26 by fgrasset          #+#    #+#             */
-/*   Updated: 2023/03/22 14:37:18 by fgrasset         ###   ########.fr       */
+/*   Updated: 2023/03/27 15:57:08 by fgrasset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,5 @@ void	parser(char	*input)
 
 	head = NULL;
 	sequencer(&head, input);
-	print_list(head);
 }
 

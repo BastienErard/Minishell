@@ -6,7 +6,7 @@
 /*   By: fgrasset <fgrasset@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/24 13:23:24 by fgrasset          #+#    #+#             */
-/*   Updated: 2023/03/24 16:17:04 by fgrasset         ###   ########.fr       */
+/*   Updated: 2023/03/27 16:10:52 by fgrasset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ void	get_squote(t_token *new, char *input, int pos)
 }
 
 /* adds what is between double quotes to arg and if $env
-	adds it to pos + 1 and adds rest of string to pos + 2*/
+	adds it to pos + 1 and adds rest of string to pos + 2 */
 void	get_dquote(t_token *new, char *input, int pos)
 {
 	int	j;
@@ -109,18 +109,18 @@ int	mystrcspn(char *s, char *reject, int i)
 	int	j;
 	int	len;
 
-	j = 0;
 	len = 0;
 	while (s[i] != '\0')
 	{
 		j = 0;
-		while (reject[i] != '\0')
+		while (reject[j] != '\0')
 		{
 			if(s[i] == reject[j])
 				return (len);
 			j++;
 		}
 		len++;
+		i++;
 	}
-	return (len);
+	return (len + 1);
 }
