@@ -1,25 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pwd.c                                              :+:      :+:    :+:   */
+/*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: berard <berard@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/24 16:15:23 by berard            #+#    #+#             */
-/*   Updated: 2023/03/27 11:28:26 by berard           ###   ########.fr       */
+/*   Created: 2023/03/27 16:00:44 by berard            #+#    #+#             */
+/*   Updated: 2023/03/27 16:01:53 by berard           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-/**
- * PWD prints the absolute path of the current working directory to the terminal.
- */
-void	pwd(void)
+void	cd(t_token *token)
 {
-	char	path[1080];
 
-	if (getcwd(path, 1080) == NULL)
-		return (perror("Error with getcwd"));
-	printf("%s\n", path);
 }

@@ -6,7 +6,7 @@
 /*   By: berard <berard@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 13:37:04 by fgrasset          #+#    #+#             */
-/*   Updated: 2023/03/24 16:43:06 by berard           ###   ########.fr       */
+/*   Updated: 2023/03/27 16:01:34 by berard           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,10 @@ void			exec_external(t_token *token); // TO CHECK
 
 void			echo(t_token *token); // TO CHECK
 void			pwd(void); // TO CHECK
+void			ft_exit(t_token *token); // TO COMPLETE
+void			ft_env(char **env); // TO CHECK
+void			cd(t_token *token);
+void			unset(t_token *token, char **env); // TODO
 
 // Utils
 

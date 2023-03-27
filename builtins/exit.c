@@ -1,25 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pwd.c                                              :+:      :+:    :+:   */
+/*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: berard <berard@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/24 16:15:23 by berard            #+#    #+#             */
-/*   Updated: 2023/03/27 11:28:26 by berard           ###   ########.fr       */
+/*   Created: 2023/03/27 13:31:13 by berard            #+#    #+#             */
+/*   Updated: 2023/03/27 14:06:26 by berard           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
 /**
- * PWD prints the absolute path of the current working directory to the terminal.
- */
-void	pwd(void)
+ * The "exit" command in Bash is used to exit the current shell
+ * and signal the exit status of the process to the operating system.
+*/
+void	ft_exit(t_token *token)
 {
-	char	path[1080];
-
-	if (getcwd(path, 1080) == NULL)
-		return (perror("Error with getcwd"));
-	printf("%s\n", path);
+	ft_putstr_fd("exit\n", 1);
+	// free_linked_list(token); // TODO - FGRASSET
+	exit (0); // Quid des fichiers open? Doivent être fermés.
 }
