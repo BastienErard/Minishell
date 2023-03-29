@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pwd.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: berard <berard@student.42.fr>              +#+  +:+       +#+        */
+/*   By: tastybao <tastybao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/24 16:15:23 by berard            #+#    #+#             */
-/*   Updated: 2023/03/27 11:28:26 by berard           ###   ########.fr       */
+/*   Updated: 2023/03/29 17:19:18 by tastybao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,9 @@
  */
 void	pwd(void)
 {
-	char	path[1080];
+	char	path[1024];
 
-	if (getcwd(path, 1080) == NULL)
-		return (perror("Error with getcwd"));
+	if (getcwd(path, sizeof(path)) == NULL)
+		return (perror("Error with getcwd()"));
 	printf("%s\n", path);
 }

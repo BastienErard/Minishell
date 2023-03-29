@@ -1,0 +1,35 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   exec_builtins.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: tastybao <tastybao@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/03/29 14:15:21 by tastybao          #+#    #+#             */
+/*   Updated: 2023/03/29 15:31:20 by tastybao         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "../minishell.h"
+
+/**
+ * This function goes through the different functions "builtins" to
+ * find the right one with the use of ft_strcmp.
+*/
+void	exec_builtins(t_token *token)
+{
+	if (ft_strcmp(token->cmd, "echo") == 0)
+		echo(token);
+	else if (ft_strcmp(token->cmd, "pwd") == 0)
+		pwd();
+	else if (ft_strcmp(token->cmd, "exit") == 0)
+		ft_exit(token);
+	// else if (ft_strcmp(token->cmd, "env") == 0)
+	// 	ft_env(token); // WARNING => Prototype diff. dans la fonction
+	// else if (ft_strcmp(token->cmd, "cd") == 0)
+	// 	cd(token);
+	// else if (ft_strcmp(token->cmd, "unset") == 0)
+	// 	unset(token);
+	// else if (ft_strcmp(token->cmd, "export") == 0)
+	// 	export(token);
+}

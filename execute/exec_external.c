@@ -3,19 +3,23 @@
 /*                                                        :::      ::::::::   */
 /*   exec_external.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: berard <berard@student.42.fr>              +#+  +:+       +#+        */
+/*   By: tastybao <tastybao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 14:41:03 by berard            #+#    #+#             */
-/*   Updated: 2023/03/24 16:33:31 by berard           ###   ########.fr       */
+/*   Updated: 2023/03/29 16:20:38 by tastybao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
+/**
+ * This function manages the shell's functions and, if it finds nothing,
+ * indicates that the command does not exist.
+*/
 void	exec_external(t_token *token)
 {
 	char	**path;
-	char	filepath[1080];
+	char	filepath[1024];
 	int		i;
 
 	i = -1;
@@ -26,9 +30,9 @@ void	exec_external(t_token *token)
 		return (perror("Error with split during execution of an external"));
 	while (path[++i])
 	{
-		ft_strlcpy(filepath, path[i], 1080);
-		ft_strlcat(filepath, "/", 1080);
-		ft_strlcat(filepath, token->cmd, 1080);
+		ft_strlcpy(filepath, path[i], sizeof(filepath));
+		ft_strlcat(filepath, "/", sizeof(filepath));
+		ft_strlcat(filepath, token->cmd, sizeof(filepath));
 		if (access(filepath, X_OK) == 0)
 		{
 			free_split(path);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: berard <berard@student.42.fr>              +#+  +:+       +#+        */
+/*   By: tastybao <tastybao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 13:37:04 by fgrasset          #+#    #+#             */
-/*   Updated: 2023/03/27 16:01:34 by berard           ###   ########.fr       */
+/*   Updated: 2023/03/29 18:38:40 by tastybao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,9 +61,10 @@ void			signals_handle(int sig);
 // Execution
 
 void			execution(t_token *token);
-void			exec_cmd(t_token *token); // TO DO
-void			exec_cmds(t_token *token); // TO DO
+void			exec_cmd(t_token *token); // TODO
+void			exec_cmds(t_token *token); // TODO
 void			exec_external(t_token *token); // TO CHECK
+void			exec_builtins(t_token *token); // TO ADAPT
 
 // Builtins
 
@@ -71,18 +72,19 @@ void			echo(t_token *token); // TO CHECK
 void			pwd(void); // TO CHECK
 void			ft_exit(t_token *token); // TO COMPLETE
 void			ft_env(char **env); // TO CHECK
-void			cd(t_token *token);
+void			cd(t_token *token); // TODO - CURRENT
 void			unset(t_token *token, char **env); // TODO
 
 // Utils
 
-int				ft_strcmp(const char *s1, const char *s2);
+int				ft_strcmp(const char *s1, const char *s2); // TO CHECK
 
 // Free
 
-void			free_split(char *path[]);
+void			free_split(char *path[]); // TO CHECK
 
 // Others
 
 extern void 	rl_replace_line (const char *, int);
+extern void		rl_clear_history(void);
 #endif
