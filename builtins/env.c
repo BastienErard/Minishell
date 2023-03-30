@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tastybao <tastybao@student.42.fr>          +#+  +:+       +#+        */
+/*   By: berard <berard@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 14:08:04 by berard            #+#    #+#             */
-/*   Updated: 2023/03/29 17:12:45 by tastybao         ###   ########.fr       */
+/*   Updated: 2023/03/30 09:53:16 by berard           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	ft_env(char **env)
 
 	i = 0;
 	if (!env)
-		return(perror("env")); // Need to check, in case of unset's use.
+		return (perror("env")); // Need to check, in case of unset's use.
 	while (env[i])
 	{
 		if (ft_strchr(env[i], '='))

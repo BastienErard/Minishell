@@ -1,26 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   exit.c                                             :+:      :+:    :+:   */
+/*   is_builtins.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: berard <berard@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/27 13:31:13 by berard            #+#    #+#             */
-/*   Updated: 2023/03/30 09:53:31 by berard           ###   ########.fr       */
+/*   Created: 2023/03/30 17:44:33 by berard            #+#    #+#             */
+/*   Updated: 2023/03/30 17:47:54 by berard           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-/**
- * The "exit" command s used to exit the current shell
- * and signal the exit status of the process to the operating system.
-*/
-void	ft_exit(t_token *token)
+int	is_builtins(t_token *token)
 {
-	token->cmd = NULL; // To changes
-	ft_putstr_fd("exit\n", 1);
-	// free_linked_list(token); // TODO - FGRASSET
-	rl_clear_history();
-	exit (0); // Quid des fichiers open? Doivent être fermés.
+	int	flag;
+
+	flag = 0;
+	if (ft_strcmp(token->cmd, "echo") == 0
+		|| ft_strcmp(token->cmd, "pwd") == 0
+		|| ft_strcmp(token->cmd, "exit") == 0
+		|| ft_strcmp(token->cmd, "cd") == 0
+		|| ft_strcmp(token->cmd, "env") == 0
+		|| ft_strcmp(token->cmd, "unset") == 0
+		|| ft_strcmp(token->cmd, "export") == 0)
+		flag == 1;
+	return (flag);
 }

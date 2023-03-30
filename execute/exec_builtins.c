@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_builtins.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tastybao <tastybao@student.42.fr>          +#+  +:+       +#+        */
+/*   By: berard <berard@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/29 14:15:21 by tastybao          #+#    #+#             */
-/*   Updated: 2023/03/29 15:31:20 by tastybao         ###   ########.fr       */
+/*   Updated: 2023/03/30 17:48:03 by berard           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,10 @@ void	exec_builtins(t_token *token)
 		pwd();
 	else if (ft_strcmp(token->cmd, "exit") == 0)
 		ft_exit(token);
+	else if (ft_strcmp(token->cmd, "cd") == 0)
+		cd(token);
 	// else if (ft_strcmp(token->cmd, "env") == 0)
 	// 	ft_env(token); // WARNING => Prototype diff. dans la fonction
-	// else if (ft_strcmp(token->cmd, "cd") == 0)
-	// 	cd(token);
 	// else if (ft_strcmp(token->cmd, "unset") == 0)
 	// 	unset(token);
 	// else if (ft_strcmp(token->cmd, "export") == 0)

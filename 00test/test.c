@@ -1,57 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cd.c                                               :+:      :+:    :+:   */
+/*   test.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: berard <berard@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/27 16:00:44 by berard            #+#    #+#             */
-/*   Updated: 2023/03/30 17:51:21 by berard           ###   ########.fr       */
+/*   Created: 2023/03/30 10:38:18 by berard            #+#    #+#             */
+/*   Updated: 2023/03/30 17:51:17 by berard           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-/**
- * CD is used in command line to change the current working directory
- * of the shell or program to a specified directory.
-*/
-void	cd(t_token *token)
-{
-	char	init_dir[MAXPATHLEN];
+// int	main(int argc, char *argv[])
+// {
+// 	cd(argv);
+// 	return (0);
+// }
 
-	if (getcwd(init_dir, MAXPATHLEN) == NULL)
-		return (perror("Error with getcwd()"));
-	if (chdir(input) != 0)
-		chdir_failed(input);
-}
-
-void	chdir_failed(t_token *token)
-{
-	ft_putstr_fd("cd: ", 2);
-	ft_putstr_fd(token->arg[i], 2);
-	ft_putstr_fd(": ", 2);
-	ft_putstr_fd(": No such file or directory\n", 2);
-}
-
-// Inutile car chdir(..), chdir(.) ou chdir(path) est valide...
-
-// !!!! Doit-on gérer cd sans arg ou cd ~? Problèmatique liée à l'env.
-// void	cd(t_token *token)
+// void	cd(char *argv[])
 // {
 // 	char	init_dir[MAXPATHLEN];
 
 // 	if (getcwd(init_dir, MAXPATHLEN) == NULL)
 // 		return (perror("Error with getcwd()"));
-// 	if (ft_strcmp(token->arg[0], ".") == 0)
+// 	if (ft_strcmp(argv[1], ".") == 0)
 // 		return ;
-// 	else if (ft_strcmp(token->arg[0], "..") == 0)
-// 		dir_backward(init_dir, token);
+// 	else if (ft_strcmp(argv[1], "..") == 0)
+// 		dir_backward(init_dir, argv);
 // 	else
-// 		dir_further(init_dir, token);
+// 		dir_further(init_dir, argv);
 // }
 
-// void	dir_backward(char *init_dir, t_token *token)
+// void	dir_backward(char *init_dir, char *argv[])
 // {
 // 	char			new_dir[MAXPATHLEN];
 // 	int				i;
@@ -65,10 +46,10 @@ void	chdir_failed(t_token *token)
 // 	}
 // 	ft_strncpy(new_dir, init_dir, size_ref);
 // 	if (chdir(new_dir) != 0)
-// 		chdir_failed(token);
+// 		chdir_failed(argv);
 // }
 
-// void	dir_further(char *init_dir, t_token *token)
+// void	dir_further(char *init_dir, char *argv[])
 // {
 // 	char	new_dir[MAXPATHLEN];
 // 	int		i;
@@ -77,11 +58,19 @@ void	chdir_failed(t_token *token)
 // 	if (init_dir[i] == '/')
 // 	{
 // 		if (chdir(init_dir) != 0)
-// 			chdir_failed(token);
+// 			chdir_failed(argv);
 // 	}
 // 	ft_strncpy(new_dir, init_dir, ft_strlen(init_dir));
 // 	ft_strlcat(new_dir, "/", MAXPATHLEN);
 // 	ft_strlcat(new_dir, init_dir, MAXPATHLEN);
 // 	if (chdir(new_dir) != 0)
-// 		chdir_failed(token);
+// 		chdir_failed(argv);
+// }
+
+// void	chdir_failed(char *argv[])
+// {
+// 	ft_putstr_fd("cd: ", 2);
+// 	ft_putstr_fd(argv[1], 2);
+// 	ft_putstr_fd(": ", 2);
+// 	ft_putstr_fd(": No such file or directory\n", 2);
 // }

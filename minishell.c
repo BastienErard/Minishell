@@ -3,14 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tastybao <tastybao@student.42.fr>          +#+  +:+       +#+        */
+/*   By: berard <berard@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 13:37:06 by berard            #+#    #+#             */
-/*   Updated: 2023/03/29 18:38:32 by tastybao         ###   ########.fr       */
+/*   Updated: 2023/03/30 17:51:23 by berard           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+int	g_exit_code = 0;
 
 int	main(int ac, char **av, char **env)
 {
@@ -25,7 +27,7 @@ int	main(int ac, char **av, char **env)
 	termios.c_lflag &= ~(ECHOCTL);
 	if ((tcsetattr(STDIN_FILENO, TCSANOW, &termios)) == -1)
 		exit(EXIT_FAILURE);
-	input = "lol";
+	input = "start";
 	while (input != NULL)
 	{
 		signals_init();
