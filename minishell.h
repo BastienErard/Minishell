@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fabien <fabien@student.42.fr>              +#+  +:+       +#+        */
+/*   By: berard <berard@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 13:37:04 by fgrasset          #+#    #+#             */
-/*   Updated: 2023/03/31 09:08:12 by fabien           ###   ########.fr       */
+/*   Updated: 2023/03/31 09:23:13 by berard           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,10 @@
 # include <readline/history.h>
 # include <termios.h>
 # include <sys/param.h>
+
+// Global
+
+extern int		g_exit_code;
 
 // lexer.c
 
@@ -85,7 +89,7 @@ void			chdir_failed(t_token *token);
 
 // Utils
 
-// int				ft_strcmp(const char *s1, const char *s2); // TO CHECK / UNUSED FOR THE MOMENT
+int				ft_strcmp(const char *s1, const char *s2); // TO CHECK / UNUSED FOR THE MOMENT
 char			*ft_strncpy(char *dest, char *src, unsigned int n); // TO CHECK
 
 // Free

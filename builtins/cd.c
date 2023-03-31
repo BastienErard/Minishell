@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fabien <fabien@student.42.fr>              +#+  +:+       +#+        */
+/*   By: berard <berard@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 16:00:44 by berard            #+#    #+#             */
-/*   Updated: 2023/03/31 09:08:22 by fabien           ###   ########.fr       */
+/*   Updated: 2023/03/31 09:19:54 by berard           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,14 +22,14 @@ void	cd(t_token *token)
 
 	if (getcwd(init_dir, MAXPATHLEN) == NULL)
 		return (perror("Error with getcwd()"));
-	if (chdir(input) != 0)
-		chdir_failed(input);
+	if (chdir(token->arg[0]) != 0)
+		chdir_failed(token);
 }
 
 void	chdir_failed(t_token *token)
 {
 	ft_putstr_fd("cd: ", 2);
-	ft_putstr_fd(token->arg[i], 2);
+	ft_putstr_fd(token->arg[0], 2);
 	ft_putstr_fd(": ", 2);
 	ft_putstr_fd(": No such file or directory\n", 2);
 }

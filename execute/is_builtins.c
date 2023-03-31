@@ -6,7 +6,7 @@
 /*   By: berard <berard@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/30 17:44:33 by berard            #+#    #+#             */
-/*   Updated: 2023/03/30 17:47:54 by berard           ###   ########.fr       */
+/*   Updated: 2023/03/31 09:20:57 by berard           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,6 @@ int	is_builtins(t_token *token)
 		|| ft_strcmp(token->cmd, "env") == 0
 		|| ft_strcmp(token->cmd, "unset") == 0
 		|| ft_strcmp(token->cmd, "export") == 0)
-		flag == 1;
+		flag = 1;
 	return (flag);
 }

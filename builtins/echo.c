@@ -6,7 +6,7 @@
 /*   By: berard <berard@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/24 14:08:12 by berard            #+#    #+#             */
-/*   Updated: 2023/03/27 14:02:05 by berard           ###   ########.fr       */
+/*   Updated: 2023/03/31 09:28:23 by berard           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	echo(t_token *token)
 	int	i;
 	int	flag;
 
-	i = 1;
+	i = 0;
 	flag = 0;
 	if ((ft_strcmp(token->arg[i], "-n") == 0))
 	{
