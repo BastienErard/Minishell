@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: berard <berard@student.42.fr>              +#+  +:+       +#+        */
+/*   By: fgrasset <fgrasset@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 13:37:06 by berard            #+#    #+#             */
-/*   Updated: 2023/03/31 09:23:30 by berard           ###   ########.fr       */
+/*   Updated: 2023/03/31 15:16:57 by fgrasset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,18 +16,21 @@ int	g_exit_code = 0;
 
 int	main(int ac, char **av, char **env)
 {
-	char			*input;
 	struct termios	termios;
+	t_env			envi;
+	char			*input;
 
 	(void)ac;
 	(void)av;
-	(void)env;
+	// envi = NULL;
 	if ((tcgetattr(STDIN_FILENO, &termios)) == -1)
 		exit(EXIT_FAILURE);
 	termios.c_lflag &= ~(ECHOCTL);
 	if ((tcsetattr(STDIN_FILENO, TCSANOW, &termios)) == -1)
 		exit(EXIT_FAILURE);
 	input = "start";
+	init_env(&envi, env);
+	// printf("essai: %s\n", envi->var[0]);
 	while (input != NULL)
 	{
 		// signals_init();

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fabien <fabien@student.42.fr>              +#+  +:+       +#+        */
+/*   By: fgrasset <fgrasset@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/24 13:23:24 by fgrasset          #+#    #+#             */
-/*   Updated: 2023/03/30 13:39:20 by fabien           ###   ########.fr       */
+/*   Updated: 2023/03/31 10:55:32 by fgrasset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,8 @@ void	get_squote(t_token *new, char *input)
 	j = -1;
 	if (!checkquotes(input, input[new->i], new->i))
 		perror("Issue with the singe quote not ending");
-	new->arg[new->pos] = malloc(sizeof(char) * mystrcspn(input, "\'", new->i));
+	new->i++;
+	new->arg[new->pos] = malloc(sizeof(char) * mystrcspn(input, "\'", new->i) + 1);
 	if (!new->arg[new->pos])
 		perror("Issue malloc get_squote");
 	while (input[new->i] && input[new->i] != '\'')
