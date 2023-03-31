@@ -6,7 +6,7 @@
 /*   By: berard <berard@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/29 14:15:21 by tastybao          #+#    #+#             */
-/*   Updated: 2023/03/30 17:48:03 by berard           ###   ########.fr       */
+/*   Updated: 2023/03/31 11:38:22 by berard           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,10 @@
  * This function goes through the different functions "builtins" to
  * find the right one with the use of ft_strcmp.
 */
-void	exec_builtins(t_token *token)
+int	exec_builtins(t_token *token)
 {
 	if (ft_strcmp(token->cmd, "echo") == 0)
-		echo(token);
+		g_exit_code = echo(token);
 	else if (ft_strcmp(token->cmd, "pwd") == 0)
 		pwd();
 	else if (ft_strcmp(token->cmd, "exit") == 0)
@@ -32,4 +32,5 @@ void	exec_builtins(t_token *token)
 	// 	unset(token);
 	// else if (ft_strcmp(token->cmd, "export") == 0)
 	// 	export(token);
+	return (g_exit_code);
 }

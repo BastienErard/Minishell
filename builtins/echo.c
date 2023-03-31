@@ -6,7 +6,7 @@
 /*   By: berard <berard@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/24 14:08:12 by berard            #+#    #+#             */
-/*   Updated: 2023/03/31 09:28:23 by berard           ###   ########.fr       */
+/*   Updated: 2023/03/31 11:18:41 by berard           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
  * The -n option with echo is used to prevent the output from ending
  * with a newline character, allowing you to display text on the same line.
  */
-void	echo(t_token *token)
+int	echo(t_token *token)
 {
 	int	i;
 	int	flag;
@@ -38,4 +38,5 @@ void	echo(t_token *token)
 	}
 	if (flag == 0)
 		ft_putstr_fd("\n", 1);
+	return (EXIT_SUCCESS);
 }

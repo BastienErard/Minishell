@@ -3,15 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   signals_init.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fabien <fabien@student.42.fr>              +#+  +:+       +#+        */
+/*   By: berard <berard@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 08:49:23 by tastybao          #+#    #+#             */
-/*   Updated: 2023/03/31 09:06:36 by fabien           ###   ########.fr       */
+/*   Updated: 2023/03/31 14:20:23 by berard           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
+/**
+ * This function sets up a signal handler for the SIGINT and SIGQUIT signals,
+ * which will call the signals_handle function when those signals are received.
+*/
 void	signals_init(void)
 {
 	struct sigaction	sig;
