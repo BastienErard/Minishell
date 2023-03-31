@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lexer.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fgrasset <fgrasset@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fabien <fabien@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/10 11:14:39 by fgrasset          #+#    #+#             */
-/*   Updated: 2023/03/27 17:58:22 by fgrasset         ###   ########.fr       */
+/*   Updated: 2023/03/30 13:39:51 by fabien           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,9 +86,7 @@ void	get_redirection(t_token *new, char *input)
 /* adds the arg going with the cmd to token */
 void	get_arg(t_token *new, char *input)
 {
-	int	pos;
-
-	pos = 0;
+	new->pos = 0;
 	new->arg = malloc(sizeof(char) * 100);		//TODO: make a function later to count the number of words
 	if (!new->arg)
 		perror("issue malloc get_arg");
@@ -97,13 +95,13 @@ void	get_arg(t_token *new, char *input)
 		space_index(new, input);
 		if ((input[new->i] == '\'' || input[new->i] == '"') && checkquotes(input, input[new->i], new->i))
 		{
-			get_dquote(new, input, pos);
+			get_dquote(new, input);
 		}
 		else
-			get_word(new, input, pos);
-		pos++;
+			get_word(new, input);
+		new->pos++;
 	}
-	new->arg[pos] = NULL;
+	new->arg[new->pos] = NULL;
 	//to print
 	printf("%s\n", new->cmd);
 	for(int i = 0; new->arg[i]; i++)

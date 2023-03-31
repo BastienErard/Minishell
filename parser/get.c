@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fgrasset <fgrasset@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fabien <fabien@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/24 13:23:24 by fgrasset          #+#    #+#             */
-/*   Updated: 2023/03/27 17:58:10 by fgrasset         ###   ########.fr       */
+/*   Updated: 2023/03/30 13:39:20 by fabien           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,76 +14,80 @@
 
 /* adds the characters until space or delimiters
 and adds it in the token->arg at arg[pos], with a malloc */
-void	get_word(t_token *new, char *input, int pos)
+void	get_word(t_token *new, char *input)
 {
 	int	j;
 
 	j = -1;
-	new->arg[pos] = malloc(sizeof(char) * word_len(input, new->i));
-	if (!new->arg[pos])
+	new->arg[new->pos] = malloc(sizeof(char) * word_len(input, new->i));
+	if (!new->arg[new->pos])
 		perror("issue malloc get_word");
 	while (input[new->i] && !isdeli(input[new->i], 's'))
 	{
-		new->arg[pos][++j] = input[new->i];
+		new->arg[new->pos][++j] = input[new->i];
 		new->i++;
 	}
-	new->arg[pos][++j] = '\0';
+	new->arg[new->pos][++j] = '\0';
 }
 /* adds what is between the single quotes to the arg at pos */
-void	get_squote(t_token *new, char *input, int pos)
+void	get_squote(t_token *new, char *input)
 {
 	int	j;
 
 	j = -1;
 	if (!checkquotes(input, input[new->i], new->i))
 		perror("Issue with the singe quote not ending");
-	new->arg[pos] = malloc(sizeof(char) * mystrcspn(input, "\'", new->i));
-	if (!new->arg[pos])
+	new->arg[new->pos] = malloc(sizeof(char) * mystrcspn(input, "\'", new->i));
+	if (!new->arg[new->pos])
 		perror("Issue malloc get_squote");
 	while (input[new->i] && input[new->i] != '\'')
 	{
-		new->arg[pos][++j] = input[new->i];
+		new->arg[new->pos][++j] = input[new->i];
 		new->i++;
 	}
-	new->arg[pos][++j] = '\0';
+	new->arg[new->pos][++j] = '\0';
+	new->i++;
 }
 
 /* adds what is between double quotes to arg and if $env
 	adds it to pos + 1 and adds rest of string to pos + 2 */
-void	get_dquote(t_token *new, char *input, int pos)
+void	get_dquote(t_token *new, char *input)
 {
 	int	j;
 
 	j = -1;
 	if (!checkquotes(input, input[new->i], new->i))
 		perror("Issue with the double quotes not ending");
-	new->arg[pos] = malloc(sizeof(char) * mystrcspn(input, "\"$", new->i));
-	if (!new->arg[pos])
+	new->i++;
+	new->arg[new->pos] = malloc(sizeof(char) * mystrcspn(input, "\"$", new->i) + 1);
+	if (!new->arg[new->pos])
 		perror("Issue malloc get_dquote");
-	while (input[new->i] && input[new->i] != '"' && input[new->i] != '$')
+	while (input[new->i] && input[new->i] != '"')
 	{
 		if (input[new->i] == '$')
 		{
-			new->arg[pos][++j] = '\0';
+			new->arg[new->pos][++j] = '\0';
 			j = -1;
 			new->flag_env = 1;
-			new->arg[++pos] = malloc(sizeof(char) * mystrcspn(input, " \t", new->i));
+			new->arg[++new->pos] = malloc(sizeof(char) * mystrcspn(input, " \t", new->i) + 1);
 			while (input[new->i] && !ft_isaspace(input[new->i]))
 			{
-				new->arg[pos][++j] = input[new->i];
+				new->arg[new->pos][++j] = input[new->i];
 				new->i++;
 			}
-			new->arg[pos][++j] = '\0';
-			new->arg[++pos] = malloc(sizeof(char) * mystrcspn(input, "\"$", new->i));
-
+			new->arg[new->pos][++j] = '\0';
+			printf("current str: %s\n", new->arg[new->pos]);
+			new->arg[++new->pos] = malloc(sizeof(char) * mystrcspn(input, "\"$", new->i) + 1);
+			j = -1;
 		}
 		else
 		{
-			new->arg[pos][++j] = input[new->i];
+			new->arg[new->pos][++j] = input[new->i];
 			new->i++;
 		}
 	}
-	new->arg[pos][++j] = '\0';
+	new->arg[new->pos][++j] = '\0';
+	new->i++;
 }
 
 /**
