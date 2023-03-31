@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: berard <berard@student.42.fr>              +#+  +:+       +#+        */
+/*   By: fabien <fabien@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 13:37:06 by berard            #+#    #+#             */
-/*   Updated: 2023/03/27 14:51:30 by berard           ###   ########.fr       */
+/*   Updated: 2023/03/27 19:57:15 by fabien           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int	main(int ac, char **av, char **env)
 	input = "lol";
 	while (input != NULL)
 	{
-		signals_init();
+		// signals_init();
 		input = readline("Minishell > ");
 		parser(input);
 		add_history(input);

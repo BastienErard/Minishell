@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: berard <berard@student.42.fr>              +#+  +:+       +#+        */
+/*   By: fabien <fabien@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 13:37:04 by fgrasset          #+#    #+#             */
-/*   Updated: 2023/03/27 16:01:34 by berard           ###   ########.fr       */
+/*   Updated: 2023/03/30 13:39:39 by fabien           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,9 +44,9 @@ t_token			*get_last(t_token *head);
 void			print_list(t_token *head);
 
 // get.c
-void			get_word(t_token *new, char *input, int pos);
-void			get_squote(t_token *new, char *input, int pos);
-void			get_dquote(t_token *new, char *input, int pos);
+void			get_word(t_token *new, char *input);
+void			get_squote(t_token *new, char *input);
+void			get_dquote(t_token *new, char *input);
 int				mystrcspn(char *s, char *reject, int i);
 
 //parser.c

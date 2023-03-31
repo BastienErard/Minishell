@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   grammar.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fgrasset <fgrasset@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fabien <fabien@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 11:24:29 by fgrasset          #+#    #+#             */
-/*   Updated: 2023/03/24 16:37:28 by fgrasset         ###   ########.fr       */
+/*   Updated: 2023/03/30 13:37:55 by fabien           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ typedef struct s_token
 	int					type;
 	int					flag_env; //if == 1, then use env variables
 	int					i;
+	int					pos;
 	int					fdwrite;
 	int					fdread;
 	char				*cmd;

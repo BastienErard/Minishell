@@ -3,22 +3,22 @@
 /*                                                        :::      ::::::::   */
 /*   unset.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: berard <berard@student.42.fr>              +#+  +:+       +#+        */
+/*   By: fabien <fabien@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 14:55:02 by berard            #+#    #+#             */
-/*   Updated: 2023/03/27 16:00:31 by berard           ###   ########.fr       */
+/*   Updated: 2023/03/31 09:06:23 by fabien           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-void	unset(t_token *token, char **env)
-{
-	int	i;
+// void	unset(t_token *token, char **env)
+// {
+// 	int	i;
 
-	i = 0;
-	while (env[i] && )
-	{
+// 	i = 0;
+// 	while (env[i] && )
+// 	{
 
-	}
-}
+// 	}
+// }
