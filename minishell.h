@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: berard <berard@student.42.fr>              +#+  +:+       +#+        */
+/*   By: fgrasset <fgrasset@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 13:37:04 by fgrasset          #+#    #+#             */
-/*   Updated: 2023/03/31 17:51:09 by berard           ###   ########.fr       */
+/*   Updated: 2023/03/31 17:54:57 by fgrasset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ int				isdeli(char c, char flag);
 int				ft_isaspace(char c);
 void			space_index(t_token *new, char *input);
 int				checkquotes(char *input, char quote, int i);
+void			initialisation(t_token	*head);
 
 // linked_list.c
 
@@ -49,14 +50,25 @@ t_token			*get_last(t_token *head);
 void			print_list(t_token *head);
 
 // get.c
+
 void			get_word(t_token *new, char *input);
 void			get_squote(t_token *new, char *input);
 void			get_dquote(t_token *new, char *input);
 int				mystrcspn(char *s, char *reject, int i);
 
+// redirection.c
+
+void			r_left(t_token *new, char *input);
+void			rr_left(t_token *new, char *input);	//TODO not finished
+void			r_right(t_token *new, char *input);
+void			rr_right(t_token *new, char *input);
+char			*get_file(t_token *new, char *input);
+
 //parser.c
 
-void			parser(char	*input);
+void			parser(char *input);
+void			init_env(t_env *envi, char **env);
+void			add_env(t_env *envi, char *env);
 
 // Signals
 

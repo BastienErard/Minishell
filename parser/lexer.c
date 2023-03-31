@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lexer.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fabien <fabien@student.42.fr>              +#+  +:+       +#+        */
+/*   By: fgrasset <fgrasset@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/10 11:14:39 by fgrasset          #+#    #+#             */
-/*   Updated: 2023/03/30 13:39:51 by fabien           ###   ########.fr       */
+/*   Updated: 2023/03/31 11:41:24 by fgrasset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,8 @@ void	get_cmd(t_token *new, char *input)
 	int		j;
 
 	j = -1;
-	if ((input[new->i] == '\'' || input[new->i] == '"') && !checkquotes(input, input[new->i], new->i))
+	if ((input[new->i] == '\'' || input[new->i] == '"')\
+	&& !checkquotes(input, input[new->i], new->i))
 		perror("Issue with the quotes not ending");
 	new->cmd = malloc(sizeof(char) * word_len(input, new->i));
 	while (input[new->i] && !ft_isaspace(input[new->i]))
@@ -68,18 +69,21 @@ void	get_cmd(t_token *new, char *input)
 /* adds the fdwrite or fdread depending on the redirection needed to the token */
 void	get_redirection(t_token *new, char *input)
 {
-	if (!checkquotes(input, input[new->i], new->i))
-	{
-		perror("Issue with the quotes not ending");
-		return ;
-	}
 	if (input[new->i] == '<')
 	{
-
+		new->i++;
+		if (input[new->i] == '<')
+			rr_left(new, input);
+		else
+			r_left(new, input);
 	}
 	else if (input[new->i] == '>')
 	{
-
+		new->i++;
+		if (input[new->i] == '>')
+			rr_right(new, input);
+		else
+			r_right(new, input);
 	}
 }
 
@@ -93,10 +97,12 @@ void	get_arg(t_token *new, char *input)
 	while (input[new->i] && !isredi(input[new->i]) && input[new->i] != '|')
 	{
 		space_index(new, input);
-		if ((input[new->i] == '\'' || input[new->i] == '"') && checkquotes(input, input[new->i], new->i))
-		{
+		if (input[new->i] == '\'')
+			get_squote(new, input);
+		else if (input[new->i] == '"')
 			get_dquote(new, input);
-		}
+		else if (isredi(input[new->i]))
+			get_redirection(new, input);
 		else
 			get_word(new, input);
 		new->pos++;
