@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   replace_usd.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: berard <berard@student.42.fr>              +#+  +:+       +#+        */
+/*   By: fgrasset <fgrasset@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/31 11:01:15 by berard            #+#    #+#             */
-/*   Updated: 2023/04/03 10:53:13 by berard           ###   ########.fr       */
+/*   Updated: 2023/04/03 14:00:43 by fgrasset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,18 +41,19 @@ void	replace_usd(t_token *token)
 
 void	replace_env_usd(t_token *token, char *usd)
 {
-	char	*tmp;
-	int		i;
+	// char	*tmp;
+	// int		i;
 
-	i = -1;
-	tmp = NULL;
-	while (usd[++i + 1])
-		tmp[i] = usd[i + 1];
-	tmp[i] = '\0';
-	free(usd);
-	usd = ft_strdup(tmp);
-	while (token->env && ft_strcmp(usd, token->env->var[0]) != 0)
-			token->env = token->env->next;
+	// i = -1;
+	// tmp = malloc(sizeof(char) * ft_strlen(usd));
+	// while (usd[++i + 1])
+	// 	tmp[i] = usd[i + 1];
+	// tmp[i] = '\0';
+	// free(usd);
+	// usd = ft_strdup(tmp);
+	// free(tmp);
+	while (token->env && ft_strcmp(usd+1, token->env->var[0]) != 0)
+		token->env = token->env->next;
 	if (token->env != NULL)
 	{
 		free(usd);

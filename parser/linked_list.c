@@ -6,7 +6,7 @@
 /*   By: fgrasset <fgrasset@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 13:26:43 by fgrasset          #+#    #+#             */
-/*   Updated: 2023/04/03 12:58:45 by fgrasset         ###   ########.fr       */
+/*   Updated: 2023/04/03 13:38:48 by fgrasset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,6 @@ void	add_last(t_token **head, t_token *new)
 
 	if (*head == NULL)
 	{
-		write(1, "test\n", 5);
 		*head = new;
 		return ;
 	}

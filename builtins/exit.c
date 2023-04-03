@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fabien <fabien@student.42.fr>              +#+  +:+       +#+        */
+/*   By: fgrasset <fgrasset@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 13:31:13 by berard            #+#    #+#             */
-/*   Updated: 2023/03/31 09:08:25 by fabien           ###   ########.fr       */
+/*   Updated: 2023/04/03 13:16:27 by fgrasset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,8 @@ void	ft_exit(t_token *token)
 {
 	token->cmd = NULL; // To changes
 	ft_putstr_fd("exit\n", 1);
-	// free_linked_list(token); // TODO - FGRASSET
+	free_token(&token);
+	free_env(&token->env);
 	rl_clear_history();
 	exit (0); // Quid des fichiers open? Doivent être fermés.
 }

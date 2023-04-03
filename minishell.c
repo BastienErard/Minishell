@@ -22,7 +22,7 @@ int	main(int ac, char **av, char **env)
 	init_env(&envi, env);
 	while (input != NULL)
 	{
-		// signals_init();
+		signals_init();
 		input = readline("Minishell > ");
 		parser(input, envi);
 		add_history(input);

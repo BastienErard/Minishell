@@ -6,7 +6,7 @@
 /*   By: fgrasset <fgrasset@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 14:55:26 by fgrasset          #+#    #+#             */
-/*   Updated: 2023/04/03 12:57:29 by fgrasset         ###   ########.fr       */
+/*   Updated: 2023/04/03 13:15:13 by fgrasset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@ void	parser(char	*input, t_env *envi)
 
 	head = NULL;
 	sequencer(&head, input, envi);
+	replace_usd(head);
+	execution(head);
 	free_token(&head);
 }
 

@@ -6,7 +6,7 @@
 /*   By: fgrasset <fgrasset@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/24 13:23:24 by fgrasset          #+#    #+#             */
-/*   Updated: 2023/04/03 13:05:22 by fgrasset         ###   ########.fr       */
+/*   Updated: 2023/04/03 13:16:33 by fgrasset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,25 +96,25 @@ void	get_dquote(t_token *new, char *input)
 	new->i++;
 }
 
-/* just for the env var because it was too long */
-void	dollar_handler(t_token *new, )
-{
-	new->arg[new->pos][++j] = '\0';
-	j = -1;
-	new->flag_env = 1;
-	new->arg[++new->pos] = malloc(sizeof(char) \
-	* mystrcspn(input, " \t", new->i) + 1);
-	while (input[new->i] && !ft_isaspace(input[new->i]))
-	{
-		new->arg[new->pos][++j] = input[new->i];
-		new->i++;
-	}
-	new->arg[new->pos][++j] = '\0';
-	printf("current str: %s\n", new->arg[new->pos]);
-	new->arg[++new->pos] = malloc(sizeof(char) \
-	* mystrcspn(input, "\"$", new->i) + 1);
-	j = -1;
-}
+// /* just for the env var because it was too long */
+// void	dollar_handler(t_token *new, )
+// {
+// 	new->arg[new->pos][++j] = '\0';
+// 	j = -1;
+// 	new->flag_env = 1;
+// 	new->arg[++new->pos] = malloc(sizeof(char) \
+// 	* mystrcspn(input, " \t", new->i) + 1);
+// 	while (input[new->i] && !ft_isaspace(input[new->i]))
+// 	{
+// 		new->arg[new->pos][++j] = input[new->i];
+// 		new->i++;
+// 	}
+// 	new->arg[new->pos][++j] = '\0';
+// 	printf("current str: %s\n", new->arg[new->pos]);
+// 	new->arg[++new->pos] = malloc(sizeof(char) \
+// 	* mystrcspn(input, "\"$", new->i) + 1);
+// 	j = -1;
+// }
 
 /**
 Returns the length of the initial segment
