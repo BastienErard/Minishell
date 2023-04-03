@@ -6,7 +6,7 @@
 /*   By: berard <berard@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 14:41:03 by berard            #+#    #+#             */
-/*   Updated: 2023/03/31 09:18:37 by berard           ###   ########.fr       */
+/*   Updated: 2023/04/03 11:06:13 by berard           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	exec_external(t_token *token)
 
 	i = -1;
 	if (access(token->cmd, X_OK) == 0)
-		execve(token->cmd, token->arg, NULL); // WARNING - Maybe token->arg must contain ls
+		execve(token->cmd, token->arg, NULL);
 	path = ft_split(getenv("PATH"), ':'); // TODO - Getenv is not optimal
 	if (!path)
 		return (perror("Error with split during execution of an external"));

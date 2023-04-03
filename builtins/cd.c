@@ -6,7 +6,7 @@
 /*   By: berard <berard@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 16:00:44 by berard            #+#    #+#             */
-/*   Updated: 2023/03/31 09:19:54 by berard           ###   ########.fr       */
+/*   Updated: 2023/04/03 11:43:20 by berard           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,22 +16,37 @@
  * CD is used in command line to change the current working directory
  * of the shell or program to a specified directory.
 */
-void	cd(t_token *token)
+int	cd(t_token *token)
 {
 	char	init_dir[MAXPATHLEN];
 
-	if (getcwd(init_dir, MAXPATHLEN) == NULL)
-		return (perror("Error with getcwd()"));
-	if (chdir(token->arg[0]) != 0)
-		chdir_failed(token);
+	if (getcwd(init_dir, MAXPATHLEN) == NULL) // USEFULL?
+	{
+		perror("Error with getcwd()");
+		return (errno);
+	}
+	if (!token->arg || ft_strcmp(token->arg[0], "~") == 0)
+	{
+		while (ft_strcmp(token->env->var[0], "HOME") != 0)
+			token->env = token->env->next;
+		if (chdir(token->env->var[1]) != 0)
+			return (chdir_failed(token));
+	}
+	else
+	{
+		if (chdir(token->arg[0]) != 0)
+			return (chdir_failed(token));
+	}
+	return (EXIT_SUCCESS);
 }
 
-void	chdir_failed(t_token *token)
+int	chdir_failed(t_token *token)
 {
 	ft_putstr_fd("cd: ", 2);
 	ft_putstr_fd(token->arg[0], 2);
 	ft_putstr_fd(": ", 2);
 	ft_putstr_fd(": No such file or directory\n", 2);
+	return (errno);
 }
 
 // Inutile car chdir(..), chdir(.) ou chdir(path) est valide...
