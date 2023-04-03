@@ -6,7 +6,7 @@
 /*   By: fgrasset <fgrasset@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/24 13:23:24 by fgrasset          #+#    #+#             */
-/*   Updated: 2023/04/03 13:16:33 by fgrasset         ###   ########.fr       */
+/*   Updated: 2023/04/03 14:37:07 by fgrasset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ void	get_squote(t_token *new, char *input)
 	int	j;
 
 	j = -1;
+	new->flag_env = 0;
 	if (!checkquotes(input, input[new->i], new->i))
 		perror("Issue with the singe quote not ending");
 	new->i++;
@@ -70,21 +71,22 @@ void	get_dquote(t_token *new, char *input)
 	{
 		if (input[new->i] == '$')
 		{
-			new->arg[new->pos][++j] = '\0';
-			j = -1;
-			new->flag_env = 1;
-			new->arg[++new->pos] = malloc(sizeof(char) \
-			* mystrcspn(input, " \t", new->i) + 1);
-			while (input[new->i] && !ft_isaspace(input[new->i]))
-			{
-				new->arg[new->pos][++j] = input[new->i];
-				new->i++;
-			}
-			new->arg[new->pos][++j] = '\0';
-			printf("current str: %s\n", new->arg[new->pos]);
-			new->arg[++new->pos] = malloc(sizeof(char) \
-			* mystrcspn(input, "\"$", new->i) + 1);
-			j = -1;
+			j = env_handler(new, input, j);
+			// new->arg[new->pos][++j] = '\0';
+			// j = -1;
+			// new->flag_env = 1;
+			// new->arg[++new->pos] = malloc(sizeof(char) \
+			// * mystrcspn(input, " \t", new->i) + 1);
+			// while (input[new->i] && !ft_isaspace(input[new->i]))
+			// {
+			// 	new->arg[new->pos][++j] = input[new->i];
+			// 	new->i++;
+			// }
+			// new->arg[new->pos][++j] = '\0';
+			// printf("current str: %s\n", new->arg[new->pos]);
+			// new->arg[++new->pos] = malloc(sizeof(char) \
+			// * mystrcspn(input, "\"$", new->i) + 1);
+			// j = -1;
 		}
 		else
 		{
@@ -96,25 +98,26 @@ void	get_dquote(t_token *new, char *input)
 	new->i++;
 }
 
-// /* just for the env var because it was too long */
-// void	dollar_handler(t_token *new, )
-// {
-// 	new->arg[new->pos][++j] = '\0';
-// 	j = -1;
-// 	new->flag_env = 1;
-// 	new->arg[++new->pos] = malloc(sizeof(char) \
-// 	* mystrcspn(input, " \t", new->i) + 1);
-// 	while (input[new->i] && !ft_isaspace(input[new->i]))
-// 	{
-// 		new->arg[new->pos][++j] = input[new->i];
-// 		new->i++;
-// 	}
-// 	new->arg[new->pos][++j] = '\0';
-// 	printf("current str: %s\n", new->arg[new->pos]);
-// 	new->arg[++new->pos] = malloc(sizeof(char) \
-// 	* mystrcspn(input, "\"$", new->i) + 1);
-// 	j = -1;
-// }
+/* just for the env var because it was too long */
+int env_handler(t_token *new, char *input, int j)
+{
+	new->arg[new->pos][++j] = '\0';
+	j = -1;
+	new->flag_env = 1;
+	new->arg[++new->pos] = malloc(sizeof(char) \
+	* mystrcspn(input, " \t", new->i) + 1);
+	while (input[new->i] && !ft_isaspace(input[new->i]))
+	{
+		new->arg[new->pos][++j] = input[new->i];
+		new->i++;
+	}
+	new->arg[new->pos][++j] = '\0';
+	printf("current str: %s\n", new->arg[new->pos]);
+	new->arg[++new->pos] = malloc(sizeof(char) \
+	* mystrcspn(input, "\"$", new->i) + 1);
+	j = -1;
+	return (j);
+}
 
 /**
 Returns the length of the initial segment

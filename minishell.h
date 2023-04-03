@@ -23,6 +23,7 @@ void			get_redirection(t_token *new, char *input);
 void			get_arg(t_token *new, char *input);
 int				word_len(char *input, int i);
 
+
 // lexer_utils.c
 
 int				isredi(char c);
@@ -45,6 +46,8 @@ void			get_word(t_token *new, char *input);
 void			get_squote(t_token *new, char *input);
 void			get_dquote(t_token *new, char *input);
 int				mystrcspn(char *s, char *reject, int i);
+int				env_handler(t_token *new, char *input, int j);
+
 
 // redirection.c
 
@@ -74,6 +77,9 @@ void			exec_cmd(t_token *token); // TO COMPLETE
 void			exec_cmds(t_token *token); // TO CREATE
 void			exec_external(t_token *token); // TO CHECK
 int				exec_builtins(t_token *token); // TO ADAPT && COMPLETE
+char			**get_env(t_token *token);
+void			fuckit(char *genv, char *var1, char *var2);
+
 
 // Builtins
 

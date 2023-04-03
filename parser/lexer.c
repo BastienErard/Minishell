@@ -6,7 +6,7 @@
 /*   By: fgrasset <fgrasset@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/10 11:14:39 by fgrasset          #+#    #+#             */
-/*   Updated: 2023/04/03 13:00:24 by fgrasset         ###   ########.fr       */
+/*   Updated: 2023/04/03 14:34:49 by fgrasset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,6 @@ void	sequencer(t_token **head, char *input, t_env *envi)
 			get_arg(new, input);
 		}
 		add_last(head, new);
-		// printf("new->i: %d && strlen: %zu\n", new->i, ft_strlen(input));
 		i = new->i;
 	}
 }
@@ -109,11 +108,6 @@ void	get_arg(t_token *new, char *input)
 		new->pos++;
 	}
 	new->arg[new->pos] = NULL;
-
-	// Used to print
-	// printf("%s\n", new->cmd);
-	// for(int i = 0; new->arg[i]; i++)
-	// 	printf("%s\n", new->arg[i]);
 }
 
 /* returns the length of the next word to be malloc*/
