@@ -1,14 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   minishell.h                                        :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: fgrasset <fgrasset@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/08 13:37:04 by fgrasset          #+#    #+#             */
-/*   Updated: 2023/03/31 17:54:57 by fgrasset         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
 
 #ifndef MINISHELL_H
 # define MINISHELL_H
@@ -27,7 +16,7 @@ extern int		g_exit_code;
 
 // lexer.c
 
-void			sequencer(t_token **head, char *input);
+void			sequencer(t_token **head, char *input, t_env *envi);
 void			get_cmd(t_token *new, char *input);
 void			get_redirection(t_token *new, char *input);
 void			get_arg(t_token *new, char *input);
@@ -66,9 +55,9 @@ char			*get_file(t_token *new, char *input);
 
 //parser.c
 
-void			parser(char *input);
-void			init_env(t_env *envi, char **env);
-void			add_env(t_env *envi, char *env);
+void			parser(char *input, t_env *envi);
+void			init_env(t_env **envi, char **env);
+void			add_env(t_env **envi, char *env);
 
 // Signals
 
@@ -109,6 +98,8 @@ char			*ft_strncpy(char *dest, char *src, unsigned int n); // TO CHECK / UNUSED 
 // Free
 
 void			free_split(char *path[]); // TO CHECK
+void			free_token(t_token **head);
+void			free_env(t_env **envi);
 
 // Others
 

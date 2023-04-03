@@ -6,7 +6,7 @@
 /*   By: fgrasset <fgrasset@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 13:26:43 by fgrasset          #+#    #+#             */
-/*   Updated: 2023/03/27 17:58:24 by fgrasset         ###   ########.fr       */
+/*   Updated: 2023/04/03 12:58:45 by fgrasset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,8 +45,9 @@ void	add_last(t_token **head, t_token *new)
 
 	if (*head == NULL)
 	{
+		write(1, "test\n", 5);
 		*head = new;
-		return;
+		return ;
 	}
 	tmp = get_last(*head);
 	tmp->next = new;
@@ -72,8 +73,8 @@ void	print_list(t_token *head)
 {
 	t_token	*tmp;
 	int	j = -1;
-	tmp = head;
 
+	tmp = head;
 	while (tmp)
 	{
 		printf("%s ", tmp->cmd);

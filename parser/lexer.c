@@ -6,14 +6,14 @@
 /*   By: fgrasset <fgrasset@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/10 11:14:39 by fgrasset          #+#    #+#             */
-/*   Updated: 2023/03/31 11:41:24 by fgrasset         ###   ########.fr       */
+/*   Updated: 2023/04/03 13:00:24 by fgrasset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
 /* cut the input in words and add them to the linked list */
-void	sequencer(t_token **head, char *input)
+void	sequencer(t_token **head, char *input, t_env *envi)
 {
 	t_token	*new;
 	int		i;
@@ -25,6 +25,8 @@ void	sequencer(t_token **head, char *input)
 		new->cmd = NULL;
 		new->arg = NULL;
 		new->next = NULL;
+		new->flag_env = 1;
+		new->env = envi;
 		new->i = i;
 		if (input == NULL || input[new->i] == '\0')
 		{
@@ -35,12 +37,10 @@ void	sequencer(t_token **head, char *input)
 		while (input[new->i] && input[new->i] != '|')
 		{
 			get_cmd(new, input);
-			if (isredi(input[new->i]))
-				get_redirection(new, input);
-			else
-				get_arg(new, input);
+			get_arg(new, input);
 		}
 		add_last(head, new);
+		// printf("new->i: %d && strlen: %zu\n", new->i, ft_strlen(input));
 		i = new->i;
 	}
 }
@@ -51,7 +51,7 @@ void	get_cmd(t_token *new, char *input)
 	int		j;
 
 	j = -1;
-	if ((input[new->i] == '\'' || input[new->i] == '"')\
+	if ((input[new->i] == '\'' || input[new->i] == '"') \
 	&& !checkquotes(input, input[new->i], new->i))
 		perror("Issue with the quotes not ending");
 	new->cmd = malloc(sizeof(char) * word_len(input, new->i));
@@ -66,7 +66,8 @@ void	get_cmd(t_token *new, char *input)
 	space_index(new, input);
 }
 
-/* adds the fdwrite or fdread depending on the redirection needed to the token */
+/* adds the fdwrite or fdread depending
+on the redirection needed to the token */
 void	get_redirection(t_token *new, char *input)
 {
 	if (input[new->i] == '<')
@@ -108,10 +109,11 @@ void	get_arg(t_token *new, char *input)
 		new->pos++;
 	}
 	new->arg[new->pos] = NULL;
-	//to print
-	printf("%s\n", new->cmd);
-	for(int i = 0; new->arg[i]; i++)
-		printf("%s\n", new->arg[i]);
+
+	// Used to print
+	// printf("%s\n", new->cmd);
+	// for(int i = 0; new->arg[i]; i++)
+	// 	printf("%s\n", new->arg[i]);
 }
 
 /* returns the length of the next word to be malloc*/

@@ -6,7 +6,7 @@
 /*   By: fgrasset <fgrasset@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 14:55:26 by fgrasset          #+#    #+#             */
-/*   Updated: 2023/03/31 15:12:50 by fgrasset         ###   ########.fr       */
+/*   Updated: 2023/04/03 12:57:29 by fgrasset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,35 +17,34 @@
  * appropriate functions to execute the needed commands
  *
  * @param [*input] the input to parse.
+ * @param [*envi] our own environment.
  *
  * @return returns nothing but calls the needed function
  * to execute the parsing
  */
-void	parser(char	*input)
+void	parser(char	*input, t_env *envi)
 {
 	t_token	*head;
 
 	head = NULL;
-	sequencer(&head, input);
+	sequencer(&head, input, envi);
+	free_token(&head);
 }
 
 /* takes the env and adds it to the struct
 	var[0] == var, var[1] == value of var */
-void	init_env(t_env *envi, char **env)
+void	init_env(t_env **envi, char **env)
 {
 	int	i;
 
 	i = -1;
-	while(env[++i])
-	{
+	*envi = NULL;
+	while (env[++i])
 		add_env(envi, env[i]);
-		printf("var: %s\n", envi->var[0]);
-		printf("value: %s\n", envi->var[1]);
-	}
 }
 
 /* creates an env element and adds it at the end of the list */
-void	add_env(t_env *envi, char *env)
+void	add_env(t_env **envi, char *env)
 {
 	t_env	*new;
 	t_env	*tmp;
@@ -55,16 +54,13 @@ void	add_env(t_env *envi, char *env)
 	if (!new || !new->var)
 		perror("issue malloc add_env");
 	new->next = NULL;
-	if (envi == NULL)
+	if (*envi == NULL)
 	{
-		envi = new;
+		*envi = new;
 		return ;
 	}
-	tmp = envi;
+	tmp = *envi;
 	while (tmp->next)
 		tmp = tmp->next;
 	tmp->next = new;
 }
-
-
-
