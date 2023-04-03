@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fgrasset <fgrasset@student.42.fr>          +#+  +:+       +#+        */
+/*   By: berard <berard@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 13:37:04 by fgrasset          #+#    #+#             */
-/*   Updated: 2023/03/31 17:54:57 by fgrasset         ###   ########.fr       */
+/*   Updated: 2023/04/03 11:42:50 by berard           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 # include <readline/history.h>
 # include <termios.h>
 # include <sys/param.h>
+# include <errno.h>
 
 // Global
 
@@ -72,32 +73,32 @@ void			add_env(t_env *envi, char *env);
 
 // Signals
 
-void			signals_init(void);
-void			signals_handle(int sig);
+void			signals_init(void); // TO CHECK
+void			signals_handle(int sig); // TO CHECK
 
 // Execution
 
-void			execution(t_token *token);
-int				is_builtins(t_token *token);
-void			replace_usd(t_token *token);
-void			exec_cmd(t_token *token); // TODO
-void			exec_cmds(t_token *token); // TODO
+void			execution(t_token *token); // TO COMPLETE
+int				is_builtins(t_token *token); // TO CHECK
+void			replace_usd(t_token *token); // TO CHECK
+void			exec_cmd(t_token *token); // TO COMPLETE
+void			exec_cmds(t_token *token); // TO CREATE
 void			exec_external(t_token *token); // TO CHECK
-int				exec_builtins(t_token *token); // TO ADAPT
+int				exec_builtins(t_token *token); // TO ADAPT && COMPLETE
 
 // Builtins
 
 int				echo(t_token *token); // TO CHECK
 void			pwd(void); // TO CHECK
-void			ft_exit(t_token *token); // TO COMPLETE
-void			ft_env(t_token token); // TO CHECK
-void			cd(t_token *token); // TO COMPLETE (tilde)
+void			ft_exit(t_token *token); // TO COMPLETE (FREE)
+void			ft_env(t_token *token); // TO CHECK
+int				cd(t_token *token); // TO CHECK
 // void			unset(t_token *token, char **env); // TODO
 
 // Builtins  - Annex
 
-void			chdir_failed(t_token *token);
-void			replace_env_usd(t_token *token, char *usd);
+int				chdir_failed(t_token *token); // TO CHECK
+void			replace_env_usd(t_token *token, char *usd); // TO CHECK
 // void			dir_backward(char *init_dir, t_token *token);
 // void			dir_further(char *init_dir, t_token *token);
 

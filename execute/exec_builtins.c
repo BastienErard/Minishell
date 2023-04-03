@@ -6,7 +6,7 @@
 /*   By: berard <berard@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/29 14:15:21 by tastybao          #+#    #+#             */
-/*   Updated: 2023/03/31 11:38:22 by berard           ###   ########.fr       */
+/*   Updated: 2023/04/03 11:19:02 by berard           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,8 @@ int	exec_builtins(t_token *token)
 		ft_exit(token);
 	else if (ft_strcmp(token->cmd, "cd") == 0)
 		cd(token);
-	// else if (ft_strcmp(token->cmd, "env") == 0)
-	// 	ft_env(token); // WARNING => Prototype diff. dans la fonction
+	else if (ft_strcmp(token->cmd, "env") == 0)
+		ft_env(token);
 	// else if (ft_strcmp(token->cmd, "unset") == 0)
 	// 	unset(token);
 	// else if (ft_strcmp(token->cmd, "export") == 0)
