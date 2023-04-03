@@ -6,7 +6,7 @@
 /*   By: berard <berard@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 14:08:04 by berard            #+#    #+#             */
-/*   Updated: 2023/04/03 11:18:37 by berard           ###   ########.fr       */
+/*   Updated: 2023/04/03 15:04:21 by berard           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,13 @@
  * When the "env" command is run without any arguments, it displays a list of the
  * current environment variables and their values.
 */
-void	ft_env(t_token *token)
+int	ft_env(t_token *token)
 {
 	if (!token->env)
-		return (perror("env")); // Need to check, in case of unset's use.
+	{
+		perror("env"); // Need to check, in case of unset's use.
+		return (errno);
+	}
 	while (token->env)
 	{
 		ft_putstr_fd(token->env->var[0], 1);
@@ -29,4 +32,5 @@ void	ft_env(t_token *token)
 		ft_putstr_fd("\n", 1);
 		token->env = token->env->next;
 	}
+	return (EXIT_SUCCESS);
 }

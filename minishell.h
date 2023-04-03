@@ -78,22 +78,24 @@ int				exec_builtins(t_token *token); // TO ADAPT && COMPLETE
 // Builtins
 
 int				echo(t_token *token); // TO CHECK
-void			pwd(void); // TO CHECK
+int				pwd(void); // TO CHECK
 void			ft_exit(t_token *token); // TO COMPLETE (FREE)
-void			ft_env(t_token *token); // TO CHECK
+int				ft_env(t_token *token); // TO CHECK
 int				cd(t_token *token); // TO CHECK
-// void			unset(t_token *token, char **env); // TODO
+// int				unset(t_token *token); // TODO
 
 // Builtins  - Annex
 
 int				chdir_failed(t_token *token); // TO CHECK
 void			replace_env_usd(t_token *token, char *usd); // TO CHECK
+int				unset_failed(char *arg);
 // void			dir_backward(char *init_dir, t_token *token);
 // void			dir_further(char *init_dir, t_token *token);
 
 // Utils
 
 int				ft_strcmp(const char *s1, const char *s2); // TO CHECK
+int				ft_isaldig(char *arg);
 char			*ft_strncpy(char *dest, char *src, unsigned int n); // TO CHECK / UNUSED FOR THE MOMENT
 
 // Free
