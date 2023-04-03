@@ -6,7 +6,7 @@
 /*   By: berard <berard@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/29 14:15:21 by tastybao          #+#    #+#             */
-/*   Updated: 2023/04/03 11:19:02 by berard           ###   ########.fr       */
+/*   Updated: 2023/04/03 15:47:31 by berard           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,15 +21,15 @@ int	exec_builtins(t_token *token)
 	if (ft_strcmp(token->cmd, "echo") == 0)
 		g_exit_code = echo(token);
 	else if (ft_strcmp(token->cmd, "pwd") == 0)
-		pwd();
+		g_exit_code = pwd();
 	else if (ft_strcmp(token->cmd, "exit") == 0)
 		ft_exit(token);
 	else if (ft_strcmp(token->cmd, "cd") == 0)
-		cd(token);
+		g_exit_code = cd(token);
 	else if (ft_strcmp(token->cmd, "env") == 0)
-		ft_env(token);
+		g_exit_code = ft_env(token);
 	// else if (ft_strcmp(token->cmd, "unset") == 0)
-	// 	unset(token);
+	//	g_exit_code = unset(token);
 	// else if (ft_strcmp(token->cmd, "export") == 0)
 	// 	export(token);
 	return (g_exit_code);

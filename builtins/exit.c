@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fgrasset <fgrasset@student.42.fr>          +#+  +:+       +#+        */
+/*   By: berard <berard@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 13:31:13 by berard            #+#    #+#             */
-/*   Updated: 2023/04/03 13:16:27 by fgrasset         ###   ########.fr       */
+/*   Updated: 2023/04/03 15:03:18 by berard           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@
 */
 void	ft_exit(t_token *token)
 {
-	token->cmd = NULL; // To changes
 	ft_putstr_fd("exit\n", 1);
 	free_token(&token);
 	free_env(&token->env);

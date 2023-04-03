@@ -1,29 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pwd.c                                              :+:      :+:    :+:   */
+/*   ft_isaldig.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: berard <berard@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/24 16:15:23 by berard            #+#    #+#             */
-/*   Updated: 2023/04/03 15:00:15 by berard           ###   ########.fr       */
+/*   Created: 2023/04/03 15:57:30 by berard            #+#    #+#             */
+/*   Updated: 2023/04/03 16:12:30 by berard           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-/**
- * PWD prints the absolute path of the current working directory to the terminal.
- */
-int	pwd(void)
-{
-	char	path[MAXPATHLEN];
+// int	ft_isaldig(char *arg)
+// {
+// 	int	i;
 
-	if (getcwd(path, MAXPATHLEN) == NULL)
-	{
-		perror("Error with getcwd()");
-		return (errno);
-	}
-	printf("%s\n", path);
-	return (EXIT_SUCCESS);
-}
+// 	i = -1;
+// 	while (arg[++i] != '\0')
+// 	{
+// 		if (arg[i] < 48 || arg[i] > 58 && arg[i] < 65
+// 			|| arg[i] > 122)
+// 			return (0);
+// 	}
+// 	return (1);
+// }
