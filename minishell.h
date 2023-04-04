@@ -94,14 +94,14 @@ int				cd(t_token *token); // TO CHECK
 
 int				chdir_failed(t_token *token); // TO CHECK
 void			replace_env_usd(t_token *token, char *usd); // TO CHECK
-int				unset_failed(char *arg);
+int				unset_failed(char *arg); // TO CHECK
 // void			dir_backward(char *init_dir, t_token *token);
 // void			dir_further(char *init_dir, t_token *token);
 
 // Utils
 
 int				ft_strcmp(const char *s1, const char *s2); // TO CHECK
-int				ft_isaldig(char *arg);
+int				ft_isaldig(char *arg); // TO CHECK
 char			*ft_strncpy(char *dest, char *src, unsigned int n); // TO CHECK / UNUSED FOR THE MOMENT
 
 // Free

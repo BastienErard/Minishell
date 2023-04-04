@@ -3,25 +3,25 @@
 /*                                                        :::      ::::::::   */
 /*   ft_isaldig.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: berard <berard@student.42.fr>              +#+  +:+       +#+        */
+/*   By: tastybao <tastybao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 15:57:30 by berard            #+#    #+#             */
-/*   Updated: 2023/04/03 16:12:30 by berard           ###   ########.fr       */
+/*   Updated: 2023/04/04 17:09:06 by tastybao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-// int	ft_isaldig(char *arg)
-// {
-// 	int	i;
+int	ft_isaldig(char *arg)
+{
+	int	i;
 
-// 	i = -1;
-// 	while (arg[++i] != '\0')
-// 	{
-// 		if (arg[i] < 48 || arg[i] > 58 && arg[i] < 65
-// 			|| arg[i] > 122)
-// 			return (0);
-// 	}
-// 	return (1);
-// }
+	i = -1;
+	while (arg[++i] != '\0')
+	{
+		if (arg[i] < 48 || (arg[i] > 57 && arg[i] < 65)
+			|| arg[i] > 122)
+			return (0);
+	}
+	return (1);
+}

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   echo.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fgrasset <fgrasset@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tastybao <tastybao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/24 14:08:12 by berard            #+#    #+#             */
-/*   Updated: 2023/04/03 14:00:34 by fgrasset         ###   ########.fr       */
+/*   Updated: 2023/04/04 16:43:35 by tastybao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int	echo(t_token *token)
 
 	i = 0;
 	flag = 0;
-	if ((ft_strcmp(token->arg[i], "-n") == 0))
+	if (token->arg[i] && ft_strcmp(token->arg[i], "-n") == 0)
 	{
 		flag = 1;
 		i++;
