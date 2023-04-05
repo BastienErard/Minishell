@@ -98,6 +98,8 @@ int				unset(t_token *token); // TODO
 int				chdir_failed(t_token *token); // TO CHECK
 void			replace_env_usd(t_token *token, char *usd); // TO CORRECT
 int				unset_failed(char *arg); // TO CHECK
+int				pathless(t_env *tmp); // TO CHECK
+int				env_with_arg(char *str); // TO CHECK
 void			free_slot_env(t_env **head, t_env *slot);
 // void			dir_backward(char *init_dir, t_token *token);
 // void			dir_further(char *init_dir, t_token *token);

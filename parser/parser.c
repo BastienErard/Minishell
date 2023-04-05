@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fgrasset <fgrasset@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tastybao <tastybao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 14:55:26 by fgrasset          #+#    #+#             */
-/*   Updated: 2023/04/05 13:49:31 by fgrasset         ###   ########.fr       */
+/*   Updated: 2023/04/05 17:33:03 by tastybao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,12 +78,12 @@ void	add_env(t_env **envi, char *env)
 
 void	az_env(t_token *token)
 {
-	int		i;
+	// int		i; // UNUSED - Put in comment by Tastybao the great
 	int		buf;
 	t_env	*first;
 	t_env	*second;
 
-	i = -1;
+	// i = -1; // UNUSED - Put in comment by Tastybao the great
 	first = token->env;
 	second = token->env->next;
 	env_init(token);

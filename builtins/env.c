@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: berard <berard@student.42.fr>              +#+  +:+       +#+        */
+/*   By: tastybao <tastybao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 14:08:04 by berard            #+#    #+#             */
-/*   Updated: 2023/04/05 11:44:19 by berard           ###   ########.fr       */
+/*   Updated: 2023/04/05 19:06:15 by tastybao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,25 +17,21 @@
  * When the "env" command is run without any arguments, it displays a list of the
  * current environment variables and their values.
 */
+
 int	ft_env(t_token *token)
 {
-	t_env	*tmp;
-
 	if (!token->env)
 	{
 		perror("env"); // Need to check, in case of unset's use.
 		return (errno);
 	}
-	tmp = token->env;
-	// while (tmp)
-	// {
-	// 	if (ft_strcmp(tmp->var[0], "PATH") == 0)
-	// 	{
-	// 		ft_putstr_fd("env: No such file or directory\n", 2);
-	// 		return (127);
-	// 	}
-	// 	tmp = tmp->next;
-	// }
+	if (pathless(token->env) == 0)
+	{
+		ft_putstr_fd("env: No such file or directory\n", 2);
+		return (127);
+	}
+	if (token->arg[0])
+		return (env_with_arg(token->arg[0]));
 	while (token->env && token->env->var[1])
 	{
 		ft_putstr_fd(token->env->var[0], 1);
@@ -45,4 +41,28 @@ int	ft_env(t_token *token)
 		token->env = token->env->next;
 	}
 	return (EXIT_SUCCESS);
+}
+
+int	env_with_arg(char *str)
+{
+	ft_putstr_fd("env: ", 2);
+	ft_putstr_fd(str, 2);
+	ft_putstr_fd(": No such file or directory\n", 2);
+	return (127);
+}
+int	pathless(t_env *env)
+{
+	int	flag;
+
+	flag = 0;
+	while (env && env->var[1] )
+	{
+		if (ft_strcmp(env->var[0], "PATH") == 0)
+		{
+			flag = 1;
+			break;
+		}
+		env = env->next;
+	}
+	return (flag);
 }

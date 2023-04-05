@@ -3,15 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   unset.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: berard <berard@student.42.fr>              +#+  +:+       +#+        */
+/*   By: tastybao <tastybao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 14:55:02 by berard            #+#    #+#             */
-/*   Updated: 2023/04/05 11:01:53 by berard           ###   ########.fr       */
+/*   Updated: 2023/04/05 19:06:18 by tastybao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
+/**
+* The unset command is used to unset or delete shell variables and functions.
+* When a variable or function is unset using unset, its value and attributes are
+* removed, making it undefined in the current shell session.
+*/
 int	unset(t_token *token)
 {
 	int		i;
