@@ -3,41 +3,63 @@
 /*                                                        :::      ::::::::   */
 /*   unset.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tastybao <tastybao@student.42.fr>          +#+  +:+       +#+        */
+/*   By: berard <berard@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 14:55:02 by berard            #+#    #+#             */
-/*   Updated: 2023/04/04 17:15:59 by tastybao         ###   ########.fr       */
+/*   Updated: 2023/04/05 11:01:53 by berard           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-// int	unset(t_token *token)
-// {
-// 	int	i;
-// 	int	flag;
+int	unset(t_token *token)
+{
+	int		i;
+	t_env	*tmp;
 
-// 	i = -1;
-// 	flag = 0;
-// 	while (token->arg[++i])
-// 	{
-// 		if (ft_isalpha(token->arg[i][0]) == 0 || ft_isaldig(token->arg[i]) == 0)
-// 			flag = unset_failed(token->arg[i]));
-// 	}
-// 	i = -1;
-// 	while (token->arg[++i])
-// 	{
-// 		while (token->env)
-// 		{
-// 			if (ft_strcmp(token->arg[i], token->env->var[0]) == 0)
-// 				// COMPLETER / FREE
-			// token->env = token->env->next;
-// 		}
-// 	}
-// 	if (flag == 1)
-// 		return (errno);
-// 	return (EXIT_SUCCESS);
-// }
+	i = -1;
+	while (token->arg[++i])
+	{
+		tmp = token->env;
+		while (tmp)
+		{
+			if (ft_strcmp(token->arg[i], tmp->var[0]) == 0)
+			{
+				free_slot_env(&token->env, tmp);
+				break ;
+			}
+			tmp = tmp->next;
+		}
+	}
+	i = -1;
+	while (token->arg[++i])
+		if (ft_isalpha(token->arg[i][0]) == 0 || ft_isaldig(token->arg[i]) == 0)
+			return (unset_failed(token->arg[i]));
+	return (EXIT_SUCCESS);
+}
+
+void	free_slot_env(t_env **head, t_env *slot)
+{
+	int		i;
+	t_env	*prev;
+
+	if (slot == *head)
+	{
+		*head = slot->next;
+	}
+	else
+	{
+		prev = *head;
+		while (prev->next != slot)
+			prev = prev->next;
+		prev->next = slot->next;
+	}
+	i = -1;
+	while (slot->var[++i])
+		free(slot->var[i]);
+	free(slot->var);
+	free(slot);
+}
 
 int	unset_failed(char *arg)
 {

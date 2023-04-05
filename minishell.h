@@ -88,13 +88,14 @@ int				pwd(void); // TO CHECK
 void			ft_exit(t_token *token); // TO COMPLETE (FREE)
 int				ft_env(t_token *token); // TO CHECK
 int				cd(t_token *token); // TO CHECK
-// int				unset(t_token *token); // TODO
+int				unset(t_token *token); // TODO
 
 // Builtins  - Annex
 
 int				chdir_failed(t_token *token); // TO CHECK
-void			replace_env_usd(t_token *token, char *usd); // TO CHECK
+void			replace_env_usd(t_token *token, char *usd); // TO CORRECT
 int				unset_failed(char *arg); // TO CHECK
+void			free_slot_env(t_env **head, t_env *slot);
 // void			dir_backward(char *init_dir, t_token *token);
 // void			dir_further(char *init_dir, t_token *token);
 
