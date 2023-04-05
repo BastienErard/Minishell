@@ -6,7 +6,7 @@
 /*   By: fgrasset <fgrasset@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 14:55:26 by fgrasset          #+#    #+#             */
-/*   Updated: 2023/04/03 13:15:13 by fgrasset         ###   ########.fr       */
+/*   Updated: 2023/04/05 13:49:31 by fgrasset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,17 @@
 void	parser(char	*input, t_env *envi)
 {
 	t_token	*head;
+	int		i;
 
+	i = 0;
 	head = NULL;
-	sequencer(&head, input, envi);
+	while (input[i])
+	{
+		i = sequencer(&head, input, envi, i);
+		if (input[i] == '|')
+			i++;
+	}
+	// print_list(head);
 	replace_usd(head);
 	execution(head);
 	free_token(&head);
@@ -43,6 +51,7 @@ void	init_env(t_env **envi, char **env)
 	*envi = NULL;
 	while (env[++i])
 		add_env(envi, env[i]);
+
 }
 
 /* creates an env element and adds it at the end of the list */
@@ -65,4 +74,55 @@ void	add_env(t_env **envi, char *env)
 	while (tmp->next)
 		tmp = tmp->next;
 	tmp->next = new;
+}
+
+void	az_env(t_token *token)
+{
+	int		i;
+	int		buf;
+	t_env	*first;
+	t_env	*second;
+
+	i = -1;
+	first = token->env;
+	second = token->env->next;
+	env_init(token);
+	while (first || second)
+	{
+		if (ft_strcmp(first->var[0], second->var[0]) < 0)
+		{
+			buf = first->alpha;
+			first->alpha = second->alpha;
+			second->alpha = buf;
+		}
+		first = first->next;
+		second = second->next;
+	}
+}
+
+void	env_init(t_token *token)
+{
+	t_env	*tmp;
+	int		i;
+
+	tmp = token->env;
+	i = 0;
+	while(tmp)
+	{
+		tmp->alpha = i;
+		i++;
+		tmp = tmp->next;
+	}
+}
+
+int	alphabet(char c)
+{
+	int		i;
+	char	*az;
+
+	az = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
+	i = 0;
+	while (az[i] != c)
+		i++;
+	return (i);
 }

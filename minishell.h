@@ -17,7 +17,7 @@ extern int		g_exit_code;
 
 // lexer.c
 
-void			sequencer(t_token **head, char *input, t_env *envi);
+int				sequencer(t_token **head, char *input, t_env *envi, int index);
 void			get_cmd(t_token *new, char *input);
 void			get_redirection(t_token *new, char *input);
 void			get_arg(t_token *new, char *input);
@@ -62,6 +62,9 @@ char			*get_file(t_token *new, char *input);
 void			parser(char *input, t_env *envi);
 void			init_env(t_env **envi, char **env);
 void			add_env(t_env **envi, char *env);
+void			az_env(t_token *token);
+void			env_init(t_token *token);
+
 
 // Signals
 

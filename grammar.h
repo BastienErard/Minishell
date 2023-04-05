@@ -6,7 +6,7 @@
 /*   By: fgrasset <fgrasset@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 11:24:29 by fgrasset          #+#    #+#             */
-/*   Updated: 2023/03/31 17:55:13 by fgrasset         ###   ########.fr       */
+/*   Updated: 2023/04/05 13:00:21 by fgrasset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@
 /* struct used for the env */
 typedef struct s_env
 {
+	int				alpha;
+	char			*path;
 	char			**var;
 	struct s_env	*next;
 
