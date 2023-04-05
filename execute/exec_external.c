@@ -6,7 +6,7 @@
 /*   By: berard <berard@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 14:41:03 by berard            #+#    #+#             */
-/*   Updated: 2023/04/03 16:14:39 by berard           ###   ########.fr       */
+/*   Updated: 2023/04/05 11:33:35 by berard           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void	exec_external(t_token *token)
 		if (access(filepath, X_OK) == 0)
 		{
 			free_split(path);
-			execve(filepath, token->arg, NULL);
+			execve(filepath, token->arg, get_env(token)); // ISSUE LS
 		}
 	}
 	free_split(path);

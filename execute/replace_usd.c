@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   replace_usd.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fgrasset <fgrasset@student.42.fr>          +#+  +:+       +#+        */
+/*   By: berard <berard@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/31 11:01:15 by berard            #+#    #+#             */
-/*   Updated: 2023/04/03 14:00:43 by fgrasset         ###   ########.fr       */
+/*   Updated: 2023/04/05 11:05:20 by berard           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ void	replace_env_usd(t_token *token, char *usd)
 	// free(usd);
 	// usd = ft_strdup(tmp);
 	// free(tmp);
-	while (token->env && ft_strcmp(usd+1, token->env->var[0]) != 0)
+	while (token->env && ft_strcmp(usd + 1, token->env->var[0]) != 0)
 		token->env = token->env->next;
 	if (token->env != NULL)
 	{

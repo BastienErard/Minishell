@@ -24,7 +24,7 @@ int	main(int ac, char **av, char **env)
 	while (input != NULL)
 	{
 		input = readline("\e[1;36mMinishell > \e[0m");
-		if (input && input[0] == '\0')
+		if ((input && input[0] == '\0') || input == NULL)
 			continue ;
 		parser(input, envi);
 		add_history(input);
