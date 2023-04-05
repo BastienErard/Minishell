@@ -6,7 +6,7 @@
 /*   By: fgrasset <fgrasset@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 13:26:43 by fgrasset          #+#    #+#             */
-/*   Updated: 2023/04/03 13:38:48 by fgrasset         ###   ########.fr       */
+/*   Updated: 2023/04/05 13:06:26 by fgrasset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,17 +71,18 @@ t_token	*get_last(t_token *head)
 void	print_list(t_token *head)
 {
 	t_token	*tmp;
-	int	j = -1;
+	int		j;
 
 	tmp = head;
 	while (tmp)
 	{
-		printf("%s ", tmp->cmd);
+		j = -1;
+		printf("cmd: %s ", tmp->cmd);
 		while (tmp->arg[++j])
 		{
-			printf(" %s ", tmp->arg[j]);
+			printf("arg: %s", tmp->arg[j]);
 		}
-		write(1, "\n", 1);
+		printf("\n");
 		tmp = tmp->next;
 	}
 }

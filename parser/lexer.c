@@ -3,33 +3,32 @@
 /*                                                        :::      ::::::::   */
 /*   lexer.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fabien <fabien@student.42.fr>              +#+  +:+       +#+        */
+/*   By: fgrasset <fgrasset@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/10 11:14:39 by fgrasset          #+#    #+#             */
-/*   Updated: 2023/04/03 20:10:11 by fabien           ###   ########.fr       */
+/*   Updated: 2023/04/05 13:49:22 by fgrasset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
 /* cut the input in words and add them to the linked list */
-void	sequencer(t_token **head, char *input, t_env *envi)
+int	sequencer(t_token **head, char *input, t_env *envi, int index)
 {
 	t_token	*new;
-	int		i;
 
-	i = 0;
 	new = malloc(sizeof(t_token));
 	new->cmd = NULL;
 	new->arg = NULL;
 	new->next = NULL;
 	new->flag_env = 1;
+	new->fdwrite = 1;
 	new->env = envi;
-	new->i = i;
+	new->i = index;
 	if (input == NULL || input[new->i] == '\0')
 	{
 		perror("The input is empty");
-		return ;
+		return (0);
 	}
 	space_index(new, input);
 	while (input[new->i] && input[new->i] != '|')
@@ -38,7 +37,7 @@ void	sequencer(t_token **head, char *input, t_env *envi)
 		get_arg(new, input);
 	}
 	add_last(head, new);
-	i = new->i;
+	return (new->i);
 }
 
 /* adds the cmd (first word) to the linked list */
