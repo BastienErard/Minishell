@@ -6,7 +6,7 @@
 /*   By: berard <berard@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 14:41:03 by berard            #+#    #+#             */
-/*   Updated: 2023/04/05 11:33:35 by berard           ###   ########.fr       */
+/*   Updated: 2023/04/06 18:02:10 by berard           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 void	exec_external(t_token *token)
 {
 	char	**path;
-	char	filepath[1024];
+	char	filepath[MAXPATHLEN];
 	int		i;
 
 	i = -1;
@@ -41,7 +41,7 @@ void	exec_external(t_token *token)
 	}
 	free_split(path);
 	ft_putstr_fd(token->cmd, 2);
-	ft_putstr_fd(": Command not found\n", 2);
+	ft_putstr_fd(": command not found\n", 2);
 }
 
 char	**get_env(t_token *token)

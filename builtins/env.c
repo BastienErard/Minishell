@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tastybao <tastybao@student.42.fr>          +#+  +:+       +#+        */
+/*   By: berard <berard@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 14:08:04 by berard            #+#    #+#             */
-/*   Updated: 2023/04/05 19:06:15 by tastybao         ###   ########.fr       */
+/*   Updated: 2023/04/06 17:56:36 by berard           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,12 +32,15 @@ int	ft_env(t_token *token)
 	}
 	if (token->arg[0])
 		return (env_with_arg(token->arg[0]));
-	while (token->env && token->env->var[1])
+	while (token->env)
 	{
-		ft_putstr_fd(token->env->var[0], 1);
-		ft_putstr_fd("=", 1);
-		ft_putstr_fd(token->env->var[1], 1);
-		ft_putstr_fd("\n", 1);
+		if (token->env->var[1])
+		{
+			ft_putstr_fd(token->env->var[0], 1);
+			ft_putstr_fd("=", 1);
+			ft_putstr_fd(token->env->var[1], 1);
+			ft_putstr_fd("\n", 1);
+		}
 		token->env = token->env->next;
 	}
 	return (EXIT_SUCCESS);
@@ -50,17 +53,18 @@ int	env_with_arg(char *str)
 	ft_putstr_fd(": No such file or directory\n", 2);
 	return (127);
 }
+
 int	pathless(t_env *env)
 {
 	int	flag;
 
 	flag = 0;
-	while (env && env->var[1] )
+	while (env && env->var[1])
 	{
 		if (ft_strcmp(env->var[0], "PATH") == 0)
 		{
 			flag = 1;
-			break;
+			break ;
 		}
 		env = env->next;
 	}
