@@ -6,7 +6,7 @@
 /*   By: berard <berard@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/31 11:01:15 by berard            #+#    #+#             */
-/*   Updated: 2023/04/05 11:47:23 by berard           ###   ########.fr       */
+/*   Updated: 2023/04/06 16:19:16 by berard           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,34 +34,26 @@ void	replace_usd(t_token *token)
 				token->arg[i] = ft_itoa(g_exit_code);
 			}
 			else if (token->arg[i][1] != '\0')
-				replace_env_usd(token, token->arg[i]);
+				token->arg[i] = rep_env_usd(token, token->arg[i]);
 		}
 	}
 }
 
-void	replace_env_usd(t_token *token, char *usd)
+char	*rep_env_usd(t_token *token, char *usd)
 {
-	// char	*tmp;
-	// int		i;
+	t_env	*tmp;
 
-	// i = -1;
-	// tmp = malloc(sizeof(char) * ft_strlen(usd));
-	// while (usd[++i + 1])
-	// 	tmp[i] = usd[i + 1];
-	// tmp[i] = '\0';
-	// free(usd);
-	// usd = ft_strdup(tmp);
-	// free(tmp);
-	while (token->env && ft_strcmp(usd + 1, token->env->var[0]) != 0)
-		token->env = token->env->next;
-	if (token->env != NULL)
+	tmp = token->env;
+	while (tmp)
 	{
-		// free(usd);   //caused a double free
-		usd = strdup(token->env->var[1]);
+		if (ft_strcmp(usd + 1, tmp->var[0]) == 0)
+			break ;
+		tmp = tmp->next;
 	}
+	free (usd);
+	if (tmp)
+		usd = ft_strdup(tmp->var[1]);
 	else
-	{
-		free(usd);
-		usd = strdup("");
-	}
+		usd = ft_strdup("\0");
+	return (usd);
 }

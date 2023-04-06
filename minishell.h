@@ -88,18 +88,23 @@ void			fuckit(char *genv, char *var1, char *var2);
 
 int				echo(t_token *token); // TO CHECK
 int				pwd(void); // TO CHECK
-void			ft_exit(t_token *token); // TO COMPLETE (FREE)
+void			ft_exit(t_token *token); // TO CHECK
 int				ft_env(t_token *token); // TO CHECK
 int				cd(t_token *token); // TO CHECK
-int				unset(t_token *token); // TODO
+int				unset(t_token *token); // TO CHECK
+int				export(t_token *token); //
 
 // Builtins  - Annex
 
 int				chdir_failed(t_token *token); // TO CHECK
-void			replace_env_usd(t_token *token, char *usd); // TO CORRECT
+char			*rep_env_usd(t_token *token, char *usd); // TO CORRECT
 int				unset_failed(char *arg); // TO CHECK
+int				export_failed(char *arg); // TO CHECK
 int				pathless(t_env *tmp); // TO CHECK
 int				env_with_arg(char *str); // TO CHECK
+int				export_print(t_token *token); // TO CHECK
+void			add_last_export(t_env **head, t_env *new); // TO CHECK
+t_env			*get_last_export(t_env *head); // TO CHECK
 void			free_slot_env(t_env **head, t_env *slot);
 // void			dir_backward(char *init_dir, t_token *token);
 // void			dir_further(char *init_dir, t_token *token);
@@ -108,6 +113,7 @@ void			free_slot_env(t_env **head, t_env *slot);
 
 int				ft_strcmp(const char *s1, const char *s2); // TO CHECK
 int				ft_isaldig(char *arg); // TO CHECK
+int				isaldig_eg(char *arg); // TO CHECK
 char			*ft_strncpy(char *dest, char *src, unsigned int n); // TO CHECK / UNUSED FOR THE MOMENT
 
 // Free

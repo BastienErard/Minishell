@@ -6,7 +6,7 @@
 /*   By: berard <berard@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 16:00:44 by berard            #+#    #+#             */
-/*   Updated: 2023/04/05 09:00:44 by berard           ###   ########.fr       */
+/*   Updated: 2023/04/06 14:00:18 by berard           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,17 +18,19 @@
 */
 int	cd(t_token *token)
 {
-	char	init_dir[MAXPATHLEN];
-
-	if (getcwd(init_dir, MAXPATHLEN) == NULL) // USEFULL?
+	if (!token->arg[0] || ft_strcmp(token->arg[0], "~") == 0)
 	{
-		perror("Error with getcwd()");
-		return (errno);
-	}
-	if (!token->arg || ft_strcmp(token->arg[0], "~") == 0)
-	{
-		while (ft_strcmp(token->env->var[0], "HOME") != 0)
+		while (token->env)
+		{
+			if (ft_strcmp(token->env->var[0], "HOME") == 0)
+				break ;
+			if (!token->env->next)
+			{
+				ft_putstr_fd("cd: HOME not set\n", 2);
+				return (EXIT_FAILURE);
+			}
 			token->env = token->env->next;
+		}
 		if (chdir(token->env->var[1]) != 0)
 			return (chdir_failed(token));
 	}
