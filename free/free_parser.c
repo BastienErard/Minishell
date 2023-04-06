@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   free_parser.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fgrasset <fgrasset@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fabien <fabien@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 10:28:43 by fgrasset          #+#    #+#             */
-/*   Updated: 2023/04/03 12:48:09 by fgrasset         ###   ########.fr       */
+/*   Updated: 2023/04/06 13:03:51 by fabien           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "../minishell.h"
+#include "../minishell.h"
 
 /* frees the t_token linked list entirely */
 void	free_token(t_token **head)
@@ -26,10 +26,7 @@ void	free_token(t_token **head)
 		tmp = stock;
 		stock = stock->next;
 		while (tmp->arg[++i])
-		{
-			// printf("free: %s\n", tmp->arg[i]);
 			free(tmp->arg[i]);
-		}
 		free(tmp->arg);
 		free(tmp->cmd);
 		free(tmp);
@@ -45,17 +42,15 @@ void	free_env(t_env **envi)
 	int		i;
 
 	stock = *envi;
-	while(stock)
+	while (stock)
 	{
 		i = -1;
 		tmp = stock;
 		stock = stock->next;
-		while(tmp->var[++i])
+		while (tmp->var[++i])
 			free(tmp->var[i]);
 		free(tmp->var);
 		free(tmp);
 	}
 	*envi = NULL;
 }
-
-
