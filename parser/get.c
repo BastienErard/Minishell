@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fgrasset <fgrasset@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fabien <fabien@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/24 13:23:24 by fgrasset          #+#    #+#             */
-/*   Updated: 2023/04/03 14:37:07 by fgrasset         ###   ########.fr       */
+/*   Updated: 2023/04/06 13:02:18 by fabien           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,24 +70,7 @@ void	get_dquote(t_token *new, char *input)
 	while (input[new->i] && input[new->i] != '"')
 	{
 		if (input[new->i] == '$')
-		{
 			j = env_handler(new, input, j);
-			// new->arg[new->pos][++j] = '\0';
-			// j = -1;
-			// new->flag_env = 1;
-			// new->arg[++new->pos] = malloc(sizeof(char) \
-			// * mystrcspn(input, " \t", new->i) + 1);
-			// while (input[new->i] && !ft_isaspace(input[new->i]))
-			// {
-			// 	new->arg[new->pos][++j] = input[new->i];
-			// 	new->i++;
-			// }
-			// new->arg[new->pos][++j] = '\0';
-			// printf("current str: %s\n", new->arg[new->pos]);
-			// new->arg[++new->pos] = malloc(sizeof(char) \
-			// * mystrcspn(input, "\"$", new->i) + 1);
-			// j = -1;
-		}
 		else
 		{
 			new->arg[new->pos][++j] = input[new->i];
@@ -99,7 +82,7 @@ void	get_dquote(t_token *new, char *input)
 }
 
 /* just for the env var because it was too long */
-int env_handler(t_token *new, char *input, int j)
+int	env_handler(t_token *new, char *input, int j)
 {
 	new->arg[new->pos][++j] = '\0';
 	j = -1;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: berard <berard@student.42.fr>              +#+  +:+       +#+        */
+/*   By: fabien <fabien@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 14:08:04 by berard            #+#    #+#             */
-/*   Updated: 2023/04/05 11:44:19 by berard           ###   ########.fr       */
+/*   Updated: 2023/04/05 19:49:42 by fabien           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,14 +19,14 @@
 */
 int	ft_env(t_token *token)
 {
-	t_env	*tmp;
+	// t_env	*tmp;
 
 	if (!token->env)
 	{
 		perror("env"); // Need to check, in case of unset's use.
 		return (errno);
 	}
-	tmp = token->env;
+	// tmp = token->env;
 	// while (tmp)
 	// {
 	// 	if (ft_strcmp(tmp->var[0], "PATH") == 0)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lexer_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fgrasset <fgrasset@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fabien <fabien@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/24 14:00:19 by fgrasset          #+#    #+#             */
-/*   Updated: 2023/04/03 12:59:42 by fgrasset         ###   ########.fr       */
+/*   Updated: 2023/04/06 13:02:31 by fabien           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,9 +56,3 @@ int	checkquotes(char *input, char quote, int i)
 	}
 	return (0);
 }
-
-// /* initiates the structure */
-// void	initialisation(t_token	*head)
-// {
-
-// }

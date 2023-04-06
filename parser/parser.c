@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fgrasset <fgrasset@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fabien <fabien@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 14:55:26 by fgrasset          #+#    #+#             */
-/*   Updated: 2023/04/05 13:49:31 by fgrasset         ###   ########.fr       */
+/*   Updated: 2023/04/06 13:01:08 by fabien           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,6 @@ void	parser(char	*input, t_env *envi)
 		if (input[i] == '|')
 			i++;
 	}
-	// print_list(head);
 	replace_usd(head);
 	execution(head);
 	free_token(&head);
@@ -51,7 +50,6 @@ void	init_env(t_env **envi, char **env)
 	*envi = NULL;
 	while (env[++i])
 		add_env(envi, env[i]);
-
 }
 
 /* creates an env element and adds it at the end of the list */
@@ -76,14 +74,13 @@ void	add_env(t_env **envi, char *env)
 	tmp->next = new;
 }
 
+/* indexes the env to be printed with env->alpha*/
 void	az_env(t_token *token)
 {
-	int		i;
 	int		buf;
 	t_env	*first;
 	t_env	*second;
 
-	i = -1;
 	first = token->env;
 	second = token->env->next;
 	env_init(token);
@@ -100,6 +97,7 @@ void	az_env(t_token *token)
 	}
 }
 
+/* initialise all the env->alpha */
 void	env_init(t_token *token)
 {
 	t_env	*tmp;
@@ -107,22 +105,10 @@ void	env_init(t_token *token)
 
 	tmp = token->env;
 	i = 0;
-	while(tmp)
+	while (tmp)
 	{
 		tmp->alpha = i;
 		i++;
 		tmp = tmp->next;
 	}
-}
-
-int	alphabet(char c)
-{
-	int		i;
-	char	*az;
-
-	az = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
-	i = 0;
-	while (az[i] != c)
-		i++;
-	return (i);
 }
