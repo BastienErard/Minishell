@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: berard <berard@student.42.fr>              +#+  +:+       +#+        */
+/*   By: fgrasset <fgrasset@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 13:17:43 by berard            #+#    #+#             */
-/*   Updated: 2023/04/06 17:57:15 by berard           ###   ########.fr       */
+/*   Updated: 2023/04/10 13:39:40 by fgrasset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,8 +46,9 @@ int	export_print(t_token *token)
 	t_env	*tmp;
 
 	index = 1;
+	az_env(token);
 	tmp = token->env;
-	while (tmp)
+	while (tmp && (index <= token->env_len))
 	{
 		if (tmp->alpha == index)
 		{
@@ -55,7 +56,7 @@ int	export_print(t_token *token)
 			ft_putstr_fd(tmp->var[0], 2);
 			ft_putstr_fd("=\"", 2);
 			ft_putstr_fd(tmp->var[1], 2);
-			ft_putstr_fd("\"", 2);
+			ft_putstr_fd("\"\n", 2);
 			index++;
 			tmp = token->env;
 		}

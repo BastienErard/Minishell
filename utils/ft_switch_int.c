@@ -1,36 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   strcmp.c                                           :+:      :+:    :+:   */
+/*   ft_switch_int.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fgrasset <fgrasset@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/24 15:31:41 by berard            #+#    #+#             */
-/*   Updated: 2023/04/10 14:48:00 by fgrasset         ###   ########.fr       */
+/*   Created: 2023/04/10 17:04:58 by fgrasset          #+#    #+#             */
+/*   Updated: 2023/04/10 17:19:20 by fgrasset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-/**
- * Strcmp is used to compare two strings.
- * It stands for "string compare".
-*/
-int	ft_strcmp(const char *s1, const char *s2)
+/* switches the value of alpha->alpha and beta->alpha
+returns 1 */
+int	ft_switch_int(t_env *alpha, t_env *beta)
 {
-	size_t	i;
+	int	buf;
 
-	i = 0;
-	while ((s1[i] || s2[i]))
-	{
-		if (s1[i] != s2[i])
-			return (((unsigned char *)s1)[i] - ((unsigned char *)s2)[i]);
-		i++;
-	}
-	return (0);
+	buf = alpha->alpha;
+	alpha->alpha = beta->alpha;
+	beta->alpha = buf;
+	return (1);
 }
-
-// int	main()
-// {
-// 	printf("%d\n", ft_strcmp("PATH", "LOGNAME"));
-// }

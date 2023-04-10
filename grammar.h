@@ -6,7 +6,7 @@
 /*   By: fgrasset <fgrasset@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 11:24:29 by fgrasset          #+#    #+#             */
-/*   Updated: 2023/04/05 13:00:21 by fgrasset         ###   ########.fr       */
+/*   Updated: 2023/04/10 13:36:53 by fgrasset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ typedef struct s_token
 	int					flag_env; //if == 1, then use env variables
 	int					i;
 	int					pos;
+	int					env_len;
 	int					file_type;
 	int					fdwrite;
 	int					fdread;
