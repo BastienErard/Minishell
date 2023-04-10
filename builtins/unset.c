@@ -6,7 +6,7 @@
 /*   By: berard <berard@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 14:55:02 by berard            #+#    #+#             */
-/*   Updated: 2023/04/06 13:30:32 by berard           ###   ########.fr       */
+/*   Updated: 2023/04/10 15:45:27 by berard           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,10 @@
 int	unset(t_token *token)
 {
 	int		i;
+	int		exit_code;
 	t_env	*tmp;
 
+	exit_code = 0;
 	i = -1;
 	while (token->arg[++i])
 	{
@@ -35,11 +37,10 @@ int	unset(t_token *token)
 			}
 			tmp = tmp->next;
 		}
+		exit_code += unset_check(token->arg[i]);
 	}
-	i = -1;
-	while (token->arg[++i])
-		if (ft_isalpha(token->arg[i][0]) == 0 || ft_isaldig(token->arg[i]) == 0)
-			return (unset_failed(token->arg[i]));
+	if (exit_code > 0)
+		return (EXIT_FAILURE);
 	return (EXIT_SUCCESS);
 }
 
@@ -66,11 +67,24 @@ void	free_slot_env(t_env **head, t_env *slot)
 	free(slot);
 }
 
-int	unset_failed(char *arg)
+int	unset_check(char *arg)
 {
-	ft_putstr_fd("unset: ", 2);
-	ft_putstr_fd("`", 2);
-	ft_putstr_fd(arg, 2);
-	ft_putstr_fd("': not a valid identifier\n", 2);
-	return (1);
+	int	i;
+	int	exit_code;
+
+	i = -1;
+	exit_code = 0;
+	while (arg[++i] != '\0')
+	{
+		if (ft_isalpha(arg[0]) == 0 || ft_isaldig(arg[i]) == 0)
+		{
+			ft_putstr_fd("unset: ", 2);
+			ft_putstr_fd("`", 2);
+			ft_putstr_fd(arg, 2);
+			ft_putstr_fd("': not a valid identifier\n", 2);
+			exit_code = 1;
+			break ;
+		}
+	}
+	return (exit_code);
 }
