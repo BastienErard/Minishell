@@ -3,17 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-<<<<<<< HEAD
-/*   By: tastybao <tastybao@student.42.fr>          +#+  +:+       +#+        */
+/*   By: berard <berard@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 14:55:26 by fgrasset          #+#    #+#             */
-/*   Updated: 2023/04/05 17:33:03 by tastybao         ###   ########.fr       */
-=======
-/*   By: fabien <fabien@student.42.fr>              +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/20 14:55:26 by fgrasset          #+#    #+#             */
-/*   Updated: 2023/04/06 13:01:08 by fabien           ###   ########.fr       */
->>>>>>> fab
+/*   Updated: 2023/04/10 13:51:46 by berard           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,18 +77,10 @@ void	add_env(t_env **envi, char *env)
 /* indexes the env to be printed with env->alpha*/
 void	az_env(t_token *token)
 {
-<<<<<<< HEAD
-	// int		i; // UNUSED - Put in comment by Tastybao the great
-=======
->>>>>>> fab
 	int		buf;
 	t_env	*first;
 	t_env	*second;
 
-<<<<<<< HEAD
-	// i = -1; // UNUSED - Put in comment by Tastybao the great
-=======
->>>>>>> fab
 	first = token->env;
 	second = token->env->next;
 	env_init(token);
