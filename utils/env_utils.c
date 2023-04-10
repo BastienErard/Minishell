@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fgrasset <fgrasset@student.42.fr>          +#+  +:+       +#+        */
+/*   By: berard <berard@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/10 17:01:57 by fgrasset          #+#    #+#             */
-/*   Updated: 2023/04/10 17:18:51 by fgrasset         ###   ########.fr       */
+/*   Updated: 2023/04/10 17:44:17 by berard           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ void	add_env(t_env **envi, char *env)
 }
 
 /* indexes the env to be printed with env->alpha*/
-void	az_env(t_token *token)
+int	az_env(t_token *token)
 {
 	int		index;
 	t_env	*first;
@@ -73,6 +73,7 @@ void	az_env(t_token *token)
 		if (second->alpha != index + 1)
 			second = second->next;
 	}
+	return (1);
 }
 
 /* initialise all the env->alpha */

@@ -66,7 +66,7 @@ void			parser(char *input, t_env *envi);
 
 void			init_env(t_env **envi, char **env);
 void			add_env(t_env **envi, char *env);
-void			az_env(t_token *token);
+int				az_env(t_token *token);
 void			env_init(t_token *token);
 
 

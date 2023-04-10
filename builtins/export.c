@@ -6,7 +6,7 @@
 /*   By: berard <berard@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 13:17:43 by berard            #+#    #+#             */
-/*   Updated: 2023/04/10 17:30:30 by berard           ###   ########.fr       */
+/*   Updated: 2023/04/10 17:45:15 by berard           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,8 +62,7 @@ int	export_print(t_token *token)
 	int		index;
 	t_env	*tmp;
 
-	index = 1;
-	az_env(token);
+	index = az_env(token);
 	tmp = token->env;
 	while (tmp && (index <= token->env_len))
 	{
@@ -71,9 +70,13 @@ int	export_print(t_token *token)
 		{
 			ft_putstr_fd("declare -x ", 2);
 			ft_putstr_fd(tmp->var[0], 2);
-			ft_putstr_fd("=\"", 2);
-			ft_putstr_fd(tmp->var[1], 2);
-			ft_putstr_fd("\"\n", 2);
+			if (tmp->var[1] != NULL)
+			{
+				ft_putstr_fd("=\"", 2);
+				ft_putstr_fd(tmp->var[1], 2);
+				ft_putstr_fd("\"", 2);
+			}
+			ft_putstr_fd("\n", 2);
 			index++;
 			tmp = token->env;
 		}
