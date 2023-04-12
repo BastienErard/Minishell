@@ -20,17 +20,16 @@ ${NAME}:	${OBJECTS}
 		${CC} ${CFLAGS} -lreadline -o $@ $^ -L./libft -lft ${RD_REPLACE}
 
 libft:
-		make -C libft
+		make -C libft -s
 
 clean:
-		make clean -C libft
+		make clean -C libft -s
 		${RM} ${OBJECTS}
 
 fclean:		clean
-		make fclean -C libft
+		make fclean -C libft -s
 		${RM} ${NAME}
 
 re:		fclean all
 
 .PHONY:	libft all bonus clean fclean re
-
