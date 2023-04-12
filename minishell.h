@@ -81,7 +81,7 @@ void			execution(t_token *token); // TO COMPLETE
 int				is_builtins(t_token *token); // TO CHECK
 void			replace_usd(t_token *token); // TO CHECK
 void			exec_cmd(t_token *token); // TO COMPLETE
-void			exec_cmds(t_token *token); // TO CREATE
+void			exec_cmds(t_token *token);
 void			exec_external(t_token *token); // TO CHECK
 int				exec_builtins(t_token *token); // TO ADAPT && COMPLETE
 char			**get_env(t_token *token);
@@ -121,6 +121,11 @@ int				ft_isaldig_eg(char c); // TO CHECK
 int				aldig(char *arg); // TO CHECK
 char			*ft_strncpy(char *dest, char *src, unsigned int n); // TO CHECK / UNUSED FOR THE MOMENT
 int				ft_switch_int(t_env *alpha, t_env *beta);
+
+
+//Pipes
+void			parents(t_token *token);
+void			child(t_token *token, t_pipes *pipes);
 
 
 //Free

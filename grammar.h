@@ -1,14 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   grammar.h                                          :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: fgrasset <fgrasset@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/08 11:24:29 by fgrasset          #+#    #+#             */
-/*   Updated: 2023/04/10 13:36:53 by fgrasset         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
 
 #ifndef GRAMMAR_H
 # define GRAMMAR_H
@@ -22,6 +11,13 @@ typedef struct s_env
 	struct s_env	*next;
 
 }				t_env;
+
+/* struct for the pipes */
+typedef struct s_pipes
+{
+	int		pfd[2];
+	int		pid;
+}				t_pipes;
 
 /* struct used to tokenize the input */
 typedef struct s_token
