@@ -6,23 +6,14 @@
 /*   By: berard <berard@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 15:57:30 by berard            #+#    #+#             */
-/*   Updated: 2023/04/10 17:08:43 by berard           ###   ########.fr       */
+/*   Updated: 2023/04/12 14:30:07 by berard           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-int	ft_isaldig(char c)
+int	isaldig_char(char c)
 {
-	if (c < 48 || (c > 57 && c < 65) || c > 122)
-		return (0);
-	return (1);
-}
-
-int	ft_isaldig_eg(char c)
-{
-	if (c == '=')
-		return (1);
 	if (c < 48 || (c > 57 && c < 65) || c > 122)
 		return (0);
 	return (1);
@@ -41,7 +32,7 @@ int	aldig(char *arg)
 			|| arg[i] > 122)
 		{
 			if (arg[i] == '=')
-				continue ;
+				break ;
 			else
 			{
 				flag = 0;

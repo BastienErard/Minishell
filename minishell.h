@@ -110,18 +110,14 @@ int				env_with_arg(char *str); // TO CHECK
 void			add_last_export(t_env **head, t_env *new); // TO CHECK
 t_env			*get_last_export(t_env *head); // TO CHECK
 void			free_slot_env(t_env **head, t_env *slot);
-// void			dir_backward(char *init_dir, t_token *token);
-// void			dir_further(char *init_dir, t_token *token);
 
 //Utils
 
 int				ft_strcmp(const char *s1, const char *s2); // TO CHECK
-int				ft_isaldig(char c); // TO CHECK
-int				ft_isaldig_eg(char c); // TO CHECK
+int				isaldig_char(char c); // TO CHECK
 int				aldig(char *arg); // TO CHECK
 char			*ft_strncpy(char *dest, char *src, unsigned int n); // TO CHECK / UNUSED FOR THE MOMENT
 int				ft_switch_int(t_env *alpha, t_env *beta);
-
 
 //Free
 

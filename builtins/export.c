@@ -6,7 +6,7 @@
 /*   By: berard <berard@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 13:17:43 by berard            #+#    #+#             */
-/*   Updated: 2023/04/10 17:45:15 by berard           ###   ########.fr       */
+/*   Updated: 2023/04/12 15:22:32 by berard           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int	export(t_token *token)
 		while (token->arg[++i])
 		{
 			if (ft_isalpha(token->arg[i][0]) != 0 && aldig(token->arg[i]) != 0)
-				// export_add_replace(token);
+				// export_add_replace(token, token->arg[i]);
 			{
 				new = malloc(sizeof(t_env));
 				new->var = ft_split(token->arg[i], '=');
@@ -45,6 +45,23 @@ int	export(t_token *token)
 	return (EXIT_SUCCESS);
 }
 
+// void	export_add_replace(t_token *token, char *arg)
+// {
+// 	t_env	*tmp;
+
+// 	tmp = token->env;
+// 	if (ft_strchr(arg, '=') != NULL)
+// 	{
+// 		while (tmp)
+// 		{
+// 			if (ft_strcmp_eg(arg, tmp->var[0]) == 0)
+// 			{
+
+// 			}
+// 		}
+// 	}
+// }
+
 // void	export_add_replace(t_token *token)
 // {
 // 	t_env	*new;
@@ -56,7 +73,7 @@ int	export(t_token *token)
 // 		if (ft_strcmp)
 // 	}
 // }
-
+//*********************************************************************//
 int	export_print(t_token *token)
 {
 	int		index;
@@ -95,7 +112,7 @@ int	export_check(char *arg)
 	exit_code = 0;
 	while (arg[++i] != '\0')
 	{
-		if (ft_isalpha(arg[0]) == 0 || ft_isaldig_eg(arg[i]) == 0)
+		if (ft_isalpha(arg[0]) == 0 || aldig(arg) == 0)
 		{
 			ft_putstr_fd("export: ", 2);
 			ft_putstr_fd("`", 2);

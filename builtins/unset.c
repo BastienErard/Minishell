@@ -6,7 +6,7 @@
 /*   By: berard <berard@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 14:55:02 by berard            #+#    #+#             */
-/*   Updated: 2023/04/10 15:45:27 by berard           ###   ########.fr       */
+/*   Updated: 2023/04/12 14:25:45 by berard           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ int	unset_check(char *arg)
 	exit_code = 0;
 	while (arg[++i] != '\0')
 	{
-		if (ft_isalpha(arg[0]) == 0 || ft_isaldig(arg[i]) == 0)
+		if (ft_isalpha(arg[0]) == 0 || isaldig_char(arg[i]) == 0)
 		{
 			ft_putstr_fd("unset: ", 2);
 			ft_putstr_fd("`", 2);
