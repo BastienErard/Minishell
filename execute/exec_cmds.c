@@ -6,7 +6,7 @@
 /*   By: fgrasset <fgrasset@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 11:15:58 by fgrasset          #+#    #+#             */
-/*   Updated: 2023/04/12 13:44:06 by fgrasset         ###   ########.fr       */
+/*   Updated: 2023/04/13 17:14:05 by fgrasset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,9 +53,11 @@ void	parents(t_token *token)
 	pipes->pid = fork();
 	if (pipes->pid == 0)
 	{
-		if (token->next)
-			parents(token->next);
-		child(token, pipes);
+		while (token)
+		{
+			child(token, pipes);
+			token = token->next;
+		}
 	}
 	else
 	{
@@ -64,6 +66,7 @@ void	parents(t_token *token)
 		close(pipes->pfd[1]);
 		exec_cmd(token);
 	}
+	free(pipes);
 }
 
 void	child(t_token *token, t_pipes *pipes)

@@ -5,7 +5,8 @@
 		"readline.h": "c",
 		"libft.h": "c",
 		"stdlib.h": "c",
-		"history.h": "c"
+		"history.h": "c",
+		"bitset": "c"
 	},
 	"C_Cpp.errorSquiggles": "disabled"
 }

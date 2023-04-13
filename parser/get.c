@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fabien <fabien@student.42.fr>              +#+  +:+       +#+        */
+/*   By: fgrasset <fgrasset@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/24 13:23:24 by fgrasset          #+#    #+#             */
-/*   Updated: 2023/04/06 13:02:18 by fabien           ###   ########.fr       */
+/*   Updated: 2023/04/13 17:15:52 by fgrasset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,6 @@ int	env_handler(t_token *new, char *input, int j)
 		new->i++;
 	}
 	new->arg[new->pos][++j] = '\0';
-	printf("current str: %s\n", new->arg[new->pos]);
 	new->arg[++new->pos] = malloc(sizeof(char) \
 	* mystrcspn(input, "\"$", new->i) + 1);
 	j = -1;

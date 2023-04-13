@@ -36,7 +36,6 @@ typedef struct s_token
 	struct s_token		*next;
 }				t_token;
 
-
 enum e_token {
 	COMMAND = 1,
 	ARG = 2,
