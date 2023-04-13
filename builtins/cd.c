@@ -6,7 +6,7 @@
 /*   By: berard <berard@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 16:00:44 by berard            #+#    #+#             */
-/*   Updated: 2023/04/12 14:23:10 by berard           ###   ########.fr       */
+/*   Updated: 2023/04/13 10:20:11 by berard           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,5 +48,5 @@ int	chdir_failed(t_token *token)
 	ft_putstr_fd(token->arg[0], 2);
 	ft_putstr_fd(": ", 2);
 	ft_putstr_fd(": No such file or directory\n", 2);
-	return (errno);
+	return (EXIT_FAILURE);
 }

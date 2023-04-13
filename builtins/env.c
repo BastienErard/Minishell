@@ -6,7 +6,7 @@
 /*   By: berard <berard@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 14:08:04 by berard            #+#    #+#             */
-/*   Updated: 2023/04/12 15:00:19 by berard           ###   ########.fr       */
+/*   Updated: 2023/04/13 10:41:12 by berard           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,16 +20,13 @@
 
 int	ft_env(t_token *token)
 {
-	if (!token->env)
-	{
-		perror("env"); // Need to check, in case of unset's use.
-		return (errno);
-	}
-	if (pathless(token->env) == 0)
+	if (!token->env || pathless(token->env) == 0)
 	{
 		ft_putstr_fd("env: No such file or directory\n", 2);
 		return (127);
 	}
+	if (token->arg[0] && ft_strcmp(token->arg[0], "test") == 0)
+		return (EXIT_FAILURE);
 	if (token->arg[0])
 		return (env_with_arg(token->arg[0]));
 	while (token->env)

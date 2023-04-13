@@ -131,6 +131,8 @@ void			free_split(char *path[]); // TO CHECK
 void			free_token(t_token **head);
 void			free_env(t_env **envi);
 
+//Tests
+
 //Others
 
 extern void 	rl_replace_line (const char *, int);

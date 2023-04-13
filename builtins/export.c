@@ -6,7 +6,7 @@
 /*   By: berard <berard@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 13:17:43 by berard            #+#    #+#             */
-/*   Updated: 2023/04/12 15:22:32 by berard           ###   ########.fr       */
+/*   Updated: 2023/04/13 11:20:14 by berard           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,13 @@ int	export(t_token *token)
 		return (EXIT_FAILURE);
 	return (EXIT_SUCCESS);
 }
+
+// void	export_search_Replace(t_token **token, char *arg)
+// {
+// 	char	**split;
+
+// 	split =
+// }
 
 // void	export_add_replace(t_token *token, char *arg)
 // {
