@@ -6,7 +6,7 @@
 /*   By: berard <berard@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 13:17:43 by berard            #+#    #+#             */
-/*   Updated: 2023/04/13 11:20:14 by berard           ###   ########.fr       */
+/*   Updated: 2023/04/14 17:28:09 by berard           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,56 +18,30 @@
 int	export(t_token *token)
 {
 	int		i;
-	int		exit_code;
+	int		flag;
 	t_env	*new;
 
 	i = -1;
-	exit_code = 0;
+	flag = 0;
 	if (!token->arg[0])
 		return (export_print(token));
-	else
+	while (token->arg[++i])
 	{
-		while (token->arg[++i])
+		if (ft_isalpha(token->arg[i][0]) != 0 && aldig(token->arg[i]) != 0)
+			// export_add_replace(token, token->arg[i]);
 		{
-			if (ft_isalpha(token->arg[i][0]) != 0 && aldig(token->arg[i]) != 0)
-				// export_add_replace(token, token->arg[i]);
-			{
-				new = malloc(sizeof(t_env));
-				new->var = ft_split(token->arg[i], '=');
-				new->next = NULL;
-				add_last_export(&token->env, new);
-			}
-			exit_code += export_check(token->arg[i]);
+			new = malloc(sizeof(t_env));
+			new->var = ft_split(token->arg[i], '=');
+			new->next = NULL;
+			add_last_export(&token->env, new);
 		}
+		else
+			flag = export_error(token->arg[i]);
 	}
-	if (exit_code > 0)
+	if (flag > 0)
 		return (EXIT_FAILURE);
 	return (EXIT_SUCCESS);
 }
-
-// void	export_search_Replace(t_token **token, char *arg)
-// {
-// 	char	**split;
-
-// 	split =
-// }
-
-// void	export_add_replace(t_token *token, char *arg)
-// {
-// 	t_env	*tmp;
-
-// 	tmp = token->env;
-// 	if (ft_strchr(arg, '=') != NULL)
-// 	{
-// 		while (tmp)
-// 		{
-// 			if (ft_strcmp_eg(arg, tmp->var[0]) == 0)
-// 			{
-
-// 			}
-// 		}
-// 	}
-// }
 
 // void	export_add_replace(t_token *token)
 // {
@@ -110,24 +84,14 @@ int	export_print(t_token *token)
 	return (EXIT_SUCCESS);
 }
 
-int	export_check(char *arg)
+int	export_error(char *arg)
 {
-	int	i;
-	int	exit_code;
+	int	flag;
 
-	i = -1;
-	exit_code = 0;
-	while (arg[++i] != '\0')
-	{
-		if (ft_isalpha(arg[0]) == 0 || aldig(arg) == 0)
-		{
-			ft_putstr_fd("export: ", 2);
-			ft_putstr_fd("`", 2);
-			ft_putstr_fd(arg, 2);
-			ft_putstr_fd("': not a valid identifier\n", 2);
-			exit_code = 1;
-			break ;
-		}
-	}
-	return (exit_code);
+	flag = 1;
+	ft_putstr_fd("export: ", 2);
+	ft_putstr_fd("`", 2);
+	ft_putstr_fd(arg, 2);
+	ft_putstr_fd("': not a valid identifier\n", 2);
+	return (flag);
 }

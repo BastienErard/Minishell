@@ -103,7 +103,7 @@ int				export(t_token *token); //
 int				chdir_failed(t_token *token); // TO CHECK
 char			*rep_env_usd(t_token *token, char *usd); // TO CORRECT
 int				unset_check(char *arg); // TO CHECK
-int				export_check(char *arg); // TO CHECK
+int				export_error(char *arg);
 int				export_print(t_token *token); // TO CHECK
 int				pathless(t_env *tmp); // TO CHECK
 int				env_with_arg(char *str); // TO CHECK
