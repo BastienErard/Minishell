@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: berard <berard@student.42.fr>              +#+  +:+       +#+        */
+/*   By: tastybao <tastybao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 13:17:43 by berard            #+#    #+#             */
-/*   Updated: 2023/04/14 18:11:04 by berard           ###   ########.fr       */
+/*   Updated: 2023/04/15 18:48:28 by tastybao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,20 +43,45 @@ int	export(t_token *token)
 	return (EXIT_SUCCESS);
 }
 
+// char	**split_shell(char *arg)
+// {
+// 	char	**parse;
+// 	char	tmp[1024];
+// 	int		i;
+
+// 	i = -1;
+// 	parse = malloc(sizeof(char *) * 3);
+// 	if (!parse)
+// 		return (NULL);
+// 	while (arg[++i] != '\0' && arg[i] != '=')
+// 		tmp[i] = arg[i];
+// 	parse[0] = ft_strdup(tmp);
+// 	if (ft_strchr(arg, '=') && arg[i + 1] == '\0')
+// 		parse[1] = ft_strdup("");
+// 	else if (ft_strchr(arg, '=') && arg[i + 1] != '\0')
+// 		parse[1] = ft_strdup(&arg[i + 1]);
+// 	else
+// 		parse[1] = NULL;
+// 	parse[2] = NULL;
+// 	return (parse);
+// }
+
 // int	export_parsing(t_token *token, char *arg)
 // {
 // 	char	**parse;
 // 	int		i;
 
 // 	i = 1;
-// 	parse = ft_split(arg, '=');
+// 	// parse = ft_split(arg, '=');
+// 	parse = split_shell(arg);
 // 	if (!parse)
 // 		return (0);
 // 	if (!ft_strchr(arg, '='))
 // 		export_compare(token, parse);
-// 	else if (ft_strchr(arg, '=') && parse[1] == NULLlea)
+// 	else if (ft_strchr(arg, '=') && parse[1] == NULL)
 // 	{
 // 		parse[1] = ft_strdup("");
+// 		// parse[2] = NULL;
 // 		export_compare(token, parse);
 // 	}
 // 	else

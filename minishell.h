@@ -137,6 +137,7 @@ int				export_parsing(t_token *token, char *arg); // TEST
 int				export_add_list(t_token *token, char **parse); // TEST
 void			export_compare(t_token *token, char **parse); // TEST
 char			*ft_strjoin_pimp(char const *s1, char const *s2); // TEST
+char			**split_shell(char *arg); // TEST
 
 //Others
 
