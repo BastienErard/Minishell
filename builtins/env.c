@@ -6,7 +6,7 @@
 /*   By: berard <berard@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 14:08:04 by berard            #+#    #+#             */
-/*   Updated: 2023/04/13 10:41:12 by berard           ###   ########.fr       */
+/*   Updated: 2023/04/17 16:11:44 by berard           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@
  * When the "env" command is run without any arguments, it displays a list of the
  * current environment variables and their values.
 */
-
 int	ft_env(t_token *token)
 {
 	if (!token->env || pathless(token->env) == 0)

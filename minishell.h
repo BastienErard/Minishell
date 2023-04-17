@@ -96,7 +96,7 @@ void			ft_exit(t_token *token); // TO CHECK
 int				ft_env(t_token *token); // TO CHECK
 int				cd(t_token *token); // TO CHECK
 int				unset(t_token *token); // TO CHECK
-int				export(t_token *token); //
+int				export(t_token *token); // TO CHECK
 
 //Builtins  - Annex
 
@@ -133,11 +133,9 @@ void			free_env(t_env **envi);
 
 //Tests - A confirmer
 
-int				export_parsing(t_token *token, char *arg); // TEST
-int				export_add_list(t_token *token, char **parse); // TEST
-void			export_compare(t_token *token, char **parse); // TEST
-char			*ft_strjoin_pimp(char const *s1, char const *s2); // TEST
-char			**split_shell(char *arg); // TEST
+void			export_parsing(t_token *token, char *arg); // TO CHECK
+void			export_add_list(t_token *token, char **parse); // TEST
+void			export_compare(t_token *token, char **parse); // TO CHECK
 
 //Others
 
