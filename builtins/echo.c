@@ -3,19 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   echo.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: berard <berard@student.42.fr>              +#+  +:+       +#+        */
+/*   By: tastybao <tastybao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/24 14:08:12 by berard            #+#    #+#             */
-/*   Updated: 2023/04/05 11:42:07 by berard           ###   ########.fr       */
+/*   Updated: 2023/04/18 18:52:12 by tastybao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
 /**
- * ECHO is a shell command that outputs text to the terminal.
- * The -n option with echo is used to prevent the output from ending
- * with a newline character, allowing you to display text on the same line.
+ * ECHO outputs text to the terminal. The -n option is used to prevent
+ * the output from ending with a newline character.
  */
 int	echo(t_token *token)
 {

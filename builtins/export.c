@@ -3,18 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   export.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: berard <berard@student.42.fr>              +#+  +:+       +#+        */
+/*   By: tastybao <tastybao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 13:17:43 by berard            #+#    #+#             */
-/*   Updated: 2023/04/17 16:11:16 by berard           ###   ########.fr       */
+/*   Updated: 2023/04/18 19:02:54 by tastybao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
-/**
- * Export command in Bash defines environment variables that can be
- * used by processes and child processes.
-*/
+
+/* Defines environment variables that can be used by processes. */
 int	export(t_token *token)
 {
 	int	i;
@@ -36,12 +34,7 @@ int	export(t_token *token)
 	return (EXIT_SUCCESS);
 }
 
-/**
- * Parses a string argument and creates a 2D array of strings.
- * It extracts a substring before and after an equals sign, if present, and
- * stores them as separate elements of the array.
- * It then passes the array and a token variable to another function.
- */
+/* Splits a string in two by taking as delimiter the first equal. */
 void	export_parsing(t_token *token, char *arg)
 {
 	char	**parse;
@@ -67,10 +60,8 @@ void	export_parsing(t_token *token, char *arg)
 }
 
 /**
-* Updates or adds environment variables to a linked list based on a 2D array of
-* strings. It compares the name of the variable in the linked list
-* with the first element of the array and updates the value of the variable.
-* If there is no match, it adds the variable to the linked list.
+* Compares the current environment with the value entered via export.
+* If the value does not exist, adds a new link. Otherwise, replaces the current value.
 */
 void	export_compare(t_token *token, char **parse)
 {
@@ -98,19 +89,7 @@ void	export_compare(t_token *token, char **parse)
 		export_add_list(token, parse);
 }
 
-void	export_add_list(t_token *token, char **parse)
-{
-	t_env	*new;
-
-	new = malloc(sizeof(t_env));
-	if (!new)
-		return ;
-	new->var = parse;
-	new->next = NULL;
-	add_last_export(&token->env, new);
-}
-
-//*********************************************************************//
+/* Prints the entire environment in alphabetical order (via az_env). */
 int	export_print(t_token *token)
 {
 	int		index;
@@ -140,14 +119,11 @@ int	export_print(t_token *token)
 	return (EXIT_SUCCESS);
 }
 
+/* Prints an error message when the identifier is invalid. */
 int	export_error(char *arg)
 {
-	int	flag;
-
-	flag = 1;
-	ft_putstr_fd("export: ", 2);
-	ft_putstr_fd("`", 2);
+	ft_putstr_fd("export: `", 2);
 	ft_putstr_fd(arg, 2);
 	ft_putstr_fd("': not a valid identifier\n", 2);
-	return (flag);
+	return (EXIT_FAILURE);
 }

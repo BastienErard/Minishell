@@ -3,19 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: berard <berard@student.42.fr>              +#+  +:+       +#+        */
+/*   By: tastybao <tastybao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 16:00:44 by berard            #+#    #+#             */
-/*   Updated: 2023/04/13 10:20:11 by berard           ###   ########.fr       */
+/*   Updated: 2023/04/18 18:49:43 by tastybao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-/**
- * CD is used in command line to change the current working directory
- * of the shell or program to a specified directory.
-*/
+/* Change the current working directory to a specified directory. */
 int	cd(t_token *token)
 {
 	if (!token->arg[0] || ft_strcmp(token->arg[0], "~") == 0)
@@ -42,6 +39,7 @@ int	cd(t_token *token)
 	return (EXIT_SUCCESS);
 }
 
+/* Prints an error message when the path or file is wrong. */
 int	chdir_failed(t_token *token)
 {
 	ft_putstr_fd("cd: ", 2);

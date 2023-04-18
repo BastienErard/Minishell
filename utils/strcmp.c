@@ -3,19 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   strcmp.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fgrasset <fgrasset@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tastybao <tastybao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/24 15:31:41 by berard            #+#    #+#             */
-/*   Updated: 2023/04/10 14:48:00 by fgrasset         ###   ########.fr       */
+/*   Updated: 2023/04/18 19:22:58 by tastybao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-/**
- * Strcmp is used to compare two strings.
- * It stands for "string compare".
-*/
+/* Strcmp is used to compare two strings. */
 int	ft_strcmp(const char *s1, const char *s2)
 {
 	size_t	i;
@@ -29,8 +26,3 @@ int	ft_strcmp(const char *s1, const char *s2)
 	}
 	return (0);
 }
-
-// int	main()
-// {
-// 	printf("%d\n", ft_strcmp("PATH", "LOGNAME"));
-// }

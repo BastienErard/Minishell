@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   replace_usd.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: berard <berard@student.42.fr>              +#+  +:+       +#+        */
+/*   By: tastybao <tastybao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/31 11:01:15 by berard            #+#    #+#             */
-/*   Updated: 2023/04/06 16:19:16 by berard           ###   ########.fr       */
+/*   Updated: 2023/04/18 14:47:32 by tastybao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ void	replace_usd(t_token *token)
 	}
 }
 
+/* Replaces $ with its value (error code or environment variable). */
 char	*rep_env_usd(t_token *token, char *usd)
 {
 	t_env	*tmp;

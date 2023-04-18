@@ -33,12 +33,14 @@ void			space_index(t_token *new, char *input);
 int				checkquotes(char *input, char quote, int i);
 void			initialisation(t_token	*head);
 
+
 //linked_list.c
 
 void			add_token(t_token **head, char **command);
 void			add_last(t_token **head, t_token *new);
 t_token			*get_last(t_token *head);
 void			print_list(t_token *head);
+
 
 //get.c
 
@@ -56,6 +58,7 @@ void			rr_left(t_token *new, char *input);	//TODO not finished
 void			r_right(t_token *new, char *input);
 void			rr_right(t_token *new, char *input);
 char			*get_file(t_token *new, char *input);
+
 
 //parser.c
 
@@ -75,11 +78,13 @@ void			env_init(t_token *token);
 void			signals_init(void); // TO CHECK
 void			signals_handle(int sig); // TO CHECK
 
+
 //Execution
 
 void			execution(t_token *token); // TO COMPLETE
 int				is_builtins(t_token *token); // TO CHECK
 void			replace_usd(t_token *token); // TO CHECK
+char			*rep_env_usd(t_token *token, char *usd); // TO CHECK
 void			exec_cmd(t_token *token); // TO COMPLETE
 void			exec_cmds(t_token *token);
 void			exec_external(t_token *token); // TO CHECK
@@ -98,29 +103,33 @@ int				cd(t_token *token); // TO CHECK
 int				unset(t_token *token); // TO CHECK
 int				export(t_token *token); // TO CHECK
 
+
 //Builtins  - Annex
 
 int				chdir_failed(t_token *token); // TO CHECK
-char			*rep_env_usd(t_token *token, char *usd); // TO CORRECT
 int				unset_check(char *arg); // TO CHECK
+void			unset_free_slot(t_env **head, t_env *slot);
+void			export_parsing(t_token *token, char *arg); // TO CHECK
+void			export_compare(t_token *token, char **parse); // TO CHECK
 int				export_error(char *arg);
 int				export_print(t_token *token); // TO CHECK
-int				pathless(t_env *tmp); // TO CHECK
-int				env_with_arg(char *str); // TO CHECK
-void			add_last_export(t_env **head, t_env *new); // TO CHECK
-t_env			*get_last_export(t_env *head); // TO CHECK
-void			free_slot_env(t_env **head, t_env *slot);
+void			export_add_list(t_token *token, char **parse); // TEST
+void			export_add_last(t_env **head, t_env *new); // TO CHECK
+t_env			*export_get_last(t_env *head); // TO CHECK
+int				env_pathless(t_env *tmp); // TO CHECK
+int				env_error(char *str); // TO CHECK
+
 
 //Utils
 
 int				ft_strcmp(const char *s1, const char *s2); // TO CHECK
 int				isaldig_char(char c); // TO CHECK
 int				aldig(char *arg); // TO CHECK
-char			*ft_strncpy(char *dest, char *src, unsigned int n); // TO CHECK / UNUSED FOR THE MOMENT
 int				ft_switch_int(t_env *alpha, t_env *beta);
 
 
 //Pipes
+
 void			parents(t_token *token);
 void			child(t_token *token, t_pipes *pipes);
 
@@ -131,11 +140,6 @@ void			free_split(char *path[]); // TO CHECK
 void			free_token(t_token **head);
 void			free_env(t_env **envi);
 
-//Tests - A confirmer
-
-void			export_parsing(t_token *token, char *arg); // TO CHECK
-void			export_add_list(t_token *token, char **parse); // TEST
-void			export_compare(t_token *token, char **parse); // TO CHECK
 
 //Others
 

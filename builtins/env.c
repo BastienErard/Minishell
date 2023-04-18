@@ -3,23 +3,23 @@
 /*                                                        :::      ::::::::   */
 /*   env.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: berard <berard@student.42.fr>              +#+  +:+       +#+        */
+/*   By: tastybao <tastybao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 14:08:04 by berard            #+#    #+#             */
-/*   Updated: 2023/04/17 16:11:44 by berard           ###   ########.fr       */
+/*   Updated: 2023/04/18 18:56:45 by tastybao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
 /**
- * The "env" command is used to display the current environment variables.
- * When the "env" command is run without any arguments, it displays a list of the
+ * Display the current environment variables.
+ * When the command is run without any arguments, it displays a list of the
  * current environment variables and their values.
 */
 int	ft_env(t_token *token)
 {
-	if (!token->env || pathless(token->env) == 0)
+	if (!token->env || env_pathless(token->env) == 0)
 	{
 		ft_putstr_fd("env: No such file or directory\n", 2);
 		return (127);
@@ -27,7 +27,7 @@ int	ft_env(t_token *token)
 	if (token->arg[0] && ft_strcmp(token->arg[0], "test") == 0)
 		return (EXIT_FAILURE);
 	if (token->arg[0])
-		return (env_with_arg(token->arg[0]));
+		return (env_error(token->arg[0]));
 	while (token->env)
 	{
 		if (token->env->var[1])
@@ -42,7 +42,8 @@ int	ft_env(t_token *token)
 	return (EXIT_SUCCESS);
 }
 
-int	env_with_arg(char *str)
+/* Prints an error message when the path or file is wrong. */
+int	env_error(char *str)
 {
 	ft_putstr_fd("env: ", 2);
 	ft_putstr_fd(str, 2);
@@ -50,7 +51,8 @@ int	env_with_arg(char *str)
 	return (127);
 }
 
-int	pathless(t_env *env)
+/* Checks for the presence of PATH in the environment. */
+int	env_pathless(t_env *env)
 {
 	int	flag;
 

@@ -3,18 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   pwd.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: berard <berard@student.42.fr>              +#+  +:+       +#+        */
+/*   By: tastybao <tastybao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/24 16:15:23 by berard            #+#    #+#             */
-/*   Updated: 2023/04/03 15:00:15 by berard           ###   ########.fr       */
+/*   Updated: 2023/04/18 19:03:25 by tastybao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-/**
- * PWD prints the absolute path of the current working directory to the terminal.
- */
+/* PWD prints the absolute path of the current working directory to the terminal. */
 int	pwd(void)
 {
 	char	path[MAXPATHLEN];

@@ -3,15 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_isaldig.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: berard <berard@student.42.fr>              +#+  +:+       +#+        */
+/*   By: tastybao <tastybao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 15:57:30 by berard            #+#    #+#             */
-/*   Updated: 2023/04/12 14:30:07 by berard           ###   ########.fr       */
+/*   Updated: 2023/04/18 14:56:51 by tastybao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
+/* Check that the character is a number or a letter */
 int	isaldig_char(char c)
 {
 	if (c < 48 || (c > 57 && c < 65) || c > 122)
@@ -19,6 +20,7 @@ int	isaldig_char(char c)
 	return (1);
 }
 
+/* Check that the string is composed of numbers or letters up to "=". */
 int	aldig(char *arg)
 {
 	int	i;

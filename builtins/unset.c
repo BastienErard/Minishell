@@ -3,18 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   unset.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: berard <berard@student.42.fr>              +#+  +:+       +#+        */
+/*   By: tastybao <tastybao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 14:55:02 by berard            #+#    #+#             */
-/*   Updated: 2023/04/12 14:25:45 by berard           ###   ########.fr       */
+/*   Updated: 2023/04/18 19:18:05 by tastybao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
 /**
-* The unset command is used to unset or delete shell variables and functions.
-* When a variable or function is unset using unset, its value and attributes are
+* Used to unset or delete shell variables and functions.
+* When a variable or function is unset, its value and attributes are
 * removed, making it undefined in the current shell session.
 */
 int	unset(t_token *token)
@@ -32,19 +32,20 @@ int	unset(t_token *token)
 		{
 			if (ft_strcmp(token->arg[i], tmp->var[0]) == 0)
 			{
-				free_slot_env(&token->env, tmp);
+				unset_free_slot(&token->env, tmp);
 				break ;
 			}
 			tmp = tmp->next;
 		}
 		exit_code += unset_check(token->arg[i]);
 	}
-	if (exit_code > 0)
+	if (exit_code != 0)
 		return (EXIT_FAILURE);
 	return (EXIT_SUCCESS);
 }
 
-void	free_slot_env(t_env **head, t_env *slot)
+/* Removes an environment variable from the chained list. */
+void	unset_free_slot(t_env **head, t_env *slot)
 {
 	int		i;
 	t_env	*prev;
@@ -67,13 +68,12 @@ void	free_slot_env(t_env **head, t_env *slot)
 	free(slot);
 }
 
+/* Checks the validity of the argument going with unset. */
 int	unset_check(char *arg)
 {
 	int	i;
-	int	exit_code;
 
 	i = -1;
-	exit_code = 0;
 	while (arg[++i] != '\0')
 	{
 		if (ft_isalpha(arg[0]) == 0 || isaldig_char(arg[i]) == 0)
@@ -82,9 +82,8 @@ int	unset_check(char *arg)
 			ft_putstr_fd("`", 2);
 			ft_putstr_fd(arg, 2);
 			ft_putstr_fd("': not a valid identifier\n", 2);
-			exit_code = 1;
-			break ;
+			return (EXIT_FAILURE);
 		}
 	}
-	return (exit_code);
+	return (EXIT_SUCCESS);
 }
