@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tastybao <tastybao@student.42.fr>          +#+  +:+       +#+        */
+/*   By: berard <berard@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 13:17:43 by berard            #+#    #+#             */
-/*   Updated: 2023/04/18 19:02:54 by tastybao         ###   ########.fr       */
+/*   Updated: 2023/04/19 11:00:16 by berard           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,8 @@ void	export_parsing(t_token *token, char *arg)
 
 /**
 * Compares the current environment with the value entered via export.
-* If the value does not exist, adds a new link. Otherwise, replaces the current value.
+* If the value does not exist, adds a new link.
+* Otherwise, replaces the current value.
 */
 void	export_compare(t_token *token, char **parse)
 {
@@ -83,7 +84,7 @@ void	export_compare(t_token *token, char **parse)
 			flag = 1;
 			break ;
 		}
-		tmp= tmp->next;
+		tmp = tmp->next;
 	}
 	if (flag == 0)
 		export_add_list(token, parse);

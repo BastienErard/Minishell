@@ -23,7 +23,6 @@ void			get_redirection(t_token *new, char *input);
 void			get_arg(t_token *new, char *input);
 int				word_len(char *input, int i);
 
-
 //lexer_utils.c
 
 int				isredi(char c);
@@ -33,14 +32,12 @@ void			space_index(t_token *new, char *input);
 int				checkquotes(char *input, char quote, int i);
 void			initialisation(t_token	*head);
 
-
 //linked_list.c
 
 void			add_token(t_token **head, char **command);
 void			add_last(t_token **head, t_token *new);
 t_token			*get_last(t_token *head);
 void			print_list(t_token *head);
-
 
 //get.c
 
@@ -50,7 +47,6 @@ void			get_dquote(t_token *new, char *input);
 int				mystrcspn(char *s, char *reject, int i);
 int				env_handler(t_token *new, char *input, int j);
 
-
 //redirection.c
 
 void			r_left(t_token *new, char *input);
@@ -59,11 +55,9 @@ void			r_right(t_token *new, char *input);
 void			rr_right(t_token *new, char *input);
 char			*get_file(t_token *new, char *input);
 
-
 //parser.c
 
 void			parser(char *input, t_env *envi);
-
 
 //env_utils.c
 
@@ -72,12 +66,10 @@ void			add_env(t_env **envi, char *env);
 int				az_env(t_token *token);
 void			env_init(t_token *token);
 
-
 //Signals
 
 void			signals_init(void); // TO CHECK
 void			signals_handle(int sig); // TO CHECK
-
 
 //Execution
 
@@ -92,7 +84,6 @@ int				exec_builtins(t_token *token); // TO ADAPT && COMPLETE
 char			**get_env(t_token *token);
 void			fuckit(char *genv, char *var1, char *var2);
 
-
 //Builtins
 
 int				echo(t_token *token); // TO CHECK
@@ -102,7 +93,6 @@ int				ft_env(t_token *token); // TO CHECK
 int				cd(t_token *token); // TO CHECK
 int				unset(t_token *token); // TO CHECK
 int				export(t_token *token); // TO CHECK
-
 
 //Builtins  - Annex
 
@@ -118,7 +108,9 @@ void			export_add_last(t_env **head, t_env *new); // TO CHECK
 t_env			*export_get_last(t_env *head); // TO CHECK
 int				env_pathless(t_env *tmp); // TO CHECK
 int				env_error(char *str); // TO CHECK
-
+void			exit_arguments(void);
+void			exit_alpha(t_token *token);
+int				exit_control(char *arg);
 
 //Utils
 
@@ -127,12 +119,10 @@ int				isaldig_char(char c); // TO CHECK
 int				aldig(char *arg); // TO CHECK
 int				ft_switch_int(t_env *alpha, t_env *beta);
 
-
 //Pipes
 
 void			parents(t_token *token);
 void			child(t_token *token, t_pipes *pipes);
-
 
 //Free
 
@@ -140,9 +130,9 @@ void			free_split(char *path[]); // TO CHECK
 void			free_token(t_token **head);
 void			free_env(t_env **envi);
 
-
 //Others
 
-extern void 	rl_replace_line (const char *, int);
+extern void		rl_replace_line(const char *bob, int test); // RANDOM NAME
 extern void		rl_clear_history(void);
+
 #endif
