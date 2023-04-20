@@ -1,22 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   execution.c                                        :+:      :+:    :+:   */
+/*   spacebar.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: berard <berard@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/23 16:22:25 by berard            #+#    #+#             */
-/*   Updated: 2023/04/20 16:19:10 by berard           ###   ########.fr       */
+/*   Created: 2023/04/20 14:28:34 by berard            #+#    #+#             */
+/*   Updated: 2023/04/20 16:26:34 by berard           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-/* Check if there is one command or multiple. */
-void	execution(t_token *token)
+int	space(char *input)
 {
-	if (!token->next)
-		exec_cmd(token); // TODO
-	else
-		exec_cmds(token); // pending...
+	int	i;
+
+	i = -1;
+	while (input[++i])
+		if (input[i] != 32)
+			return (1);
+	return (0);
 }

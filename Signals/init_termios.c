@@ -1,22 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   execution.c                                        :+:      :+:    :+:   */
+/*   init_termios.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: berard <berard@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/23 16:22:25 by berard            #+#    #+#             */
-/*   Updated: 2023/04/20 16:19:10 by berard           ###   ########.fr       */
+/*   Created: 2023/04/20 14:31:41 by berard            #+#    #+#             */
+/*   Updated: 2023/04/20 14:40:31 by berard           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-/* Check if there is one command or multiple. */
-void	execution(t_token *token)
+/* Initialize the terminal settings by disabling echoing of control char. */
+void	init_termios(void)
 {
-	if (!token->next)
-		exec_cmd(token); // TODO
-	else
-		exec_cmds(token); // pending...
+	struct termios	termios;
+
+	if ((tcgetattr(STDIN_FILENO, &termios)) == -1)
+		exit(EXIT_FAILURE);
+	termios.c_lflag &= ~(ECHOCTL);
+	if ((tcsetattr(STDIN_FILENO, TCSANOW, &termios)) == -1)
+		exit(EXIT_FAILURE);
 }

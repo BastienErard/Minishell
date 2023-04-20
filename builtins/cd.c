@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tastybao <tastybao@student.42.fr>          +#+  +:+       +#+        */
+/*   By: berard <berard@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 16:00:44 by berard            #+#    #+#             */
-/*   Updated: 2023/04/18 18:49:43 by tastybao         ###   ########.fr       */
+/*   Updated: 2023/04/20 18:00:20 by berard           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,10 @@
 /* Change the current working directory to a specified directory. */
 int	cd(t_token *token)
 {
+	char	tmp[MAXPATHLEN];
+	char	*path;
+
+	path = ft_strdup(getcwd(tmp, MAXPATHLEN));
 	if (!token->arg[0] || ft_strcmp(token->arg[0], "~") == 0)
 	{
 		while (token->env)
@@ -29,22 +33,46 @@ int	cd(t_token *token)
 			token->env = token->env->next;
 		}
 		if (chdir(token->env->var[1]) != 0)
-			return (chdir_failed(token));
+			return (cd_failed(token));
 	}
 	else
-	{
 		if (chdir(token->arg[0]) != 0)
-			return (chdir_failed(token));
-	}
+			return (cd_failed(token));
+	cd_changepwd(token, path);
 	return (EXIT_SUCCESS);
 }
 
 /* Prints an error message when the path or file is wrong. */
-int	chdir_failed(t_token *token)
+int	cd_failed(t_token *token)
 {
 	ft_putstr_fd("cd: ", 2);
 	ft_putstr_fd(token->arg[0], 2);
 	ft_putstr_fd(": ", 2);
 	ft_putstr_fd(": No such file or directory\n", 2);
 	return (EXIT_FAILURE);
+}
+
+void	cd_changepwd(t_token *token, char *path)
+{
+	char	newpath[MAXPATHLEN];
+	int		flag;
+
+	flag = 0;
+	while (token->env)
+	{
+		if (ft_strcmp(token->env->var[0], "OLDPWD") == 0)
+		{
+			free (token->env->var[1]);
+			token->env->var[1] = path;
+			flag = 1;
+		}
+		else if (ft_strcmp(token->env->var[0], "PWD") == 0)
+		{
+			free(token->env->var[1]);
+			token->env->var[1] = ft_strdup(getcwd(newpath, MAXPATHLEN));
+		}
+		token->env = token->env->next;
+	}
+	if (flag == 0)
+		free(path);
 }

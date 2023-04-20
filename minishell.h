@@ -70,6 +70,7 @@ void			env_init(t_token *token);
 
 void			signals_init(void); // TO CHECK
 void			signals_handle(int sig); // TO CHECK
+void			init_termios(void); // TO CHECK
 
 //Execution
 
@@ -96,7 +97,8 @@ int				export(t_token *token); // TO CHECK
 
 //Builtins  - Annex
 
-int				chdir_failed(t_token *token); // TO CHECK
+int				cd_failed(t_token *token); // TO CHECK
+void			cd_changepwd(t_token *token, char *path);
 int				unset_check(char *arg); // TO CHECK
 void			unset_free_slot(t_env **head, t_env *slot);
 void			export_parsing(t_token *token, char *arg); // TO CHECK
@@ -108,9 +110,9 @@ void			export_add_last(t_env **head, t_env *new); // TO CHECK
 t_env			*export_get_last(t_env *head); // TO CHECK
 int				env_pathless(t_env *tmp); // TO CHECK
 int				env_error(char *str); // TO CHECK
-void			exit_arguments(void);
-void			exit_alpha(t_token *token);
-int				exit_control(char *arg);
+void			exit_arguments(void); // TO CHECK
+void			exit_alpha(t_token *token); // TO CHECK
+int				exit_control(char *arg); // TO CHECK
 
 //Utils
 
@@ -118,6 +120,7 @@ int				ft_strcmp(const char *s1, const char *s2); // TO CHECK
 int				isaldig_char(char c); // TO CHECK
 int				aldig(char *arg); // TO CHECK
 int				ft_switch_int(t_env *alpha, t_env *beta);
+int				space(char *input); // TO CHECK
 
 //Pipes
 
@@ -131,7 +134,6 @@ void			free_token(t_token **head);
 void			free_env(t_env **envi);
 
 //Others
-
 extern void		rl_replace_line(const char *bob, int test); // RANDOM NAME
 extern void		rl_clear_history(void);
 
