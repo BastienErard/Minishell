@@ -32,6 +32,7 @@ void	exec_external(t_token *token)
 	free_split(path);
 	ft_putstr_fd(token->cmd, 2);
 	ft_putstr_fd(": command not found\n", 2);
+	exit (127);
 }
 
 // /**

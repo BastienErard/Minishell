@@ -12,7 +12,7 @@ int	main(int ac, char **av, char **env)
 	(void)av;
 	envi = malloc(sizeof(t_env));
 	ft_memset(envi, 0, sizeof(t_env));
-	// init_termios();
+	init_termios();
 	input = "start";
 	init_env(&envi, env);
 	signals_init();
