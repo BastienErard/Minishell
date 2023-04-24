@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_cmds.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fgrasset <fgrasset@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fabien <fabien@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 11:15:58 by fgrasset          #+#    #+#             */
-/*   Updated: 2023/04/13 17:14:05 by fgrasset         ###   ########.fr       */
+/*   Updated: 2023/04/14 15:53:33 by fabien           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,9 +48,11 @@ void	parents(t_token *token)
 	t_pipes	*pipes;
 
 	pipes = malloc(sizeof(t_pipes));
-	// pipes->current = token;
-	pipe(pipes->pfd);
+	if (pipe(pipes->pfd) == -1)
+		perror("issue with the pipes in parents()");
 	pipes->pid = fork();
+	if (pipes->pid < 0)
+		perror("issue with the forking in parents()");
 	if (pipes->pid == 0)
 	{
 		while (token)
@@ -62,8 +64,12 @@ void	parents(t_token *token)
 	else
 	{
 		close(pipes->pfd[0]);
-		dup2(pipes->pfd[1], 1);
+		if (token->fdwrite == 0)
+			dup2(pipes->pfd[1], 1);
+		else
+			dup2(token->fdwrite, 1);
 		close(pipes->pfd[1]);
+		close(token->fdwrite);
 		exec_cmd(token);
 	}
 	free(pipes);
@@ -72,7 +78,11 @@ void	parents(t_token *token)
 void	child(t_token *token, t_pipes *pipes)
 {
 	close(pipes->pfd[1]);
-	dup2(pipes->pfd[0], 0);
+	if (token->fdread == 0)
+		dup2(pipes->pfd[0], 0);
+	else
+		dup2(token->fdread, 0);
 	close(pipes->pfd[0]);
+	close(token->fdread);
 	exec_cmd(token);
 }
