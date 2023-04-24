@@ -22,6 +22,8 @@ void			get_cmd(t_token *new, char *input);
 void			get_redirection(t_token *new, char *input);
 void			get_arg(t_token *new, char *input);
 int				word_len(char *input, int i);
+int				check_quotes(char *input);
+
 
 //lexer_utils.c
 

@@ -17,6 +17,11 @@ void	parser(char	*input, t_env *envi)
 
 	i = 0;
 	head = NULL;
+	if (!check_quotes(input))
+	{
+		perror("Issue with the quotes");
+		return ;
+	}
 	while (input[i])
 	{
 		i = sequencer(&head, input, envi, i);

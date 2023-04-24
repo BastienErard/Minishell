@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lexer.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fabien <fabien@student.42.fr>              +#+  +:+       +#+        */
+/*   By: fgrasset <fgrasset@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/10 11:14:39 by fgrasset          #+#    #+#             */
-/*   Updated: 2023/04/14 15:53:29 by fabien           ###   ########.fr       */
+/*   Updated: 2023/04/24 16:50:04 by fgrasset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,9 +46,6 @@ void	get_cmd(t_token *new, char *input)
 	int		j;
 
 	j = -1;
-	if ((input[new->i] == '\'' || input[new->i] == '"') \
-	&& !checkquotes(input, input[new->i], new->i))
-		perror("Issue with the quotes not ending");
 	new->cmd = malloc(sizeof(char) * word_len(input, new->i));
 	while (input[new->i] && !ft_isaspace(input[new->i]))
 	{
@@ -94,9 +91,13 @@ void	get_arg(t_token *new, char *input)
 	{
 		space_index(new, input);
 		if (input[new->i] == '\'')
+		{
 			get_squote(new, input);
+		}
 		else if (input[new->i] == '"')
+		{
 			get_dquote(new, input);
+		}
 		else if (isredi(input[new->i]))
 			get_redirection(new, input);
 		else

@@ -6,7 +6,7 @@
 /*   By: fgrasset <fgrasset@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/24 13:23:24 by fgrasset          #+#    #+#             */
-/*   Updated: 2023/04/13 17:15:52 by fgrasset         ###   ########.fr       */
+/*   Updated: 2023/04/24 16:48:16 by fgrasset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,6 @@ void	get_squote(t_token *new, char *input)
 
 	j = -1;
 	new->flag_env = 0;
-	if (!checkquotes(input, input[new->i], new->i))
-		perror("Issue with the singe quote not ending");
 	new->i++;
 	new->arg[new->pos] = malloc(sizeof(char) \
 	* mystrcspn(input, "\'", new->i) + 1);
@@ -60,8 +58,6 @@ void	get_dquote(t_token *new, char *input)
 	int	j;
 
 	j = -1;
-	if (!checkquotes(input, input[new->i], new->i))
-		perror("Issue with the double quotes not ending");
 	new->i++;
 	new->arg[new->pos] = malloc(sizeof(char) \
 	* mystrcspn(input, "\"$", new->i) + 1);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lexer_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fabien <fabien@student.42.fr>              +#+  +:+       +#+        */
+/*   By: fgrasset <fgrasset@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/24 14:00:19 by fgrasset          #+#    #+#             */
-/*   Updated: 2023/04/06 13:02:31 by fabien           ###   ########.fr       */
+/*   Updated: 2023/04/24 16:49:22 by fgrasset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,13 +46,28 @@ void	space_index(t_token *new, char *input)
 		new->i++;
 }
 
-/* returns true if there exist a quote to end it, false otherwise */
-int	checkquotes(char *input, char quote, int i)
+/* true if quotes are correctly formated, fales otherwise */
+int	check_quotes(char *input)
 {
+	int	i;
+	int	single;
+	int	dual;
+
+	i = -1;
+	single = 0;
+	dual = 0;
 	while (input[++i])
 	{
-		if (input[i] == quote)
-			return (1);
+		if (input[i] == '\'' && (dual % 2 == 0))
+		{
+			single++;
+		}
+		else if (input[i] == '"' && (single % 2 == 0))
+		{
+			dual++;
+		}
 	}
+	if (single % 2 == 0 && dual % 2 == 0)
+		return (1);
 	return (0);
 }
