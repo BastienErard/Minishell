@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_external.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fgrasset <fgrasset@student.42.fr>          +#+  +:+       +#+        */
+/*   By: berard <berard@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/24 11:14:27 by berard            #+#    #+#             */
-/*   Updated: 2023/04/24 15:43:03 by fgrasset         ###   ########.fr       */
+/*   Updated: 2023/04/24 15:45:32 by berard           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,8 @@ void	exec_external(t_token *token)
 		}
 	}
 	free_split(path);
-	ft_putstr_fd(token->cmd, 2);
-	ft_putstr_fd(": command not found\n", 2);
+	ft_putstr_fd(token->cmd, STDERR_FILENO);
+	ft_putstr_fd(": command not found\n", STDERR_FILENO);
 	exit (127);
 }
 

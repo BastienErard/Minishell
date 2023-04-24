@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tastybao <tastybao@student.42.fr>          +#+  +:+       +#+        */
+/*   By: berard <berard@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 14:08:04 by berard            #+#    #+#             */
-/*   Updated: 2023/04/18 18:56:45 by tastybao         ###   ########.fr       */
+/*   Updated: 2023/04/24 15:01:40 by berard           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	ft_env(t_token *token)
 {
 	if (!token->env || env_pathless(token->env) == 0)
 	{
-		ft_putstr_fd("env: No such file or directory\n", 2);
+		ft_putstr_fd("env: No such file or directory\n", STDERR_FILENO);
 		return (127);
 	}
 	if (token->arg[0] && ft_strcmp(token->arg[0], "test") == 0)
@@ -32,10 +32,10 @@ int	ft_env(t_token *token)
 	{
 		if (token->env->var[1])
 		{
-			ft_putstr_fd(token->env->var[0], 1);
-			ft_putstr_fd("=", 1);
-			ft_putstr_fd(token->env->var[1], 1);
-			ft_putstr_fd("\n", 1);
+			ft_putstr_fd(token->env->var[0], STDOUT_FILENO);
+			ft_putstr_fd("=", STDOUT_FILENO);
+			ft_putstr_fd(token->env->var[1], STDOUT_FILENO);
+			ft_putstr_fd("\n", STDOUT_FILENO);
 		}
 		token->env = token->env->next;
 	}
@@ -45,9 +45,9 @@ int	ft_env(t_token *token)
 /* Prints an error message when the path or file is wrong. */
 int	env_error(char *str)
 {
-	ft_putstr_fd("env: ", 2);
-	ft_putstr_fd(str, 2);
-	ft_putstr_fd(": No such file or directory\n", 2);
+	ft_putstr_fd("env: ", STDERR_FILENO);
+	ft_putstr_fd(str, STDERR_FILENO);
+	ft_putstr_fd(": No such file or directory\n", STDERR_FILENO);
 	return (127);
 }
 

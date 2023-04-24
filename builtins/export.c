@@ -6,7 +6,7 @@
 /*   By: berard <berard@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 13:17:43 by berard            #+#    #+#             */
-/*   Updated: 2023/04/19 11:00:16 by berard           ###   ########.fr       */
+/*   Updated: 2023/04/24 15:06:47 by berard           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,15 +102,15 @@ int	export_print(t_token *token)
 	{
 		if (tmp->alpha == index)
 		{
-			ft_putstr_fd("declare -x ", 2);
-			ft_putstr_fd(tmp->var[0], 2);
+			ft_putstr_fd("declare -x ", STDOUT_FILENO);
+			ft_putstr_fd(tmp->var[0], STDOUT_FILENO);
 			if (tmp->var[1] != NULL)
 			{
-				ft_putstr_fd("=\"", 2);
-				ft_putstr_fd(tmp->var[1], 2);
-				ft_putstr_fd("\"", 2);
+				ft_putstr_fd("=\"", STDOUT_FILENO);
+				ft_putstr_fd(tmp->var[1], STDOUT_FILENO);
+				ft_putstr_fd("\"", STDOUT_FILENO);
 			}
-			ft_putstr_fd("\n", 2);
+			ft_putstr_fd("\n", STDOUT_FILENO);
 			index++;
 			tmp = token->env;
 		}
@@ -123,8 +123,8 @@ int	export_print(t_token *token)
 /* Prints an error message when the identifier is invalid. */
 int	export_error(char *arg)
 {
-	ft_putstr_fd("export: `", 2);
-	ft_putstr_fd(arg, 2);
-	ft_putstr_fd("': not a valid identifier\n", 2);
+	ft_putstr_fd("export: `", STDERR_FILENO);
+	ft_putstr_fd(arg, STDERR_FILENO);
+	ft_putstr_fd("': not a valid identifier\n", STDERR_FILENO);
 	return (EXIT_FAILURE);
 }

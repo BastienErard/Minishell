@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   unset.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tastybao <tastybao@student.42.fr>          +#+  +:+       +#+        */
+/*   By: berard <berard@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 14:55:02 by berard            #+#    #+#             */
-/*   Updated: 2023/04/18 19:18:05 by tastybao         ###   ########.fr       */
+/*   Updated: 2023/04/24 15:17:24 by berard           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,10 +78,10 @@ int	unset_check(char *arg)
 	{
 		if (ft_isalpha(arg[0]) == 0 || isaldig_char(arg[i]) == 0)
 		{
-			ft_putstr_fd("unset: ", 2);
-			ft_putstr_fd("`", 2);
-			ft_putstr_fd(arg, 2);
-			ft_putstr_fd("': not a valid identifier\n", 2);
+			ft_putstr_fd("unset: ", STDERR_FILENO);
+			ft_putstr_fd("`", STDERR_FILENO);
+			ft_putstr_fd(arg, STDERR_FILENO);
+			ft_putstr_fd("': not a valid identifier\n", STDERR_FILENO);
 			return (EXIT_FAILURE);
 		}
 	}

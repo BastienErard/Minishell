@@ -6,7 +6,7 @@
 /*   By: berard <berard@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/24 14:08:12 by berard            #+#    #+#             */
-/*   Updated: 2023/04/20 16:22:40 by berard           ###   ########.fr       */
+/*   Updated: 2023/04/24 15:00:10 by berard           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,12 +30,12 @@ int	echo(t_token *token)
 	}
 	while (token->arg[i])
 	{
-		ft_putstr_fd(token->arg[i], 1);
+		ft_putstr_fd(token->arg[i], STDOUT_FILENO);
 		if (token->arg[i + 1])
-			ft_putstr_fd(" ", 1);
+			ft_putstr_fd(" ", STDOUT_FILENO);
 		i++;
 	}
 	if (flag == 0)
-		ft_putstr_fd("\n", 1);
+		ft_putstr_fd("\n", STDOUT_FILENO);
 	return (EXIT_SUCCESS);
 }

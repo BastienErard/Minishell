@@ -6,7 +6,7 @@
 /*   By: berard <berard@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 13:31:13 by berard            #+#    #+#             */
-/*   Updated: 2023/04/20 11:19:35 by berard           ###   ########.fr       */
+/*   Updated: 2023/04/24 15:04:42 by berard           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	ft_exit(t_token *token)
 		free_env(&token->env);
 		free_token(&token);
 		rl_clear_history();
-		ft_putstr_fd("exit\n", 1);
+		ft_putstr_fd("exit\n", STDOUT_FILENO);
 		exit (code);
 	}
 	else if (exit_control(token->arg[0]) == 0)
@@ -40,18 +40,18 @@ void	ft_exit(t_token *token)
 /* Behaviour when there are more than two arg and the first is numerical. */
 void	exit_arguments(void)
 {
-	ft_putstr_fd("exit\n", 1);
-	ft_putstr_fd("exit: too many arguments\n", 1);
+	ft_putstr_fd("exit\n", STDERR_FILENO);
+	ft_putstr_fd("exit: too many arguments\n", STDERR_FILENO);
 	g_exit_code = 1;
 }
 
 /* Behaviour when the first argument is not numerical. */
 void	exit_alpha(t_token *token)
 {
-	ft_putstr_fd("exit\n", 1);
-	ft_putstr_fd("exit: ", 1);
-	ft_putstr_fd(token->arg[0], 1);
-	ft_putstr_fd(": numeric argument required\n", 1);
+	ft_putstr_fd("exit\n", STDERR_FILENO);
+	ft_putstr_fd("exit: ", STDERR_FILENO);
+	ft_putstr_fd(token->arg[0], STDERR_FILENO);
+	ft_putstr_fd(": numeric argument required\n", STDERR_FILENO);
 	free_env(&token->env);
 	free_token(&token);
 	rl_clear_history();
