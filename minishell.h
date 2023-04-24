@@ -84,7 +84,7 @@ void			exec_external(t_token *token); // TO CHECK
 int				exec_builtins(t_token *token); // TO ADAPT && COMPLETE
 char			**get_env(t_token *token);
 void			fuckit(char *genv, char *var1, char *var2);
-void			ft_copyto(t_token *token, char *str);
+void			ft_copyto(char *token, char *str);
 void			make_arg(t_token *token);
 
 //Builtins
@@ -126,8 +126,9 @@ int				space(char *input); // TO CHECK
 
 //Pipes
 
-void			parents(t_token *token);
+void			parents(t_token *token, t_pipes *pipes);
 void			child(t_token *token, t_pipes *pipes);
+void			pipe_start(t_token *token);
 
 //Free
 
