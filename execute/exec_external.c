@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   exec_external.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: berard <berard@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/04/24 11:14:27 by berard            #+#    #+#             */
+/*   Updated: 2023/04/24 11:31:21 by berard           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../minishell.h"
 
 /**
@@ -15,9 +27,7 @@ void	exec_external(t_token *token)
 	make_arg(token);
 	if (access(token->cmd, X_OK) == 0)
 		execve(token->cmd, token->arg_all, token->g_env);
-	path = ft_split(getenv("PATH"), ':'); // TODO - Getenv is not optimal
-	if (!path)
-		return (perror("Error with split during execution of an external"));
+	path = ft_split(getenv("PATH"), ':');
 	while (path[++i])
 	{
 		ft_strlcpy(filepath, path[i], sizeof(filepath));
@@ -26,7 +36,7 @@ void	exec_external(t_token *token)
 		if (access(filepath, X_OK) == 0)
 		{
 			free_split(path);
-			execve(filepath, token->arg_all, token->g_env); // ISSUE LS
+			execve(filepath, token->arg_all, token->g_env);
 		}
 	}
 	free_split(path);
@@ -66,20 +76,26 @@ char	**get_env(t_token *token)
 void	make_arg(t_token *token)
 {
 	int		i;
-	// char	**tmp;
 
 	i = 0;
 	while (token->arg[i])
 		i++;
 	token->arg_all = malloc(sizeof(char *) * (i + 2));
+	if (!token->arg_all)
+		return ;
 	i = -1;
 	token->arg_all[++i] = malloc(sizeof(char) * (ft_strlen(token->cmd) + 1));
+	if (!token->arg_all[i])
+		return ;
 	ft_copyto(token, token->cmd);
 	if (token->arg[0])
 	{
 		while (token->arg[++i])
 		{
-			token->arg_all[i] = malloc(sizeof(char) * (ft_strlen(token->arg[i]) + 1));
+			token->arg_all[i] = malloc(sizeof(char)
+					* (ft_strlen(token->arg[i]) + 1));
+			if (!token->arg_all[i])
+				return ;
 			ft_copyto(token, token->arg[i]);
 		}
 	}
