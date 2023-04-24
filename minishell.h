@@ -84,6 +84,8 @@ void			exec_external(t_token *token); // TO CHECK
 int				exec_builtins(t_token *token); // TO ADAPT && COMPLETE
 char			**get_env(t_token *token);
 void			fuckit(char *genv, char *var1, char *var2);
+void			ft_copyto(t_token *token, char *str);
+void			make_arg(t_token *token);
 
 //Builtins
 

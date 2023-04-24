@@ -32,6 +32,8 @@ typedef struct s_token
 	int					fdread;
 	char				*cmd;
 	char				**arg;
+	char				**g_env;
+	char				**arg_all;
 	t_env				*env;
 	struct s_token		*next;
 }				t_token;
