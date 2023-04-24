@@ -24,6 +24,7 @@ typedef struct s_token
 {
 	int					type;
 	int					flag_env; //if == 1, then use env variables
+	int					syntax;
 	int					i;
 	int					pos;
 	int					env_len;
