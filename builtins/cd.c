@@ -6,7 +6,7 @@
 /*   By: berard <berard@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 16:00:44 by berard            #+#    #+#             */
-/*   Updated: 2023/04/20 18:00:20 by berard           ###   ########.fr       */
+/*   Updated: 2023/04/24 14:59:34 by berard           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int	cd(t_token *token)
 				break ;
 			if (!token->env->next)
 			{
-				ft_putstr_fd("cd: HOME not set\n", 2);
+				ft_putstr_fd("cd: HOME not set\n", STDERR_FILENO);
 				return (EXIT_FAILURE);
 			}
 			token->env = token->env->next;
@@ -45,10 +45,10 @@ int	cd(t_token *token)
 /* Prints an error message when the path or file is wrong. */
 int	cd_failed(t_token *token)
 {
-	ft_putstr_fd("cd: ", 2);
-	ft_putstr_fd(token->arg[0], 2);
-	ft_putstr_fd(": ", 2);
-	ft_putstr_fd(": No such file or directory\n", 2);
+	ft_putstr_fd("cd: ", STDERR_FILENO);
+	ft_putstr_fd(token->arg[0], STDERR_FILENO);
+	ft_putstr_fd(": ", STDERR_FILENO);
+	ft_putstr_fd(": No such file or directory\n", STDERR_FILENO);
 	return (EXIT_FAILURE);
 }
 
