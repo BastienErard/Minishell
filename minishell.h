@@ -56,6 +56,7 @@ void			rr_left(t_token *new, char *input);	//TODO not finished
 void			r_right(t_token *new, char *input);
 void			rr_right(t_token *new, char *input);
 char			*get_file(t_token *new, char *input);
+char			*get_filename(t_token *new, char *input);
 
 //parser.c
 

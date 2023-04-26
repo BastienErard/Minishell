@@ -6,7 +6,7 @@
 /*   By: fgrasset <fgrasset@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/10 11:14:39 by fgrasset          #+#    #+#             */
-/*   Updated: 2023/04/24 16:50:04 by fgrasset         ###   ########.fr       */
+/*   Updated: 2023/04/26 10:56:05 by fgrasset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ int	sequencer(t_token **head, char *input, t_env *envi, int index)
 	new->arg = NULL;
 	new->next = NULL;
 	new->flag_env = 1;
+	new->fdread = 1;
 	new->fdwrite = 1;
 	new->env = envi;
 	new->i = index;
@@ -47,6 +48,8 @@ void	get_cmd(t_token *new, char *input)
 
 	j = -1;
 	new->cmd = malloc(sizeof(char) * word_len(input, new->i));
+	if (!new->cmd)
+		perror("Issue malloc get_cmd");
 	while (input[new->i] && !ft_isaspace(input[new->i]))
 	{
 		new->cmd[++j] = input[new->i];
@@ -78,6 +81,8 @@ void	get_redirection(t_token *new, char *input)
 		else
 			r_right(new, input);
 	}
+	space_index(new, input);
+	new->pos--;
 }
 
 /* adds the arg going with the cmd to token */
@@ -86,18 +91,14 @@ void	get_arg(t_token *new, char *input)
 	new->pos = 0;
 	new->arg = malloc(sizeof(char) * 100);		//TODO: make a function later to count the number of words
 	if (!new->arg)
-		perror("issue malloc get_arg");
-	while (input[new->i] && !isredi(input[new->i]) && input[new->i] != '|')
+		perror("Issue malloc get_arg");
+	while (input[new->i] && input[new->i] != '|')
 	{
 		space_index(new, input);
 		if (input[new->i] == '\'')
-		{
 			get_squote(new, input);
-		}
 		else if (input[new->i] == '"')
-		{
 			get_dquote(new, input);
-		}
 		else if (isredi(input[new->i]))
 			get_redirection(new, input);
 		else

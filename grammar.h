@@ -31,6 +31,7 @@ typedef struct s_token
 	int					file_type;
 	int					fdwrite;
 	int					fdread;
+	char				*end_of_file;
 	char				*cmd;
 	char				**arg;
 	char				**g_env;

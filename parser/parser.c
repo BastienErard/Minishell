@@ -28,6 +28,15 @@ void	parser(char	*input, t_env *envi)
 		if (input[i] == '|')
 			i++;
 	}
+	// for (t_token *tmp = head; tmp; tmp = tmp->next)
+	// {
+	// 	printf("==== parser ====\n");
+	// 	printf("cmd: %s\n", tmp->cmd);
+	// 	for (int i = 0; tmp->arg[i]; i++)
+	// 		printf("arg[%d]: %s\n", i, tmp->arg[i]);
+	// 	printf("fdread: %d\n", tmp->fdread);
+	// 	printf("fdwrite: %d\n", tmp->fdwrite);
+	// }
 	replace_usd(head);
 	execution(head);
 	free_token(&head);

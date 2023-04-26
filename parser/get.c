@@ -6,7 +6,7 @@
 /*   By: fgrasset <fgrasset@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/24 13:23:24 by fgrasset          #+#    #+#             */
-/*   Updated: 2023/04/24 16:48:16 by fgrasset         ###   ########.fr       */
+/*   Updated: 2023/04/26 15:53:44 by fgrasset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	get_word(t_token *new, char *input)
 	j = -1;
 	new->arg[new->pos] = malloc(sizeof(char) * word_len(input, new->i));
 	if (!new->arg[new->pos])
-		perror("issue malloc get_word");
+		perror("Issue malloc get_word");
 	while (input[new->i] && !isdeli(input[new->i], 's'))
 	{
 		new->arg[new->pos][++j] = input[new->i];
