@@ -6,7 +6,7 @@
 /*   By: berard <berard@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/24 11:14:27 by berard            #+#    #+#             */
-/*   Updated: 2023/04/24 17:10:16 by berard           ###   ########.fr       */
+/*   Updated: 2023/04/26 15:04:47 by berard           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,99 +19,61 @@
 void	exec_external(t_token *token)
 {
 	char	**path;
-	char	filepath[MAXPATHLEN];
 	int		i;
 
 	i = -1;
 	token->g_env = get_env(token);
 	make_arg(token);
+	exec_check_path(token);
 	if (access(token->cmd, X_OK) == 0)
 		execve(token->cmd, token->arg_all, token->g_env);
 	path = ft_split(getenv("PATH"), ':');
 	while (path[++i])
-	{
-		ft_strlcpy(filepath, path[i], sizeof(filepath));
-		ft_strlcat(filepath, "/", sizeof(filepath));
-		ft_strlcat(filepath, token->cmd, sizeof(filepath));
-		if (access(filepath, X_OK) == 0)
-		{
-			free_split(path);
-			execve(filepath, token->arg_all, token->g_env);
-		}
-	}
+		exec_ext_bis(token, path, path[i]);
 	free_split(path);
 	ft_putstr_fd(token->cmd, STDERR_FILENO);
 	ft_putstr_fd(": command not found\n", STDERR_FILENO);
 	exit (127);
 }
 
-/* returns a double string containing the env */
-char	**get_env(t_token *token)
-{
-	t_env	*tmp;
-	char	**genv;
-	int		i;
-
-	i = 0;
-	tmp = token->env;
-	while (tmp)
-	{
-		i++;
-		tmp = tmp->next;
-	}
-	genv = malloc(sizeof(char *) * (i + 1));
-	tmp = token->env;
-	i = -1;
-	while (tmp)
-	{
-		genv[++i] = ft_strjoin(tmp->var[0], "=");
-		genv[i] = ft_strjoin(genv[i], tmp->var[1]);
-		tmp = tmp->next;
-	}
-	genv[++i] = NULL;
-	return (genv);
-}
-
-/* blends it to make the arguments in one char** */
-void	make_arg(t_token *token)
-{
-	int		i;
-	int		j;
-
-	i = 0;
-	j = -1;
-	while (token->arg[i])
-		i++;
-	token->arg_all = malloc(sizeof(char *) * (i + 2));
-	if (!token->arg_all)
-		return (perror("Error with malloc during execution of an external"));
-	i = -1;
-	token->arg_all[++i] = malloc(sizeof(char) * (ft_strlen(token->cmd) + 1));
-	if (!token->arg_all[i])
-		return (perror("Error with malloc during execution of an external"));
-	ft_copyto(token->arg_all[0], token->cmd);
-	if (token->arg[0])
-	{
-		while (token->arg[++j])
-		{
-			token->arg_all[++i] = malloc(sizeof(char) * (ft_strlen(token->arg[j]) + 1));
-			if (!token->arg_all[i])
-				return (perror("Error with malloc during execution of an external"));
-			ft_copyto(token->arg_all[i], token->arg[j]);
-		}
-	}
-	token->arg_all[++i] = NULL;
-}
-
-void	ft_copyto(char *token, char *str)
+/**
+ * Checks if PATH still exists and displays an error message if it does not
+ * Replaces $? in command with the value of the exit_code.
+*/
+void	exec_check_path(t_token *token)
 {
 	int	i;
 
-	i = 0;
-	while (str[i])
+	i = -1;
+	if (ft_strcmp(token->cmd, "$?") == 0)
 	{
-		token[i] = str[i];
-		i++;
+		free(token->cmd);
+		token->cmd = ft_itoa(g_exit_code);
 	}
-	token[i] = '\0';
+	while (token->g_env[++i])
+	{
+		if (ft_strncmp(token->g_env[i], "PATH=", 5) == 0)
+			break ;
+		if (token->g_env[i + 1] == NULL)
+		{
+			ft_putstr_fd(token->cmd, STDERR_FILENO);
+			ft_putstr_fd(": No such file or directory\n", STDERR_FILENO);
+			exit (127);
+		}
+	}
+}
+
+/* Continuation of the exec_external function for standards purposes */
+void	exec_ext_bis(t_token *token, char **path, char *arg)
+{
+	char	filepath[MAXPATHLEN];
+
+	ft_strlcpy(filepath, arg, sizeof(filepath));
+	ft_strlcat(filepath, "/", sizeof(filepath));
+	ft_strlcat(filepath, token->cmd, sizeof(filepath));
+	if (access(filepath, X_OK) == 0)
+	{
+		free_split(path);
+		execve(filepath, token->arg_all, token->g_env);
+	}
 }
