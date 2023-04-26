@@ -24,7 +24,6 @@ void			get_arg(t_token *new, char *input);
 int				word_len(char *input, int i);
 int				check_quotes(char *input);
 
-
 //lexer_utils.c
 
 int				isredi(char c);
@@ -89,6 +88,8 @@ char			**get_env(t_token *token);
 void			fuckit(char *genv, char *var1, char *var2);
 void			ft_copyto(char *token, char *str);
 void			make_arg(t_token *token);
+void			exec_ext_bis(t_token *token, char **path, char *arg);
+void			exec_check_path(t_token *token);
 
 //Builtins
 
