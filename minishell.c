@@ -25,7 +25,8 @@ int	main(int ac, char **av, char **env)
 		parser(input, envi);
 		add_history(input);
 	}
+	ft_putstr_fd("exit\n", STDOUT_FILENO);
 	free(input);
 	free_env(&envi);
-	return (0);
+	return (g_exit_code);
 }

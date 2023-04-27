@@ -6,7 +6,7 @@
 /*   By: berard <berard@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 17:48:46 by berard            #+#    #+#             */
-/*   Updated: 2023/04/27 11:58:14 by berard           ###   ########.fr       */
+/*   Updated: 2023/04/27 17:29:58 by berard           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,10 @@ void	exec_cmd(t_token *token)
 		exec_external_code(token);
 }
 
+/**
+ * Execute the external command in a child process.
+ * Use of WIFEXITED to retrieve the return code of execve or the function.
+*/
 void	exec_external_code(t_token *token)
 {
 	pid_t	pid;
@@ -43,9 +47,5 @@ void	exec_external_code(t_token *token)
 		waitpid(pid, &status, 0);
 		if (WIFEXITED(status))
 			g_exit_code = WEXITSTATUS(status);
-		else if (WIFSIGNALED(status))
-			g_exit_code = 128 + WTERMSIG(status);
-		else
-			g_exit_code = 1;
 	}
 }

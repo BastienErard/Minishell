@@ -6,7 +6,7 @@
 /*   By: berard <berard@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 08:58:40 by tastybao          #+#    #+#             */
-/*   Updated: 2023/04/27 11:58:12 by berard           ###   ########.fr       */
+/*   Updated: 2023/04/27 17:31:02 by berard           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,16 +34,20 @@ void	signals_handle_input(int sig)
 	}
 }
 
+/**
+ * Function used to handle signals as part of a blocking function
+ * (e.g. cat without argument).
+*/
 void	signals_handle_execution(int sig)
 {
 	if (sig == SIGINT)
 	{
-		ft_putstr_fd("\n", STDOUT_FILENO);
+		ft_putstr_fd("^C\n", STDOUT_FILENO);
 		g_exit_code = 128 + SIGINT;
 	}
 	if (sig == SIGQUIT)
 	{
-		ft_putstr_fd("Quit :", STDOUT_FILENO);
+		ft_putstr_fd("^\\Quit :", STDOUT_FILENO);
 		ft_putnbr_fd(SIGQUIT, STDOUT_FILENO);
 		ft_putstr_fd("\n", STDOUT_FILENO);
 		g_exit_code = 128 + SIGQUIT;
