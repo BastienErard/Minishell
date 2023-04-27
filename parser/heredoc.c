@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   heredoc.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fgrasset <fgrasset@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fabien <fabien@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/26 14:34:25 by fgrasset          #+#    #+#             */
-/*   Updated: 2023/04/26 15:53:05 by fgrasset         ###   ########.fr       */
+/*   Updated: 2023/04/27 15:06:16 by fabien           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,17 +16,26 @@
 void	heredoc(t_token *new, char *input)
 {
 	char	*here;
+	int		heredoc;
 
 	(void)input;
+	heredoc = open("heredoc.txt", O_CREAT | O_WRONLY | O_TRUNC, 0666);
+	if (!heredoc)
+	{
+		perror("error creating heredoc file");
+		return ;
+	}
 	here = readline("");
 	while (ft_strcmp(here, new->end_of_file))
 	{
-		write(new->fdwrite, here, ft_strlen(here));
-		write(new->fdwrite, "\n", 1);
+		write(heredoc, here, ft_strlen(here));
+		write(heredoc, "\n", 1);
 		free(here);
 		here = readline("");
 	}
-
+	free(here);
+	//TODO executes what is inside the heredoc file
+	close(heredoc);
 }
 
 // /* returns the file in which to execute heredoc if there is one

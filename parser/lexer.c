@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lexer.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fgrasset <fgrasset@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fabien <fabien@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/10 11:14:39 by fgrasset          #+#    #+#             */
-/*   Updated: 2023/04/26 10:56:05 by fgrasset         ###   ########.fr       */
+/*   Updated: 2023/04/27 15:29:27 by fabien           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,14 +18,7 @@ int	sequencer(t_token **head, char *input, t_env *envi, int index)
 	t_token	*new;
 
 	new = malloc(sizeof(t_token));
-	new->cmd = NULL;
-	new->arg = NULL;
-	new->next = NULL;
-	new->flag_env = 1;
-	new->fdread = 1;
-	new->fdwrite = 1;
-	new->env = envi;
-	new->i = index;
+	initialize_sequence(new, envi, index);
 	if (input == NULL || input[new->i] == '\0')
 	{
 		perror("The input is empty");
@@ -89,7 +82,7 @@ void	get_redirection(t_token *new, char *input)
 void	get_arg(t_token *new, char *input)
 {
 	new->pos = 0;
-	new->arg = malloc(sizeof(char) * 100);		//TODO: make a function later to count the number of words
+	new->arg = malloc(sizeof(char) * 100);
 	if (!new->arg)
 		perror("Issue malloc get_arg");
 	while (input[new->i] && input[new->i] != '|')

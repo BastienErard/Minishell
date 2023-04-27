@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   external_utils.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: berard <berard@student.42.fr>              +#+  +:+       +#+        */
+/*   By: fabien <fabien@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/26 14:57:20 by berard            #+#    #+#             */
-/*   Updated: 2023/04/26 14:57:48 by berard           ###   ########.fr       */
+/*   Updated: 2023/04/27 15:32:07 by fabien           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,9 +61,10 @@ void	make_arg(t_token *token)
 	{
 		while (token->arg[++j])
 		{
-			token->arg_all[++i] = malloc(sizeof(char) * (ft_strlen(token->arg[j]) + 1));
+			token->arg_all[++i] = malloc(sizeof(char) \
+			* (ft_strlen(token->arg[j]) + 1));
 			if (!token->arg_all[i])
-				return (perror("Error with malloc during execution of an external"));
+				return (perror("Error with malloc during external"));
 			ft_copyto(token->arg_all[i], token->arg[j]);
 		}
 	}

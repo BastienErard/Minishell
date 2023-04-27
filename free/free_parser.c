@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free_parser.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fgrasset <fgrasset@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fabien <fabien@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 10:28:43 by fgrasset          #+#    #+#             */
-/*   Updated: 2023/04/26 11:08:12 by fgrasset         ###   ########.fr       */
+/*   Updated: 2023/04/27 15:22:36 by fabien           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,18 +17,16 @@ void	free_token(t_token **head)
 {
 	t_token	*tmp;
 	t_token	*stock;
-	int		i;
 
 	stock = *head;
 	while (stock)
 	{
-		i = -1;
 		tmp = stock;
 		stock = stock->next;
-		while (tmp->arg[++i])
-			free(tmp->arg[i]);
-		free(tmp->arg);
+		free_double(tmp);
 		free(tmp->cmd);
+		if (tmp->end_of_file)
+			free(tmp->end_of_file);
 		free(tmp);
 	}
 	*head = NULL;
@@ -53,4 +51,32 @@ void	free_env(t_env **envi)
 		free(tmp);
 	}
 	*envi = NULL;
+}
+
+/* function made to free double arrrays */
+void	free_double(t_token *token)
+{
+	int	i;
+
+	i = -1;
+	if (token->arg)
+	{
+		while (token->arg[++i])
+			free(token->arg[i]);
+		free(token->arg);
+	}
+	i = -1;
+	if (token->arg_all)
+	{
+		while (token->arg_all[++i])
+			free(token->arg_all[i]);
+		free(token->arg_all);
+	}
+	i = -1;
+	if (token->g_env)
+	{
+		while (token->g_env[++i])
+			free(token->g_env[i]);
+		free(token->g_env);
+	}
 }

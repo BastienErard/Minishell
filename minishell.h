@@ -54,12 +54,12 @@ void			r_left(t_token *new, char *input);
 void			rr_left(t_token *new, char *input);	//TODO not finished
 void			r_right(t_token *new, char *input);
 void			rr_right(t_token *new, char *input);
-char			*get_file(t_token *new, char *input);
 char			*get_filename(t_token *new, char *input);
 
 //parser.c
 
 void			parser(char *input, t_env *envi);
+void			initialize_sequence(t_token *new, t_env *envi, int index);
 
 //env_utils.c
 
@@ -141,6 +141,7 @@ void			pipe_start(t_token *token);
 void			free_split(char *path[]); // TO CHECK
 void			free_token(t_token **head);
 void			free_env(t_env **envi);
+void			free_double(t_token *token);
 
 //Others
 extern void		rl_replace_line(const char *bob, int test); // RANDOM NAME

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redirection.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fgrasset <fgrasset@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fabien <fabien@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/31 10:57:42 by fgrasset          #+#    #+#             */
-/*   Updated: 2023/04/26 14:41:04 by fgrasset         ###   ########.fr       */
+/*   Updated: 2023/04/27 15:07:15 by fabien           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,25 +78,6 @@ void	rr_right(t_token	*new, char *input)
 	}
 	new->file_type = RR_RIGHT;
 	free(file);
-}
-
-/* returns the string after the redirection, containing the PATH */
-char	*get_file(t_token *new, char *input)
-{
-	int		j;
-	char	*file;
-
-	j = -1;
-	file = malloc(sizeof(char) * word_len(input, new->i));
-	if (!file)
-		perror("issue malloc get_file");
-	while (input[new->i] && !ft_isaspace(input[new->i]))
-	{
-		file[++j] = input[new->i];
-		new->i++;
-	}
-	file[++j] = '\0';
-	return (file);
 }
 
 /* gets the next word (probably the filename) until | or redirection */

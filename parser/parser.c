@@ -28,16 +28,23 @@ void	parser(char	*input, t_env *envi)
 		if (input[i] == '|')
 			i++;
 	}
-	// for (t_token *tmp = head; tmp; tmp = tmp->next)
-	// {
-	// 	printf("==== parser ====\n");
-	// 	printf("cmd: %s\n", tmp->cmd);
-	// 	for (int i = 0; tmp->arg[i]; i++)
-	// 		printf("arg[%d]: %s\n", i, tmp->arg[i]);
-	// 	printf("fdread: %d\n", tmp->fdread);
-	// 	printf("fdwrite: %d\n", tmp->fdwrite);
-	// }
 	replace_usd(head);
 	execution(head);
 	free_token(&head);
+}
+
+/* initializes all the element of the linked list */
+void	initialize_sequence(t_token *new, t_env *envi, int index)
+{
+	new->cmd = NULL;
+	new->arg = NULL;
+	new->next = NULL;
+	new->flag_env = 1;
+	new->fdread = 1;
+	new->fdwrite = 1;
+	new->env = envi;
+	new->i = index;
+	new->arg_all = NULL;
+	new->end_of_file = NULL;
+	new->g_env = NULL;
 }
