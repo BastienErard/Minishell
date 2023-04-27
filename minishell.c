@@ -17,8 +17,9 @@ int	main(int ac, char **av, char **env)
 	init_env(&envi, env);
 	while (input != NULL)
 	{
-		signals_init();
+		signals_init(signals_handle_input);
 		input = readline("\e[1;36mMinishell > \e[0m");
+		signals_init(signals_handle_execution);
 		if (((input && input[0] == '\0') || input == NULL) || space(input) == 0)
 			continue ;
 		parser(input, envi);

@@ -6,7 +6,7 @@
 /*   By: berard <berard@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/24 11:14:27 by berard            #+#    #+#             */
-/*   Updated: 2023/04/26 15:04:47 by berard           ###   ########.fr       */
+/*   Updated: 2023/04/27 09:59:40 by berard           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,11 @@ void	exec_external(t_token *token)
 	make_arg(token);
 	exec_check_path(token);
 	if (access(token->cmd, X_OK) == 0)
+	{
 		execve(token->cmd, token->arg_all, token->g_env);
+		perror("execve");
+		g_exit_code = 1;
+	}
 	path = ft_split(getenv("PATH"), ':');
 	while (path[++i])
 		exec_ext_bis(token, path, path[i]);
@@ -75,5 +79,7 @@ void	exec_ext_bis(t_token *token, char **path, char *arg)
 	{
 		free_split(path);
 		execve(filepath, token->arg_all, token->g_env);
+		perror("execve");
+		g_exit_code = 1;
 	}
 }

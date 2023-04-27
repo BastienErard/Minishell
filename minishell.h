@@ -70,8 +70,9 @@ void			env_init(t_token *token);
 
 //Signals
 
-void			signals_init(void); // TO CHECK
-void			signals_handle(int sig); // TO CHECK
+void			signals_init(void (*signals_handle)(int)); // TO CHECK
+void			signals_handle_input(int sig); // TO CHECK
+void			signals_handle_execution(int sig); // TO CHECK
 void			init_termios(void); // TO CHECK
 
 //Execution
@@ -90,6 +91,7 @@ void			ft_copyto(char *token, char *str);
 void			make_arg(t_token *token);
 void			exec_ext_bis(t_token *token, char **path, char *arg);
 void			exec_check_path(t_token *token);
+void			exec_external_code(t_token *token);
 
 //Builtins
 
