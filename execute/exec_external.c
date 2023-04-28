@@ -6,7 +6,7 @@
 /*   By: berard <berard@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/24 11:14:27 by berard            #+#    #+#             */
-/*   Updated: 2023/04/28 15:46:46 by berard           ###   ########.fr       */
+/*   Updated: 2023/04/28 17:49:00 by berard           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@ void	exec_external(t_token *token)
 		perror("execve");
 		exit (1);
 	}
-	// path = ft_split(getenv("PATH"), ':');
 	path = exec_split_path(token);
 	while (path[++i])
 		exec_ext_bis(token, path, path[i]);
@@ -44,18 +43,19 @@ void	exec_external(t_token *token)
 	exit (127);
 }
 
+/* Go through the chained list to find the PATH and split it. */
 char	**exec_split_path(t_token *token)
 {
 	char	**path;
 
 	path = NULL;
-	while(token->env)
+	while (token->env)
 	{
 		if (ft_strcmp(token->env->var[0], "PATH") == 0)
 		{
 			if (token->env->var[1])
 				path = ft_split(token->env->var[1], ':');
-			break;
+			break ;
 		}
 		token->env = token->env->next;
 	}
