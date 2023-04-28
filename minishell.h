@@ -99,6 +99,7 @@ void			make_arg(t_token *token);
 void			exec_ext_bis(t_token *token, char **path, char *arg);
 void			exec_check_path(t_token *token);
 void			exec_external_code(t_token *token);
+char			**exec_split_path(t_token *token);
 
 //Builtins
 
