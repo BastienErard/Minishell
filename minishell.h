@@ -61,6 +61,13 @@ char			*get_filename(t_token *new, char *input);
 void			parser(char *input, t_env *envi);
 void			initialize_sequence(t_token *new, t_env *envi, int index);
 
+//heredoc.c
+
+void			heredoc(t_token *new, char *input);
+int				iscontained(char *here, char *eof);
+int				isword(char *here, char *eof, int index);
+
+
 //env_utils.c
 
 void			init_env(t_env **envi, char **env);
@@ -132,9 +139,10 @@ int				space(char *input); // TO CHECK
 
 //Pipes
 
-void			parents(t_token *token, t_pipes *pipes);
-void			child(t_token *token, t_pipes *pipes);
-void			pipe_start(t_token *token);
+void			exec_cmds(t_token *token);
+void			prep_fd(t_token *token, int *fd_pipe_tmp, int *fd_pipe);
+void			close_fd(t_token *token, int *fd_pipe_tmp, int *fd_pipe);
+
 
 //Free
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redirection.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fabien <fabien@student.42.fr>              +#+  +:+       +#+        */
+/*   By: fgrasset <fgrasset@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/31 10:57:42 by fgrasset          #+#    #+#             */
-/*   Updated: 2023/04/27 15:07:15 by fabien           ###   ########.fr       */
+/*   Updated: 2023/04/28 15:22:33 by fgrasset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,12 +31,9 @@ void	r_left(t_token	*new, char *input)
 /* opens the file in fdread and put the good value in file_type */
 void	rr_left(t_token	*new, char *input)
 {
-	char	*file;
-
 	new->i++;
 	new->end_of_file = malloc(sizeof(char) * word_len(input, new->i));
 	new->end_of_file = get_filename(new, input);
-	new->fdread = open(file, O_RDONLY);
 	if (!new->fdread)
 	{
 		perror("issue open r_left");

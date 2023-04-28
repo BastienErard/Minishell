@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   heredoc.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fabien <fabien@student.42.fr>              +#+  +:+       +#+        */
+/*   By: fgrasset <fgrasset@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/26 14:34:25 by fgrasset          #+#    #+#             */
-/*   Updated: 2023/04/27 15:06:16 by fabien           ###   ########.fr       */
+/*   Updated: 2023/04/28 15:14:27 by fgrasset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	heredoc(t_token *new, char *input)
 		return ;
 	}
 	here = readline("");
-	while (ft_strcmp(here, new->end_of_file))
+	while (!iscontained(here, new->end_of_file))
 	{
 		write(heredoc, here, ft_strlen(here));
 		write(heredoc, "\n", 1);
@@ -34,9 +34,38 @@ void	heredoc(t_token *new, char *input)
 		here = readline("");
 	}
 	free(here);
+	new->fdread = heredoc;
 	//TODO executes what is inside the heredoc file
-	close(heredoc);
+	// close(heredoc);
 }
+
+/* returns true if EOF is contained in the string */
+int	iscontained(char *here, char *eof)
+{
+	int	i;
+
+	i = -1;
+	while (here[++i])
+	{
+		if (isword(here, eof, i))
+			return 1;
+	}
+	return 0;
+}
+
+/* returns true if the word is found */
+int	isword(char *here, char *eof, int index)
+{
+	while (eof[index])
+	{
+		if (eof[index] == here[index])
+			index++;
+		else
+			return 0;
+	}
+	return 1;
+}
+
 
 // /* returns the file in which to execute heredoc if there is one
 //  returns NULL otherwise */
