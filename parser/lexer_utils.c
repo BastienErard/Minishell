@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lexer_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fabien <fabien@student.42.fr>              +#+  +:+       +#+        */
+/*   By: berard <berard@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/24 14:00:19 by fgrasset          #+#    #+#             */
-/*   Updated: 2023/04/27 15:24:21 by fabien           ###   ########.fr       */
+/*   Updated: 2023/04/28 14:33:50 by berard           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,5 +69,6 @@ int	check_quotes(char *input)
 	}
 	if (single % 2 == 0 && dual % 2 == 0)
 		return (1);
+	g_exit_code = 1;
 	return (0);
 }

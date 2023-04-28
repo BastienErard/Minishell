@@ -6,7 +6,7 @@
 /*   By: berard <berard@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/24 11:14:27 by berard            #+#    #+#             */
-/*   Updated: 2023/04/27 16:52:40 by berard           ###   ########.fr       */
+/*   Updated: 2023/04/28 15:46:46 by berard           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,13 +31,35 @@ void	exec_external(t_token *token)
 		perror("execve");
 		exit (1);
 	}
-	path = ft_split(getenv("PATH"), ':');
+	// path = ft_split(getenv("PATH"), ':');
+	path = exec_split_path(token);
 	while (path[++i])
 		exec_ext_bis(token, path, path[i]);
 	free_split(path);
 	ft_putstr_fd(token->cmd, STDERR_FILENO);
-	ft_putstr_fd(": command not found\n", STDERR_FILENO);
+	if (ft_strchr(token->cmd, '/'))
+		ft_putstr_fd(": No such file or directory\n", STDERR_FILENO);
+	else
+		ft_putstr_fd(": command not found\n", STDERR_FILENO);
 	exit (127);
+}
+
+char	**exec_split_path(t_token *token)
+{
+	char	**path;
+
+	path = NULL;
+	while(token->env)
+	{
+		if (ft_strcmp(token->env->var[0], "PATH") == 0)
+		{
+			if (token->env->var[1])
+				path = ft_split(token->env->var[1], ':');
+			break;
+		}
+		token->env = token->env->next;
+	}
+	return (path);
 }
 
 /**
