@@ -6,7 +6,7 @@
 /*   By: fgrasset <fgrasset@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/31 10:57:42 by fgrasset          #+#    #+#             */
-/*   Updated: 2023/04/28 15:22:33 by fgrasset         ###   ########.fr       */
+/*   Updated: 2023/05/01 10:43:02 by fgrasset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,9 +39,8 @@ void	rr_left(t_token	*new, char *input)
 		perror("issue open r_left");
 		return ;
 	}
-	new->file_type = RR_LEFT;
-
-	//TODO
+	new->file_type = R_LEFT;
+	heredoc(new, input);
 }
 
 /* opens the file in fdwrite and put the good value in file_type */

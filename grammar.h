@@ -1,3 +1,14 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   grammar.h                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: fgrasset <fgrasset@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/05/01 11:05:17 by fgrasset          #+#    #+#             */
+/*   Updated: 2023/05/01 11:05:30 by fgrasset         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #ifndef GRAMMAR_H
 # define GRAMMAR_H
@@ -23,7 +34,7 @@ typedef struct s_pipes
 typedef struct s_token
 {
 	int					type;
-	int					flag_env; //if == 1, then use env variables
+	int					flag_env;
 	int					syntax;
 	int					i;
 	int					pos;
@@ -44,10 +55,10 @@ enum e_token {
 	COMMAND = 1,
 	ARG = 2,
 	PIPE = 3,
-	R_LEFT = 4,		// <
-	R_RIGHT = 5,	// >
-	RR_LEFT = 6,	// <<
-	RR_RIGHT = 7,	// >>
+	R_LEFT = 4,
+	R_RIGHT = 5,
+	RR_LEFT = 6,
+	RR_RIGHT = 7,
 };
 
 #endif
