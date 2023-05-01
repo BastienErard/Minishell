@@ -6,7 +6,7 @@
 /*   By: berard <berard@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 13:17:43 by berard            #+#    #+#             */
-/*   Updated: 2023/04/28 17:59:52 by berard           ###   ########.fr       */
+/*   Updated: 2023/05/01 16:32:12 by berard           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ void	export_parsing(t_token *token, char *arg)
 	if (ft_strchr(arg, '=') && arg[i + 1] == '\0')
 		parse[1] = ft_strdup("");
 	else if (ft_strchr(arg, '=') && arg[i + 1] != '\0')
-		parse[1] = ft_strdup(&arg[i + 1]);
+		parse[1] = ft_strdup_pimp(&arg[i + 1]);
 	else
 		parse[1] = NULL;
 	parse[2] = NULL;

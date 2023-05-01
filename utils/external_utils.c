@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   external_utils.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fgrasset <fgrasset@student.42.fr>          +#+  +:+       +#+        */
+/*   By: berard <berard@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/26 14:57:20 by berard            #+#    #+#             */
-/*   Updated: 2023/05/01 11:08:03 by fgrasset         ###   ########.fr       */
+/*   Updated: 2023/05/01 16:35:28 by berard           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ void	make_arg(t_token *token)
 	while (token->arg[i])
 		i++;
 	token->arg_all = malloc(sizeof(char *) * (i + 2));
-	check_malloc(token->arg_all);
+	check_malloc_bis(token->arg_all);
 	i = -1;
 	token->arg_all[++i] = malloc(sizeof(char) * (ft_strlen(token->cmd) + 1));
 	check_malloc(token->arg_all[i]);
@@ -86,6 +86,15 @@ void	ft_copyto(char *token, char *str)
 
 /* check for malloc working and jsut returns */
 void	check_malloc(char *str)
+{
+	if (!str)
+	{
+		perror ("Error with malloc during execution of an external");
+		exit (1);
+	}
+}
+
+void	check_malloc_bis(char **str)
 {
 	if (!str)
 	{
