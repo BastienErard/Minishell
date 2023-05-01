@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_external.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: berard <berard@student.42.fr>              +#+  +:+       +#+        */
+/*   By: fgrasset <fgrasset@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/24 11:14:27 by berard            #+#    #+#             */
-/*   Updated: 2023/04/28 17:49:00 by berard           ###   ########.fr       */
+/*   Updated: 2023/05/01 10:00:44 by fgrasset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	exec_external(t_token *token)
 		exit (1);
 	}
 	path = exec_split_path(token);
-	while (path[++i])
+	while (path && path[++i])
 		exec_ext_bis(token, path, path[i]);
 	free_split(path);
 	ft_putstr_fd(token->cmd, STDERR_FILENO);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free_split.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: berard <berard@student.42.fr>              +#+  +:+       +#+        */
+/*   By: fgrasset <fgrasset@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/24 11:27:07 by berard            #+#    #+#             */
-/*   Updated: 2023/03/31 14:32:59 by berard           ###   ########.fr       */
+/*   Updated: 2023/05/01 09:59:08 by fgrasset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	free_split(char *path[])
 	int	i;
 
 	i = -1;
-	while (path[++i])
+	while (path && path[++i])
 		free(path[i]);
 	free(path);
 }

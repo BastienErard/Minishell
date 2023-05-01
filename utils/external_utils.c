@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   external_utils.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fabien <fabien@student.42.fr>              +#+  +:+       +#+        */
+/*   By: fgrasset <fgrasset@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/26 14:57:20 by berard            #+#    #+#             */
-/*   Updated: 2023/04/27 15:32:07 by fabien           ###   ########.fr       */
+/*   Updated: 2023/05/01 09:49:33 by fgrasset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,8 @@ char	**get_env(t_token *token)
 	while (tmp)
 	{
 		genv[++i] = ft_strjoin(tmp->var[0], "=");
-		genv[i] = ft_strjoin(genv[i], tmp->var[1]);
+		if (tmp->var[1])
+			genv[i] = ft_strjoin(genv[i], tmp->var[1]);
 		tmp = tmp->next;
 	}
 	genv[++i] = NULL;
@@ -83,3 +84,5 @@ void	ft_copyto(char *token, char *str)
 	}
 	token[i] = '\0';
 }
+
+
