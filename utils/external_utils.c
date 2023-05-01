@@ -6,11 +6,13 @@
 /*   By: fgrasset <fgrasset@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/26 14:57:20 by berard            #+#    #+#             */
-/*   Updated: 2023/05/01 09:49:33 by fgrasset         ###   ########.fr       */
+/*   Updated: 2023/05/01 11:08:03 by fgrasset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
+
+void	check_malloc(char *str);
 
 /* returns a double string containing the env */
 char	**get_env(t_token *token)
@@ -51,12 +53,10 @@ void	make_arg(t_token *token)
 	while (token->arg[i])
 		i++;
 	token->arg_all = malloc(sizeof(char *) * (i + 2));
-	if (!token->arg_all)
-		return (perror("Error with malloc during execution of an external"));
+	check_malloc(token->arg_all);
 	i = -1;
 	token->arg_all[++i] = malloc(sizeof(char) * (ft_strlen(token->cmd) + 1));
-	if (!token->arg_all[i])
-		return (perror("Error with malloc during execution of an external"));
+	check_malloc(token->arg_all[i]);
 	ft_copyto(token->arg_all[0], token->cmd);
 	if (token->arg[0])
 	{
@@ -64,8 +64,7 @@ void	make_arg(t_token *token)
 		{
 			token->arg_all[++i] = malloc(sizeof(char) \
 			* (ft_strlen(token->arg[j]) + 1));
-			if (!token->arg_all[i])
-				return (perror("Error with malloc during external"));
+			check_malloc(token->arg_all[i]);
 			ft_copyto(token->arg_all[i], token->arg[j]);
 		}
 	}
@@ -85,4 +84,12 @@ void	ft_copyto(char *token, char *str)
 	token[i] = '\0';
 }
 
-
+/* check for malloc working and jsut returns */
+void	check_malloc(char *str)
+{
+	if (!str)
+	{
+		perror ("Error with malloc during execution of an external");
+		exit (1);
+	}
+}

@@ -6,7 +6,7 @@
 /*   By: fgrasset <fgrasset@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/26 14:34:25 by fgrasset          #+#    #+#             */
-/*   Updated: 2023/04/28 15:14:27 by fgrasset         ###   ########.fr       */
+/*   Updated: 2023/05/01 11:03:37 by fgrasset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,24 +19,22 @@ void	heredoc(t_token *new, char *input)
 	int		heredoc;
 
 	(void)input;
-	heredoc = open("heredoc.txt", O_CREAT | O_WRONLY | O_TRUNC, 0666);
+	heredoc = open("heredoc.txt", O_CREAT | O_RDWR | O_TRUNC, 0666);
 	if (!heredoc)
 	{
 		perror("error creating heredoc file");
 		return ;
 	}
-	here = readline("");
+	here = readline(">");
 	while (!iscontained(here, new->end_of_file))
 	{
 		write(heredoc, here, ft_strlen(here));
 		write(heredoc, "\n", 1);
 		free(here);
-		here = readline("");
+		here = readline(">");
 	}
 	free(here);
-	new->fdread = heredoc;
-	//TODO executes what is inside the heredoc file
-	// close(heredoc);
+	new->fdread = open("heredoc.txt", O_RDONLY);
 }
 
 /* returns true if EOF is contained in the string */
@@ -48,32 +46,23 @@ int	iscontained(char *here, char *eof)
 	while (here[++i])
 	{
 		if (isword(here, eof, i))
-			return 1;
+			return (1);
 	}
-	return 0;
+	return (0);
 }
 
 /* returns true if the word is found */
 int	isword(char *here, char *eof, int index)
 {
-	while (eof[index])
+	int	i;
+
+	i = -1;
+	while (eof[++i])
 	{
-		if (eof[index] == here[index])
+		if (eof[i] == here[index])
 			index++;
 		else
-			return 0;
+			return (0);
 	}
-	return 1;
+	return (1);
 }
-
-
-// /* returns the file in which to execute heredoc if there is one
-//  returns NULL otherwise */
-// char *heredoc_file(t_token *new, char *input)
-// {
-// 	space_index(new, input);
-// 	if (!input[new->i])
-// 		return (NULL);
-// 	if ((input[new->i] != '<') && (input[new->i] != '>'))
-// 		return (NULL);
-// }
