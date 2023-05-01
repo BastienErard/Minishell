@@ -6,7 +6,7 @@
 /*   By: berard <berard@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 17:48:46 by berard            #+#    #+#             */
-/*   Updated: 2023/05/01 10:16:55 by berard           ###   ########.fr       */
+/*   Updated: 2023/05/01 10:31:04 by berard           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	exec_cmd(t_token *token)
 	int	init_stdout;
 	int	init_stdin;
 
-	init_stdout	= dup(STDOUT_FILENO);
+	init_stdout = dup(STDOUT_FILENO);
 	init_stdin = dup(STDIN_FILENO);
 	if (token->fdread >= 3)
 		dup2(token->fdread, STDIN_FILENO);
