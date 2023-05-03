@@ -30,8 +30,6 @@ void	parser(char	*input, t_env *envi)
 	}
 	replace_usd(head);
 	execution(head);
-	if (access("heredoc.txt", F_OK) == 0)
-		execve("/bin/rm", (char *[]){"rm", "heredoc.txt", NULL}, head->g_env);
 	free_token(&head);
 }
 

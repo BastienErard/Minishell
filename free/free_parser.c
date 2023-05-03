@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free_parser.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fgrasset <fgrasset@student.42.fr>          +#+  +:+       +#+        */
+/*   By: berard <berard@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 10:28:43 by fgrasset          #+#    #+#             */
-/*   Updated: 2023/04/28 10:55:55 by fgrasset         ###   ########.fr       */
+/*   Updated: 2023/05/03 14:49:11 by berard           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,6 @@ void	free_token(t_token **head)
 		stock = stock->next;
 		free_double(tmp);
 		free(tmp->cmd);
-		if (tmp->fdread != 1)
-			close(tmp->fdread);
-		if (tmp->fdwrite != 1)
-			close(tmp->fdwrite);
 		if (tmp->end_of_file)
 			free(tmp->end_of_file);
 		free(tmp);

@@ -24,6 +24,7 @@ int	main(int ac, char **av, char **env)
 			continue ;
 		parser(input, envi);
 		add_history(input);
+		free(input);
 	}
 	ft_putstr_fd("exit\n", STDOUT_FILENO);
 	free(input);

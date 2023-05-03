@@ -92,7 +92,6 @@ void			exec_cmds(t_token *token);
 void			exec_external(t_token *token);
 int				exec_builtins(t_token *token);
 char			**get_env(t_token *token);
-void			fuckit(char *genv, char *var1, char *var2);
 void			ft_copyto(char *token, char *str);
 void			make_arg(t_token *token);
 void			exec_ext_bis(t_token *token, char **path, char *arg);

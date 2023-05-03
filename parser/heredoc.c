@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   heredoc.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fgrasset <fgrasset@student.42.fr>          +#+  +:+       +#+        */
+/*   By: berard <berard@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/26 14:34:25 by fgrasset          #+#    #+#             */
-/*   Updated: 2023/05/01 11:03:37 by fgrasset         ###   ########.fr       */
+/*   Updated: 2023/05/03 14:49:26 by berard           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	heredoc(t_token *new, char *input)
 		return ;
 	}
 	here = readline(">");
-	while (!iscontained(here, new->end_of_file))
+	while (here && !iscontained(here, new->end_of_file))
 	{
 		write(heredoc, here, ft_strlen(here));
 		write(heredoc, "\n", 1);
@@ -34,7 +34,7 @@ void	heredoc(t_token *new, char *input)
 		here = readline(">");
 	}
 	free(here);
-	new->fdread = open("heredoc.txt", O_RDONLY);
+	new->fdread = open(".heredoc.txt", O_RDONLY);
 }
 
 /* returns true if EOF is contained in the string */
