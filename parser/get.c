@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fgrasset <fgrasset@student.42.fr>          +#+  +:+       +#+        */
+/*   By: berard <berard@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/24 13:23:24 by fgrasset          #+#    #+#             */
-/*   Updated: 2023/05/03 15:17:33 by fgrasset         ###   ########.fr       */
+/*   Updated: 2023/05/03 16:33:58 by berard           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ void	get_word(t_token *new, char *input)
 		new->i++;
 	}
 	new->arg[new->pos][++j] = '\0';
+	space_index(new, input);
 }
 
 /* adds what is between the single quotes to the arg at pos */

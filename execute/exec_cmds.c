@@ -6,7 +6,7 @@
 /*   By: berard <berard@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 11:15:58 by fgrasset          #+#    #+#             */
-/*   Updated: 2023/05/03 14:48:54 by berard           ###   ########.fr       */
+/*   Updated: 2023/05/03 16:29:20 by berard           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	exec_cmds(t_token *token)
 		{
 			prep_fd(token, &fd_pipe_tmp, fd_pipe);
 			exec_cmd(token);
-			exit(g_exit_code); // TODO test this
+			exit(g_exit_code);
 		}
 		close_fd(token, &fd_pipe_tmp, fd_pipe);
 		token = token->next;
