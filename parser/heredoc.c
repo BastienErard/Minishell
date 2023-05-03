@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   heredoc.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fgrasset <fgrasset@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fabien <fabien@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/26 14:34:25 by fgrasset          #+#    #+#             */
-/*   Updated: 2023/05/03 15:05:19 by fgrasset         ###   ########.fr       */
+/*   Updated: 2023/05/03 19:42:12 by fabien           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,9 +41,6 @@ void	heredoc(t_token *new, char *input)
 /* returns true if EOF is contained in the string */
 int	iscontained(char *here, char *eof)
 {
-	int	i;
-
-	i = -1;
 	if (isword(here, eof, 0))
 		return (1);
 	return (0);
