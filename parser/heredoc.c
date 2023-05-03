@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   heredoc.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: berard <berard@student.42.fr>              +#+  +:+       +#+        */
+/*   By: fgrasset <fgrasset@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/26 14:34:25 by fgrasset          #+#    #+#             */
-/*   Updated: 2023/05/03 14:49:26 by berard           ###   ########.fr       */
+/*   Updated: 2023/05/03 15:05:19 by fgrasset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	heredoc(t_token *new, char *input)
 	int		heredoc;
 
 	(void)input;
-	heredoc = open("heredoc.txt", O_CREAT | O_RDWR | O_TRUNC, 0666);
+	heredoc = open(".heredoc.txt", O_CREAT | O_RDWR | O_TRUNC, 0666);
 	if (!heredoc)
 	{
 		perror("error creating heredoc file");
@@ -33,6 +33,7 @@ void	heredoc(t_token *new, char *input)
 		free(here);
 		here = readline(">");
 	}
+	close(heredoc);
 	free(here);
 	new->fdread = open(".heredoc.txt", O_RDONLY);
 }
@@ -43,11 +44,8 @@ int	iscontained(char *here, char *eof)
 	int	i;
 
 	i = -1;
-	while (here[++i])
-	{
-		if (isword(here, eof, i))
-			return (1);
-	}
+	if (isword(here, eof, 0))
+		return (1);
 	return (0);
 }
 
