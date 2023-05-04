@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fabien <fabien@student.42.fr>              +#+  +:+       +#+        */
+/*   By: fgrasset <fgrasset@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 16:23:22 by berard            #+#    #+#             */
-/*   Updated: 2023/05/04 13:48:20 by fabien           ###   ########.fr       */
+/*   Updated: 2023/05/04 17:22:48 by fgrasset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,11 @@ void	parser(char	*input, t_env *envi)
 		if (input[i] == '|')
 			i++;
 	}
-	replace_usd(head);
-	execution(head);
+	if (!head->error)
+	{
+		replace_usd(head);
+		execution(head);
+	}
 	free_token(&head);
 }
 
@@ -51,6 +54,7 @@ void	initialize_sequence(t_token *new, t_env *envi, int index)
 	new->cmd = NULL;
 	new->arg = NULL;
 	new->next = NULL;
+	new->error = 0;
 	new->flag_env = 1;
 	new->flag = 1;
 	new->fdread = 1;

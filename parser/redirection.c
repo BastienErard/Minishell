@@ -6,7 +6,7 @@
 /*   By: fgrasset <fgrasset@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/31 10:57:42 by fgrasset          #+#    #+#             */
-/*   Updated: 2023/05/01 10:43:02 by fgrasset         ###   ########.fr       */
+/*   Updated: 2023/05/04 17:26:36 by fgrasset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,14 @@ void	r_left(t_token	*new, char *input)
 
 	file = get_filename(new, input);
 	new->fdread = open(file, O_RDONLY);
-	if (!new->fdread)
+	if (new->fdread == -1)
 	{
 		perror("issue open r_left");
+		new->error = 1;
+		g_exit_code = 1;
 		return ;
 	}
+	write (1, "test\n", 5);
 	new->file_type = R_LEFT;
 	free(file);
 }
@@ -34,9 +37,11 @@ void	rr_left(t_token	*new, char *input)
 	new->i++;
 	new->end_of_file = malloc(sizeof(char) * word_len(input, new->i));
 	new->end_of_file = get_filename(new, input);
-	if (!new->fdread)
+	if (new->fdread == -1)
 	{
-		perror("issue open r_left");
+		perror("issue open rr_left");
+		new->error = 1;
+		g_exit_code = 1;
 		return ;
 	}
 	new->file_type = R_LEFT;
@@ -50,9 +55,11 @@ void	r_right(t_token	*new, char *input)
 
 	file = get_filename(new, input);
 	new->fdwrite = open(file, O_CREAT | O_WRONLY | O_TRUNC, 0666);
-	if (!new->fdread)
+	if (new->fdread == -1)
 	{
-		perror("issue open r_left");
+		perror("issue open r_right");
+		new->error = 1;
+		g_exit_code = 1;
 		return ;
 	}
 	new->file_type = R_RIGHT;
@@ -60,16 +67,18 @@ void	r_right(t_token	*new, char *input)
 }
 
 /* opens the file in fdwrite and put the good value in file_type */
-void	rr_right(t_token	*new, char *input)
+void	rr_right(t_token *new, char *input)
 {
 	char	*file;
 
 	new->i++;
 	file = get_filename(new, input);
 	new->fdwrite = open(file, O_CREAT | O_APPEND | O_WRONLY, 0666);
-	if (!new->fdread)
+	if (new->fdread == -1)
 	{
-		perror("issue open r_left");
+		perror("issue open rr_right");
+		new->error = 1;
+		g_exit_code = 1;
 		return ;
 	}
 	new->file_type = RR_RIGHT;

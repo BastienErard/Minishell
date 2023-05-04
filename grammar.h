@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   grammar.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fabien <fabien@student.42.fr>              +#+  +:+       +#+        */
+/*   By: fgrasset <fgrasset@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/01 11:05:17 by fgrasset          #+#    #+#             */
-/*   Updated: 2023/05/04 13:48:33 by fabien           ###   ########.fr       */
+/*   Updated: 2023/05/04 17:22:07 by fgrasset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ typedef struct s_token
 {
 	int					type;
 	int					flag;
+	int					error;
 	int					flag_env;
 	int					syntax;
 	int					i;
