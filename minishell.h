@@ -6,7 +6,7 @@
 /*   By: berard <berard@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 16:22:51 by berard            #+#    #+#             */
-/*   Updated: 2023/05/03 16:22:53 by berard           ###   ########.fr       */
+/*   Updated: 2023/05/04 11:32:36 by berard           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -147,6 +147,9 @@ int				aldig(char *arg);
 int				ft_switch_int(t_env *alpha, t_env *beta);
 int				space(char *input);
 char			*ft_strdup_pimp(const char *s1);
+char			*ft_strdup_single(const char *s1);
+char			*ft_strdup_double(const char *s1);
+char			*ft_strdup_all(const char *s1);
 void			check_malloc(char *str);
 void			check_malloc_bis(char **str);
 
