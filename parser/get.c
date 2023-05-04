@@ -6,7 +6,7 @@
 /*   By: fgrasset <fgrasset@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/24 13:23:24 by fgrasset          #+#    #+#             */
-/*   Updated: 2023/05/04 17:58:43 by fgrasset         ###   ########.fr       */
+/*   Updated: 2023/05/04 18:44:52 by fgrasset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,11 +57,13 @@ void	get_squote(t_token *new, char *input)
 void	get_dquote(t_token *new, char *input)
 {
 	int	j;
+	int	flag;
 
 	j = -1;
 	new->i++;
 	new->arg[new->pos] = malloc(sizeof(char) \
-	* mystrcspn(input, "\"$", new->i) + 1);
+	* mystrcspn(input, "\"", new->i) + 1);
+	flag = new->pos;
 	if (!new->arg[new->pos])
 		perror("Issue malloc get_dquote");
 	while (input[new->i] && input[new->i] != '"')
@@ -82,10 +84,13 @@ void	get_dquote(t_token *new, char *input)
 /* just for the env var because it was too long */
 int	env_handler(t_token *new, char *input, int j)
 {
-	if (ft_isaspace(new->arg[new->pos][j]))
-		new->arg[new->pos][j] = '\0';
-	else
-		new->arg[new->pos][++j] = '\0';
+	if (input[new->i - 1] != '"')
+	{
+		if (ft_isaspace(new->arg[new->pos][j]))
+			new->arg[new->pos][j] = '\0';
+		else
+			new->arg[new->pos][++j] = '\0';
+	}
 	new->flag_env = 1;
 	if (new->flag == 3)
 		new->pos++;
