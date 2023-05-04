@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lexer.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fabien <fabien@student.42.fr>              +#+  +:+       +#+        */
+/*   By: fgrasset <fgrasset@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/10 11:14:39 by fgrasset          #+#    #+#             */
-/*   Updated: 2023/05/04 17:07:35 by fabien           ###   ########.fr       */
+/*   Updated: 2023/05/04 17:30:50 by fgrasset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,8 @@ int	sequencer(t_token **head, char *input, t_env *envi, int index)
 	space_index(new, input);
 	while (input[new->i] && input[new->i] != '|')
 	{
+		if (isredi(input[new->i]))
+			get_redirection(new, input);
 		get_cmd(new, input);
 		get_arg(new, input);
 	}

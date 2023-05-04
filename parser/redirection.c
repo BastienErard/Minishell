@@ -6,7 +6,7 @@
 /*   By: fgrasset <fgrasset@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/31 10:57:42 by fgrasset          #+#    #+#             */
-/*   Updated: 2023/05/04 17:26:36 by fgrasset         ###   ########.fr       */
+/*   Updated: 2023/05/04 17:32:50 by fgrasset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@ void	r_left(t_token	*new, char *input)
 		g_exit_code = 1;
 		return ;
 	}
-	write (1, "test\n", 5);
 	new->file_type = R_LEFT;
 	free(file);
 }
@@ -96,7 +95,7 @@ char	*get_filename(t_token *new, char *input)
 	if (input[new->i] == '\0')
 		return (NULL);
 	filename = malloc(sizeof(char) * word_len(input, new->i));
-	if (!new->arg)
+	if (!filename)
 		perror("issue malloc get_filename");
 	while (input[new->i] && !ft_isaspace(input[new->i]))
 	{
