@@ -6,7 +6,7 @@
 /*   By: fgrasset <fgrasset@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/24 14:08:12 by berard            #+#    #+#             */
-/*   Updated: 2023/05/04 17:14:16 by fgrasset         ###   ########.fr       */
+/*   Updated: 2023/05/04 17:54:35 by fgrasset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int	echo(t_token *token)
 	while (token->arg[i])
 	{
 		ft_putstr_fd(token->arg[i], STDOUT_FILENO);
-		if (token->arg[i + 1] && !token->flag_env)
+		if (token->arg[i + 1] && token->arg[i])
 			ft_putstr_fd(" ", STDOUT_FILENO);
 		i++;
 	}

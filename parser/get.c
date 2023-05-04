@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fabien <fabien@student.42.fr>              +#+  +:+       +#+        */
+/*   By: fgrasset <fgrasset@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/24 13:23:24 by fgrasset          #+#    #+#             */
-/*   Updated: 2023/05/04 17:07:46 by fabien           ###   ########.fr       */
+/*   Updated: 2023/05/04 17:58:43 by fgrasset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,10 @@ void	get_dquote(t_token *new, char *input)
 /* just for the env var because it was too long */
 int	env_handler(t_token *new, char *input, int j)
 {
-	new->arg[new->pos][++j] = '\0';
+	if (ft_isaspace(new->arg[new->pos][j]))
+		new->arg[new->pos][j] = '\0';
+	else
+		new->arg[new->pos][++j] = '\0';
 	new->flag_env = 1;
 	if (new->flag == 3)
 		new->pos++;
@@ -97,6 +100,8 @@ int	env_handler(t_token *new, char *input, int j)
 	new->arg[new->pos][++j] = '\0';
 	new->arg[++new->pos] = malloc(sizeof(char) \
 	* mystrcspn(input, "\"$", new->i) + 1);
+	if (ft_isaspace(input[new->i]))
+		new->i++;
 	j = -1;
 	return (j);
 }
