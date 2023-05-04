@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: berard <berard@student.42.fr>              +#+  +:+       +#+        */
+/*   By: fabien <fabien@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/24 13:23:24 by fgrasset          #+#    #+#             */
-/*   Updated: 2023/05/03 16:33:58 by berard           ###   ########.fr       */
+/*   Updated: 2023/05/04 17:07:46 by fabien           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,7 @@ void	get_dquote(t_token *new, char *input)
 			j = env_handler(new, input, j);
 		else
 		{
+			new->flag = 3;
 			new->arg[new->pos][++j] = input[new->i];
 			new->i++;
 		}
@@ -82,11 +83,13 @@ void	get_dquote(t_token *new, char *input)
 int	env_handler(t_token *new, char *input, int j)
 {
 	new->arg[new->pos][++j] = '\0';
-	j = -1;
 	new->flag_env = 1;
-	new->arg[++new->pos] = malloc(sizeof(char) \
+	if (new->flag == 3)
+		new->pos++;
+	new->arg[new->pos] = malloc(sizeof(char) \
 	* mystrcspn(input, " \t", new->i) + 1);
-	while (input[new->i] && !ft_isaspace(input[new->i]))
+	j = -1;
+	while (input[new->i] && !ft_isaspace(input[new->i]) && input[new->i] != '"')
 	{
 		new->arg[new->pos][++j] = input[new->i];
 		new->i++;

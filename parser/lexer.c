@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lexer.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: berard <berard@student.42.fr>              +#+  +:+       +#+        */
+/*   By: fabien <fabien@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/10 11:14:39 by fgrasset          #+#    #+#             */
-/*   Updated: 2023/05/03 16:33:36 by berard           ###   ########.fr       */
+/*   Updated: 2023/05/04 17:07:35 by fabien           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,6 @@ void	get_arg(t_token *new, char *input)
 			get_redirection(new, input);
 		else
 			get_word(new, input);
-		// space_index(new, input);
 		new->pos++;
 	}
 	new->arg[new->pos] = NULL;

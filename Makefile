@@ -4,8 +4,8 @@ OBJECTS	= $(SOURCES:.c=.o)
 
 CC		= gcc -g3 -fsanitize=address
 CFLAGS	= -Wall -Wextra -Werror -D_GNU_SOURCE
-RD_REPLACE = -L $(HOME)/.brew/Cellar/readline/8.2.1/lib -I $(HOME)/.brew/Cellar/readline/8.2.1/include
-#RD_REPLACE = -L /opt/homebrew/Cellar/readline/8.2.1/lib -I /opt/homebrew/Cellar/readline/8.2.1/include
+#RD_REPLACE = -L $(HOME)/.brew/Cellar/readline/8.2.1/lib -I $(HOME)/.brew/Cellar/readline/8.2.1/include
+RD_REPLACE = -L /opt/homebrew/Cellar/readline/8.2.1/lib -I /opt/homebrew/Cellar/readline/8.2.1/include
 RM		= rm -f
 
 NAME	= minishell
