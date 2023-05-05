@@ -6,7 +6,7 @@
 /*   By: fgrasset <fgrasset@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/24 13:23:24 by fgrasset          #+#    #+#             */
-/*   Updated: 2023/05/05 09:12:01 by fgrasset         ###   ########.fr       */
+/*   Updated: 2023/05/05 10:16:51 by fgrasset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,8 @@ void	get_squote(t_token *new, char *input)
 	int	j;
 
 	j = -1;
-	new->flag_env = 0;
 	new->i++;
+	add_tab(new, new->pos);
 	new->arg[new->pos] = malloc(sizeof(char) \
 	* (mystrcspn(input, "\'", new->i) + 2));
 	if (!new->arg[new->pos])
@@ -60,13 +60,11 @@ void	get_squote(t_token *new, char *input)
 void	get_dquote(t_token *new, char *input)
 {
 	int	j;
-	int	flag;
 
 	j = -1;
 	new->i++;
 	new->arg[new->pos] = malloc(sizeof(char) \
 	* (mystrcspn(input, "\"", new->i) + 2));
-	flag = new->pos;
 	if (!new->arg[new->pos])
 		perror("Issue malloc get_dquote");
 	while (input[new->i] && input[new->i] != '"')
@@ -94,7 +92,6 @@ int	env_handler(t_token *new, char *input, int j)
 		else
 			new->arg[new->pos][++j] = '\0';
 	}
-	new->flag_env = 1;
 	if (new->flag == 3)
 		new->pos++;
 	new->arg[new->pos] = malloc(sizeof(char) \
@@ -107,8 +104,8 @@ int	env_handler(t_token *new, char *input, int j)
 	}
 	new->arg[new->pos][++j] = '\0';
 	new->arg[++new->pos] = malloc(sizeof(char) \
-	* mystrcspn(input, "\"$", new->i) + 1);
-	if (ft_isaspace(input[new->i]))
+	* mystrcspn(input, "\"", new->i) + 1);
+	if (ft_isaspace(input[new->i]) && input[new->i + 1] != '$')
 		new->i++;
 	j = -1;
 	return (j);

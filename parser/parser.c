@@ -6,7 +6,7 @@
 /*   By: fgrasset <fgrasset@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 16:23:22 by berard            #+#    #+#             */
-/*   Updated: 2023/05/04 17:22:48 by fgrasset         ###   ########.fr       */
+/*   Updated: 2023/05/05 10:14:21 by fgrasset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,8 +54,8 @@ void	initialize_sequence(t_token *new, t_env *envi, int index)
 	new->cmd = NULL;
 	new->arg = NULL;
 	new->next = NULL;
+	new->flag_env[0] = -1;
 	new->error = 0;
-	new->flag_env = 1;
 	new->flag = 1;
 	new->fdread = 1;
 	new->fdwrite = 1;

@@ -6,7 +6,7 @@
 /*   By: fgrasset <fgrasset@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/31 11:01:15 by berard            #+#    #+#             */
-/*   Updated: 2023/05/04 18:21:17 by fgrasset         ###   ########.fr       */
+/*   Updated: 2023/05/05 10:16:57 by fgrasset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	replace_usd(t_token *token)
 	i = -1;
 	while (token->arg[++i])
 	{
-		if (token->arg[i][0] == '$' && token->flag_env)
+		if (token->arg[i][0] == '$' && !check_tab(token, i))
 		{
 			if (token->arg[i][1] == '?')
 			{
@@ -57,4 +57,18 @@ char	*rep_env_usd(t_token *token, char *usd)
 	else
 		usd = ft_strdup("\0");
 	return (usd);
+}
+
+int	check_tab(t_token *token, int i)
+{
+	int	j;
+
+	j = 0;
+	while (token->flag_env[j] != -1)
+	{
+		if (token->flag_env[j] == i)
+			return (1);
+		j++;
+	}
+	return (0);
 }

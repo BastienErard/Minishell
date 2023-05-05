@@ -6,7 +6,7 @@
 /*   By: fgrasset <fgrasset@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/01 11:05:17 by fgrasset          #+#    #+#             */
-/*   Updated: 2023/05/04 17:22:07 by fgrasset         ###   ########.fr       */
+/*   Updated: 2023/05/05 10:15:33 by fgrasset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ typedef struct s_token
 	int					type;
 	int					flag;
 	int					error;
-	int					flag_env;
+	int					flag_env[100];
 	int					syntax;
 	int					i;
 	int					pos;

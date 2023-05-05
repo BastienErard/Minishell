@@ -6,7 +6,7 @@
 /*   By: fgrasset <fgrasset@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 16:22:51 by berard            #+#    #+#             */
-/*   Updated: 2023/05/05 09:12:20 by fgrasset         ###   ########.fr       */
+/*   Updated: 2023/05/05 10:17:10 by fgrasset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -157,6 +157,8 @@ char			*ft_strdup_double(const char *s1);
 char			*ft_strdup_all(const char *s1);
 void			check_malloc(char *str);
 void			check_malloc_bis(char **str);
+void			add_tab(t_token *token, int new);
+int				check_tab(t_token *token, int i);
 
 //Pipes
 
