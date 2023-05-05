@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_cmd.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: berard <berard@student.42.fr>              +#+  +:+       +#+        */
+/*   By: fgrasset <fgrasset@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 17:48:46 by berard            #+#    #+#             */
-/*   Updated: 2023/05/03 14:41:35 by berard           ###   ########.fr       */
+/*   Updated: 2023/05/05 14:09:50 by fgrasset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,8 @@ void	exec_cmd(t_token *token)
 		dup2(token->fdwrite, STDOUT_FILENO);
 	if (is_builtins(token) == 1)
 		exec_builtins(token);
+	else if (is_builtins(token) == 127)
+		g_exit_code = 127;
 	else
 		exec_external_code(token);
 	if (token->fdread >= 3)

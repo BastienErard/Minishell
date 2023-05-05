@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   is_builtins.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tastybao <tastybao@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fgrasset <fgrasset@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/30 17:44:33 by berard            #+#    #+#             */
-/*   Updated: 2023/04/18 19:20:30 by tastybao         ###   ########.fr       */
+/*   Updated: 2023/05/05 14:06:32 by fgrasset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,11 @@
 */
 int	is_builtins(t_token *token)
 {
+	if (!token->cmd)
+	{
+		ft_putstr_fd("minishell: command not found\n", 2);
+		return (127);
+	}
 	if (ft_strcmp(token->cmd, "echo") == 0
 		|| ft_strcmp(token->cmd, "pwd") == 0
 		|| ft_strcmp(token->cmd, "exit") == 0

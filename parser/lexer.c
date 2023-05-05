@@ -6,7 +6,7 @@
 /*   By: fgrasset <fgrasset@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/10 11:14:39 by fgrasset          #+#    #+#             */
-/*   Updated: 2023/05/05 09:10:59 by fgrasset         ###   ########.fr       */
+/*   Updated: 2023/05/05 16:04:44 by fgrasset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ void	get_cmd(t_token *new, char *input)
 		get_dquote_cmd(new, input);
 	else
 	{
-		while (input[new->i] && !ft_isaspace(input[new->i]))
+		while (input[new->i] && !ft_isaspace(input[new->i]) && input[new->i] != '|')
 		{
 			new->cmd[++j] = input[new->i];
 			new->i++;

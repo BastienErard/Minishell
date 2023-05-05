@@ -6,7 +6,7 @@
 /*   By: berard <berard@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/24 16:15:23 by berard            #+#    #+#             */
-/*   Updated: 2023/04/19 11:00:46 by berard           ###   ########.fr       */
+/*   Updated: 2023/05/05 10:45:03 by berard           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,6 @@ int	pwd(void)
 		perror("Error with getcwd()");
 		return (errno);
 	}
-	printf("%s\n", path);
+	ft_printf("%s\n", path);
 	return (EXIT_SUCCESS);
 }
