@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_external.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fgrasset <fgrasset@student.42.fr>          +#+  +:+       +#+        */
+/*   By: berard <berard@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/24 11:14:27 by berard            #+#    #+#             */
-/*   Updated: 2023/05/05 13:50:12 by fgrasset         ###   ########.fr       */
+/*   Updated: 2023/05/05 17:28:38 by berard           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,6 +102,6 @@ void	exec_ext_bis(t_token *token, char **path, char *arg)
 		free_split(path);
 		execve(filepath, token->arg_all, token->g_env);
 		perror("execve");
-		exit (1);
+		exit (errno);
 	}
 }

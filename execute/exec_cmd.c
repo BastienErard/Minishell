@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_cmd.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fgrasset <fgrasset@student.42.fr>          +#+  +:+       +#+        */
+/*   By: berard <berard@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 17:48:46 by berard            #+#    #+#             */
-/*   Updated: 2023/05/05 14:09:50 by fgrasset         ###   ########.fr       */
+/*   Updated: 2023/05/05 17:29:02 by berard           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ void	exec_external_code(t_token *token)
 	{
 		exec_external(token);
 		perror("execve");
-		exit(1);
+		exit(errno);
 	}
 	else
 	{
