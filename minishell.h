@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: berard <berard@student.42.fr>              +#+  +:+       +#+        */
+/*   By: fgrasset <fgrasset@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 16:22:51 by berard            #+#    #+#             */
-/*   Updated: 2023/05/04 11:32:36 by berard           ###   ########.fr       */
+/*   Updated: 2023/05/05 09:12:20 by fgrasset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,11 @@ void			init_env(t_env **envi, char **env);
 void			add_env(t_env **envi, char *env);
 int				az_env(t_token *token);
 void			env_init(t_token *token);
+
+//get_cmd.c
+
+void			get_squote_cmd(t_token *new, char *input);
+void			get_dquote_cmd(t_token *new, char *input);
 
 //Signals
 

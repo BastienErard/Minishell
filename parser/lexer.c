@@ -6,7 +6,7 @@
 /*   By: fgrasset <fgrasset@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/10 11:14:39 by fgrasset          #+#    #+#             */
-/*   Updated: 2023/05/04 17:30:50 by fgrasset         ###   ########.fr       */
+/*   Updated: 2023/05/05 09:10:59 by fgrasset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,12 +45,19 @@ void	get_cmd(t_token *new, char *input)
 	new->cmd = malloc(sizeof(char) * word_len(input, new->i));
 	if (!new->cmd)
 		perror("Issue malloc get_cmd");
-	while (input[new->i] && !ft_isaspace(input[new->i]))
+	if (input[new->i] == '\'')
+		get_squote_cmd(new, input);
+	else if (input[new->i] == '"')
+		get_dquote_cmd(new, input);
+	else
 	{
-		new->cmd[++j] = input[new->i];
-		new->i++;
+		while (input[new->i] && !ft_isaspace(input[new->i]))
+		{
+			new->cmd[++j] = input[new->i];
+			new->i++;
+		}
+		new->cmd[++j] = '\0';
 	}
-	new->cmd[++j] = '\0';
 	new->type = COMMAND;
 	new->next = NULL;
 	space_index(new, input);
